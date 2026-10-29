@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="YunG Top 1 Medidator - Gaming marketplace for gaming products and services.">
+<title>YunG Top 1 Medidator | Gaming Market</title>
+
+<style>
+:root {
+  --bg: #090d18;
+  --panel: #121a2b;
+  --panel2: #19243a;
+  --blue: #4385ff;
+  --cyan: #27e5e5;
+  --text: #f5f7ff;
+  --muted: #a8b3ca;
+  --border: #27334b;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(9,13,24,.96);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.logo { font-size: 21px; font-weight: 900; }
+.logo span { color: var(--cyan); }
+nav { display: flex; gap: 20px; flex-wrap: wrap; }
+nav a { color: var(--text); text-decoration: none; font-size: 14px; }
+.hero {
+  padding: 76px 6% 64px;
+  background:
+    radial-gradient(ellipse at 85% 15%, #173b65 0%, transparent 40%),
+    linear-gradient(135deg, #101a31, #090d18 75%);
+  text-align: center;
+}
+.tag {
+  display: inline-block;
+  color: var(--cyan);
+  border: 1px solid #23616c;
+  padding: 8px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+h1 {
+  font-size: clamp(35px, 7vw, 68px);
+  line-height: 1.05;
+  margin: 24px auto 16px;
+  max-width: 850px;
+}
+h1 span { color: var(--cyan); }
+.hero p {
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.8;
+  margin: auto;
+}
+.primary, .secondary {
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 18px;
+  font-weight: bold;
+}
+.primary { background: var(--cyan); color: #06131b; }
+.secondary {
+  background: var(--panel2);
+  color: white;
+  border: 1px solid var(--border);
+}
+.hero .primary { margin-top: 25px; }
+section { padding: 48px 6%; }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+h2 { margin: 0 0 8px; font-size: 27px; }
+.muted { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+input, select, textarea {
+  background: var(--panel);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 13px;
+  min-width: 0;
+}
+#search { flex: 1; min-width: 180px; }
+select { max-width: 100%; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--cyan); }
+.art {
+  height: 155px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #193458, #10202c);
+  font-size: 49px;
+}
+.card-content { padding: 17px; }
+.game {
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card h3 { margin: 10px 0; font-size: 18px; }
+.price { font-size: 23px; font-weight: 800; margin: 15px 0; }
+.card .primary { width: 100%; }
+.note {
+  background: #151f31;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+  gap: 15px;
+}
+.step {
+  padding: 22px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.step b { color: var(--cyan); font-size: 21px; }
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 6%;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+  font-size: 13px;
+}
+dialog {
+  width: min(480px, calc(100% - 28px));
+  background: var(--panel);
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 24px;
+}
+dialog::backdrop { background: rgba(0,0,0,.8); }
+dialog input, dialog select { width: 100%; margin: 7px 0 13px; }
+.dialog-actions { display:flex; gap:10px; flex-wrap:wrap; }
+@media(max-width:550px) {
+  header { padding: 14px 5%; }
+  .logo { font-size: 17px; }
+  nav { gap: 10px; }
+  nav a { font-size: 12px; }
+  .hero { padding: 60px 5%; }
+  section { padding: 35px 5%; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">YunG <span>Top 1 Medidator</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#market">Marketplace</a>
+    <a href="#how">How it works</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <span class="tag">YOUR GAMING MARKETPLACE</span>
+  <h1>LEVEL UP YOUR <span>GAME.</span></h1>
+  <p>
+    Welcome to YunG Top 1 Medidator. Explore gaming products,
+    digital designs and services for your favourite games.
+  </p>
+  <button class="primary" onclick="document.querySelector('#market').scrollIntoView({behavior:'smooth'})">
+    Explore Marketplace
+  </button>
+</section>
+
+<section id="market">
+  <div class="section-head">
+    <div>
+      <h2>Explore the Marketplace</h2>
+      <div class="muted">Find products and services for your game.</div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <input id="search" placeholder="Search marketplace..." oninput="renderProducts()">
+    <select id="category" onchange="renderProducts()">
+      <option value="all">All categories</option>
+      <option value="Free Fire">Free Fire</option>
+      <option value="COD Mobile">COD Mobile</option>
+      <option value="Blood Strike">Blood Strike</option>
+    </select>
+    <select id="sort" onchange="renderProducts()">
+      <option value="default">Sort by</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+    </select>
+  </div>
+
+  <div class="grid" id="products"></div>
+
+  <p class="muted" id="empty" hidden>No matching listings. Try another search.</p>
+
+  <div class="note" style="margin-top:25px">
+    <b>Marketplace notice:</b> Listings below are sample products and
+    services for demonstrating the website. No game account is being
+    sold or delivered by this demo. Check each game's current rules
+    before offering account transfers or other restricted services.
+  </div>
+</section>
+
+<section id="how">
+  <div class="section-head">
+    <div>
+      <h2>How it works</h2>
+      <div class="muted">A simple shopping experience.</div>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step"><b>01</b><h3>Browse</h3><p class="muted">Explore products and gaming services.</p></div>
+    <div class="step"><b>02</b><h3>Place an order</h3><p class="muted">Choose an item and provide your contact details.</p></div>
+    <div class="step"><b>03</b><h3>Confirm payment</h3><p class="muted">Use a verified checkout when payment integration is configured.</p></div>
+    <div class="step"><b>04</b><h3>Receive your order</h3><p class="muted">Delivery depends on the product or service purchased.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <b>YunG Top 1 Medidator</b><br>
+  Gaming products, creativity and digital services.<br>
+  This demo does not process real payments or deliver digital goods.
+  Game names and trademarks belong to their respective owners.
+</footer>
+
+<dialog id="orderDialog">
+  <h2>Order enquiry</h2>
+  <p class="muted" id="chosenProduct"></p>
+  <form id="orderForm">
+    <label for="customerName">Your name</label>
+    <input id="customerName" required maxlength="80" placeholder="Enter your name">
+
+    <label for="customerContact">Contact email or phone</label>
+    <input id="customerContact" required maxlength="120" placeholder="Your contact details">
+
+    <label for="orderNote">Order details</label>
+    <textarea id="orderNote" rows="3" maxlength="500"
+      placeholder="Tell us what you need"></textarea>
+
+    <p class="muted">
+      Demo only: this form does not collect payment or send your details
+      to a seller. Do not enter passwords or game login credentials.
+    </p>
+    <div class="dialog-actions">
+      <button type="submit" class="primary">Preview order</button>
+      <button type="button" class="secondary" onclick="orderDialog.close()">Cancel</button>
+    </div>
+  </form>
+  <p id="orderResult" class="muted" role="status"></p>
+</dialog>
+
+<script>
+const products = [
+  {
+    id: 1,
+    game: "Free Fire",
+    name: "Gaming Profile Design",
+    price: 2500,
+    icon: "🎨",
+    description: "Custom profile artwork and gaming identity."
+  },
+  {
+    id: 2,
+    game: "Free Fire",
+    name: "Gaming Banner Design",
+    price: 3500,
+    icon: "🔥",
+    description: "A custom banner for your gaming profile."
+  },
+  {
+    id: 3,
+    game: "COD Mobile",
+    name: "Custom Gaming Logo",
+    price: 3000,
+    icon: "🎯",
+    description: "Personalized logo for your gaming brand."
+  },
+  {
+    id: 4,
+    game: "COD Mobile",
+    name: "Gaming Poster Design",
+    price: 4000,
+    icon: "🖼️",
+    description: "Promotional poster made to your specifications."
+  },
+  {
+    id: 5,
+    game: "Blood Strike",
+    name: "Gaming Avatar Design",
+    price: 2000,
+    icon: "⚡",
+    description: "Custom avatar artwork for your gaming identity."
+  },
+  {
+    id: 6,
+    game: "Blood Strike",
+    name: "Gaming Thumbnail Design",
+    price: 2500,
+    icon: "🎮",
+    description: "Thumbnail artwork for gaming videos."
+  }
+];
+
+const naira = amount =>
+  "₦" + amount.toLocaleString("en-NG");
+
+function renderProducts() {
+  const query = document.getElementById("search").value.toLowerCase();
+  const category = document.getElementById("category").value;
+  const sort = document.getElementById("sort").value;
+
+  let list = products.filter(p =>
+    (category === "all" || p.game === category) &&
+    (p.name + " " + p.game + " " + p.description)
+      .toLowerCase().includes(query)
+  );
+
+  if (sort === "low") list.sort((a,b) => a.price - b.price);
+  if (sort === "high") list.sort((a,b) => b.price - a.price);
+
+  document.getElementById("empty").hidden = list.length !== 0;
+
+  document.getElementById("products").innerHTML = list.map(p => `
+    <article class="card">
+      <div class="art" aria-hidden="true">${p.icon}</div>
+      <div class="card-content">
+        <div class="game">${p.game}</div>
+        <h3>${p.name}</h3>
+        <div class="muted">${p.description}</div>
+        <div class="price">${naira(p.price)}</div>
+        <button class="primary" onclick="openOrder(${p.id})">
+          Order enquiry
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+const orderDialog = document.getElementById("orderDialog");
+let selectedProduct = null;
+
+function openOrder(id) {
+  selectedProduct = products.find(p => p.id === id);
+  document.getElementById("chosenProduct").textContent =
+    selectedProduct.name + " — " + naira(selectedProduct.price);
+  document.getElementById("orderResult").textContent = "";
+  orderDialog.showModal();
+}
+
+document.getElementById("orderForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  document.getElementById("orderResult").textContent =
+    "Order preview created for " + selectedProduct.name +
+    ". No payment was taken and no order was sent. A real checkout " +
+    "must be securely connected before accepting orders.";
+
+  document.getElementById("orderResult").scrollIntoView({block:"nearest"});
+});
+
+renderProducts();
+</script>
+</body>
+</html>
