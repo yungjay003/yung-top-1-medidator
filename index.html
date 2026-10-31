@@ -4,414 +4,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090d18">
-<meta name="description" content="YunG Top 1 Medidator - Gaming marketplace for gaming products and services.">
-<title>YunG Top 1 Medidator | Gaming Market</title>
+<meta name="theme-color" content="#080b14">
+<title>YunG Top 1 | Gaming Top-Up Store</title>
 
 <style>
 :root {
-  --bg: #090d18;
-  --panel: #121a2b;
-  --panel2: #19243a;
-  --blue: #4385ff;
-  --cyan: #27e5e5;
-  --text: #f5f7ff;
-  --muted: #a8b3ca;
-  --border: #27334b;
+  --bg:#080b14;
+  --panel:#111827;
+  --panel2:#182235;
+  --accent:#7c5cff;
+  --cyan:#20e6d2;
+  --white:#f7f8ff;
+  --muted:#a3aec4;
+  --border:#26334a;
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
 }
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(9,13,24,.96);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+button,input,select{font:inherit}
+button{cursor:pointer}
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(8,11,20,.96);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+  padding:17px 6%;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:15px;
 }
-.logo { font-size: 21px; font-weight: 900; }
-.logo span { color: var(--cyan); }
-nav { display: flex; gap: 20px; flex-wrap: wrap; }
-nav a { color: var(--text); text-decoration: none; font-size: 14px; }
-.hero {
-  padding: 76px 6% 64px;
+.logo{font-size:22px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--cyan)}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--white);text-decoration:none;font-size:14px}
+nav a:hover{color:var(--cyan)}
+.hero{
+  padding:90px 6% 80px;text-align:center;
   background:
-    radial-gradient(ellipse at 85% 15%, #173b65 0%, transparent 40%),
-    linear-gradient(135deg, #101a31, #090d18 75%);
-  text-align: center;
+    radial-gradient(ellipse at 15% 20%,#34216c 0%,transparent 38%),
+    radial-gradient(ellipse at 85% 30%,#064b55 0%,transparent 35%),
+    linear-gradient(135deg,#10152a,#080b14);
 }
-.tag {
-  display: inline-block;
-  color: var(--cyan);
-  border: 1px solid #23616c;
-  padding: 8px 13px;
-  border-radius: 30px;
-  font-size: 12px;
-  letter-spacing: 1px;
+.tag{
+  display:inline-block;padding:9px 16px;
+  border:1px solid #51428a;border-radius:30px;
+  color:var(--cyan);font-size:12px;letter-spacing:2px;
 }
-h1 {
-  font-size: clamp(35px, 7vw, 68px);
-  line-height: 1.05;
-  margin: 24px auto 16px;
-  max-width: 850px;
+h1{
+  font-size:clamp(38px,7vw,76px);
+  line-height:1.05;margin:25px auto 18px;
+  max-width:900px;
 }
-h1 span { color: var(--cyan); }
-.hero p {
-  color: var(--muted);
-  max-width: 600px;
-  line-height: 1.8;
-  margin: auto;
+h1 span{color:var(--cyan)}
+.hero p{
+  color:var(--muted);max-width:620px;
+  line-height:1.8;margin:auto;font-size:16px;
 }
-.primary, .secondary {
-  border: 0;
-  border-radius: 9px;
-  padding: 13px 18px;
-  font-weight: bold;
+.btn{
+  border:0;border-radius:9px;padding:14px 20px;
+  font-weight:bold;background:var(--accent);
+  color:white;transition:.2s;
 }
-.primary { background: var(--cyan); color: #06131b; }
-.secondary {
-  background: var(--panel2);
-  color: white;
-  border: 1px solid var(--border);
+.btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.btn-cyan{background:var(--cyan);color:#07141a}
+.hero .btn{margin-top:28px}
+section{padding:55px 6%}
+.section-head{margin-bottom:25px}
+h2{font-size:29px;margin:0 0 9px}
+.muted{color:var(--muted);font-size:14px;line-height:1.7}
+.game-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:17px;
 }
-.hero .primary { margin-top: 25px; }
-section { padding: 48px 6%; }
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
+.game-card{
+  position:relative;overflow:hidden;
+  border:1px solid var(--border);border-radius:15px;
+  background:var(--panel);padding:23px 15px;
+  text-align:center;cursor:pointer;transition:.2s;
 }
-h2 { margin: 0 0 8px; font-size: 27px; }
-.muted { color: var(--muted); font-size: 14px; line-height: 1.7; }
-.filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
+.game-card:hover,.game-card.active{
+  border-color:var(--cyan);transform:translateY(-4px);
+  background:linear-gradient(145deg,#1c2941,#111827);
 }
-input, select, textarea {
-  background: var(--panel);
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 13px;
-  min-width: 0;
+.game-icon{font-size:49px;margin-bottom:13px}
+.game-card h3{font-size:16px;margin:0 0 8px}
+.game-card p{font-size:12px;color:var(--muted);margin:0}
+.filters{
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;
 }
-#search { flex: 1; min-width: 180px; }
-select { max-width: 100%; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+input,select{
+  width:100%;padding:14px;
+  color:white;background:var(--panel);
+  border:1px solid var(--border);border-radius:9px;
+  outline:none;
 }
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform .2s, border-color .2s;
+input:focus,select:focus{border-color:var(--cyan)}
+.search{flex:1;min-width:200px}
+.package-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:17px;
 }
-.card:hover { transform: translateY(-4px); border-color: var(--cyan); }
-.art {
-  height: 155px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #193458, #10202c);
-  font-size: 49px;
+.package{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:22px;
+  transition:.2s;
 }
-.card-content { padding: 17px; }
-.game {
-  color: var(--cyan);
-  font-size: 11px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.package:hover{border-color:var(--accent);transform:translateY(-3px)}
+.package .game-name{
+  color:var(--cyan);font-size:11px;
+  font-weight:bold;text-transform:uppercase;letter-spacing:1px;
 }
-.card h3 { margin: 10px 0; font-size: 18px; }
-.price { font-size: 23px; font-weight: 800; margin: 15px 0; }
-.card .primary { width: 100%; }
-.note {
-  background: #151f31;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px;
-  color: var(--muted);
-  line-height: 1.7;
-  font-size: 13px;
+.package h3{font-size:19px;margin:13px 0 7px}
+.package .quantity{font-size:14px;color:var(--muted)}
+.package .price{font-size:27px;font-weight:900;margin:18px 0}
+.package .btn{width:100%}
+.package .delivery{font-size:12px;color:var(--muted);margin-top:13px}
+.notice{
+  margin-top:25px;padding:18px;
+  background:#151e30;border:1px solid var(--border);
+  border-radius:12px;color:var(--muted);
+  font-size:13px;line-height:1.8;
 }
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
-  gap: 15px;
+.how-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
 }
-.step {
-  padding: 22px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--panel);
+.how-card{
+  padding:23px;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;
 }
-.step b { color: var(--cyan); font-size: 21px; }
-footer {
-  border-top: 1px solid var(--border);
-  padding: 30px 6%;
-  color: var(--muted);
-  text-align: center;
-  line-height: 1.8;
-  font-size: 13px;
+.how-card b{font-size:25px;color:var(--cyan)}
+.how-card h3{margin-bottom:8px}
+.checkout{
+  background:linear-gradient(135deg,#171c38,#10252c);
+  border:1px solid var(--border);
+  border-radius:16px;padding:28px;
+  max-width:650px;margin:auto;
 }
-dialog {
-  width: min(480px, calc(100% - 28px));
-  background: var(--panel);
-  color: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 24px;
+.checkout label{display:block;margin:15px 0 7px;font-size:13px;font-weight:bold}
+.checkout .btn{width:100%;margin-top:20px}
+.payment-info{
+  padding:16px;margin-top:17px;
+  background:#0b1220;border-radius:10px;
+  border:1px solid var(--border);
+  font-size:13px;line-height:1.9;color:var(--muted);
 }
-dialog::backdrop { background: rgba(0,0,0,.8); }
-dialog input, dialog select { width: 100%; margin: 7px 0 13px; }
-.dialog-actions { display:flex; gap:10px; flex-wrap:wrap; }
-@media(max-width:550px) {
-  header { padding: 14px 5%; }
-  .logo { font-size: 17px; }
-  nav { gap: 10px; }
-  nav a { font-size: 12px; }
-  .hero { padding: 60px 5%; }
-  section { padding: 35px 5%; }
+footer{
+  text-align:center;padding:35px 6%;
+  border-top:1px solid var(--border);
+  color:var(--muted);font-size:13px;line-height:1.9;
+}
+.whatsapp{
+  position:fixed;bottom:22px;right:20px;
+  width:57px;height:57px;border-radius:50%;
+  background:#20c96b;color:white;
+  display:grid;place-items:center;
+  text-decoration:none;font-size:27px;
+  box-shadow:0 5px 20px #0008;z-index:30;
+}
+.empty{display:none;padding:25px;text-align:center;color:var(--muted)}
+@media(max-width:800px){
+ .game-grid{grid-template-columns:repeat(2,1fr)}
+ .package-grid{grid-template-columns:repeat(2,1fr)}
+ .how-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+ header{padding:14px 5%;flex-wrap:wrap}
+ .logo{font-size:18px}
+ nav{gap:13px}
+ nav a{font-size:12px}
+ .hero{padding:65px 5%}
+ section{padding:40px 5%}
+ .package-grid{grid-template-columns:1fr}
+ .how-grid{grid-template-columns:1fr 1fr}
+ .checkout{padding:20px}
 }
 </style>
 </head>
 
 <body>
+
 <header>
-  <div class="logo">YunG <span>Top 1 Medidator</span></div>
+  <div class="logo">YunG <span>TOP 1</span></div>
   <nav>
     <a href="#home">Home</a>
-    <a href="#market">Marketplace</a>
+    <a href="#games">Games</a>
+    <a href="#packages">Top Up</a>
     <a href="#how">How it works</a>
   </nav>
 </header>
 
 <main>
+
 <section class="hero" id="home">
-  <span class="tag">YOUR GAMING MARKETPLACE</span>
-  <h1>LEVEL UP YOUR <span>GAME.</span></h1>
+  <span class="tag">WELCOME TO YUNG TOP 1</span>
+  <h1>POWER UP YOUR <span>GAMING.</span></h1>
   <p>
-    Welcome to YunG Top 1 Medidator. Explore gaming products,
-    digital designs and services for your favourite games.
+    Your trusted destination for game top-ups.
+    Get Free Fire Diamonds, COD Mobile CP, Blood Strike Gold
+    and PUBG Mobile UC. Select your package and place your order.
   </p>
-  <button class="primary" onclick="document.querySelector('#market').scrollIntoView({behavior:'smooth'})">
-    Explore Marketplace
+  <button class="btn btn-cyan"
+    onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})">
+    EXPLORE GAMES →
   </button>
 </section>
 
-<section id="market">
+<section id="games">
   <div class="section-head">
-    <div>
-      <h2>Explore the Marketplace</h2>
-      <div class="muted">Find products and services for your game.</div>
+    <h2>Choose Your Game</h2>
+    <p class="muted">Select your favourite game to see available top-up packages.</p>
+  </div>
+
+  <div class="game-grid" id="gameGrid">
+    <div class="game-card active" data-game="Free Fire" onclick="chooseGame('Free Fire')">
+      <div class="game-icon">🔥</div>
+      <h3>Free Fire</h3>
+      <p>Diamonds top-up</p>
     </div>
+
+    <div class="game-card" data-game="COD Mobile" onclick="chooseGame('COD Mobile')">
+      <div class="game-icon">🎯</div>
+      <h3>Call of Duty</h3>
+      <p>CP top-up</p>
+    </div>
+
+    <div class="game-card" data-game="Blood Strike" onclick="chooseGame('Blood Strike')">
+      <div class="game-icon">⚡</div>
+      <h3>Blood Strike</h3>
+      <p>Gold top-up</p>
+    </div>
+
+    <div class="game-card" data-game="PUBG Mobile" onclick="chooseGame('PUBG Mobile')">
+      <div class="game-icon">🎮</div>
+      <h3>PUBG Mobile</h3>
+      <p>UC top-up</p>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="section-head">
+    <h2 id="packageHeading">Free Fire Packages</h2>
+    <p class="muted">Choose the package you want to purchase.</p>
   </div>
 
   <div class="filters">
-    <input id="search" placeholder="Search marketplace..." oninput="renderProducts()">
-    <select id="category" onchange="renderProducts()">
-      <option value="all">All categories</option>
-      <option value="Free Fire">Free Fire</option>
-      <option value="COD Mobile">COD Mobile</option>
-      <option value="Blood Strike">Blood Strike</option>
-    </select>
-    <select id="sort" onchange="renderProducts()">
-      <option value="default">Sort by</option>
-      <option value="low">Price: low to high</option>
-      <option value="high">Price: high to low</option>
-    </select>
+    <input class="search" id="search"
+      placeholder="Search packages..." oninput="renderPackages()">
   </div>
 
-  <div class="grid" id="products"></div>
+  <div class="package-grid" id="packageGrid"></div>
+  <div class="empty" id="empty">No packages found.</div>
 
-  <p class="muted" id="empty" hidden>No matching listings. Try another search.</p>
+  <div class="notice">
+    <strong>Important:</strong> Prices below are editable sample prices.
+    Replace them with your actual selling prices before publishing.
+    Always confirm the player's game and UID before delivery.
+    Never ask customers for their game password.
+  </div>
+</section>
 
-  <div class="note" style="margin-top:25px">
-    <b>Marketplace notice:</b> Listings below are sample products and
-    services for demonstrating the website. No game account is being
-    sold or delivered by this demo. Check each game's current rules
-    before offering account transfers or other restricted services.
+<section id="order">
+  <div class="section-head" style="text-align:center">
+    <h2>Complete Your Order</h2>
+    <p class="muted">Enter your details carefully to avoid delivery errors.</p>
+  </div>
+
+  <div class="checkout">
+    <h3>🛒 Your Top-Up Order</h3>
+    <p class="muted" id="selectedPackage">Please select a package above.</p>
+
+    <form id="orderForm">
+      <label for="customerName">Full name</label>
+      <input id="customerName" required maxlength="80"
+        placeholder="Enter your full name">
+
+      <label for="customerPhone">Your WhatsApp number</label>
+      <input id="customerPhone" type="tel" required maxlength="20"
+        placeholder="e.g. 08012345678">
+
+      <label for="playerUID">Game Player UID</label>
+      <input id="playerUID" required maxlength="40"
+        placeholder="Enter your game UID">
+
+      <label for="playerName">In-game name (optional)</label>
+      <input id="playerName" maxlength="50"
+        placeholder="Your gaming name">
+
+      <label for="paymentMethod">Payment method</label>
+      <select id="paymentMethod" required>
+        <option value="">Select payment method</option>
+        <option value="Bank transfer">Bank transfer</option>
+        <option value="Contact seller">Contact seller for payment</option>
+      </select>
+
+      <label for="paymentReference">Payment reference (if paid)</label>
+      <input id="paymentReference" maxlength="100"
+        placeholder="Enter transfer reference if available">
+
+      <div class="payment-info">
+        <strong style="color:white">BANK TRANSFER DETAILS</strong><br>
+        Bank: YOUR BANK NAME<br>
+        Account Name: YOUR ACCOUNT NAME<br>
+        Account Number: YOUR ACCOUNT NUMBER<br>
+        <br>
+        Replace these details with your real business account.
+        Confirm the payment in your bank account before delivering
+        any game currency. Never rely only on a transfer screenshot.
+      </div>
+
+      <button type="submit" class="btn btn-cyan">
+        PLACE ORDER VIA WHATSAPP →
+      </button>
+    </form>
+
+    <p class="muted" id="orderStatus" role="status"></p>
   </div>
 </section>
 
 <section id="how">
   <div class="section-head">
-    <div>
-      <h2>How it works</h2>
-      <div class="muted">A simple shopping experience.</div>
+    <h2>How It Works</h2>
+    <p class="muted">Four simple steps to receive your game top-up.</p>
+  </div>
+
+  <div class="how-grid">
+    <div class="how-card">
+      <b>01</b>
+      <h3>Choose a game</h3>
+      <p class="muted">Select your preferred game.</p>
+    </div>
+    <div class="how-card">
+      <b>02</b>
+      <h3>Select package</h3>
+      <p class="muted">Choose the amount you want.</p>
+    </div>
+    <div class="how-card">
+      <b>03</b>
+      <h3>Make payment</h3>
+      <p class="muted">Follow the payment instructions and send your order.</p>
+    </div>
+    <div class="how-card">
+      <b>04</b>
+      <h3>Receive top-up</h3>
+      <p class="muted">We verify payment and deliver to your game UID.</p>
     </div>
   </div>
-  <div class="steps">
-    <div class="step"><b>01</b><h3>Browse</h3><p class="muted">Explore products and gaming services.</p></div>
-    <div class="step"><b>02</b><h3>Place an order</h3><p class="muted">Choose an item and provide your contact details.</p></div>
-    <div class="step"><b>03</b><h3>Confirm payment</h3><p class="muted">Use a verified checkout when payment integration is configured.</p></div>
-    <div class="step"><b>04</b><h3>Receive your order</h3><p class="muted">Delivery depends on the product or service purchased.</p></div>
-  </div>
 </section>
+
 </main>
 
 <footer>
-  <b>YunG Top 1 Medidator</b><br>
-  Gaming products, creativity and digital services.<br>
-  This demo does not process real payments or deliver digital goods.
-  Game names and trademarks belong to their respective owners.
+  <strong style="color:white;font-size:17px">YunG TOP 1 MEDIDATOR</strong><br>
+  Your Gaming Top-Up Destination.<br>
+  Free Fire | COD Mobile | Blood Strike | PUBG Mobile<br>
+  © <span id="year"></span> YunG Top 1. All rights reserved.<br>
+  All game names and trademarks belong to their respective owners.
 </footer>
 
-<dialog id="orderDialog">
-  <h2>Order enquiry</h2>
-  <p class="muted" id="chosenProduct"></p>
-  <form id="orderForm">
-    <label for="customerName">Your name</label>
-    <input id="customerName" required maxlength="80" placeholder="Enter your name">
-
-    <label for="customerContact">Contact email or phone</label>
-    <input id="customerContact" required maxlength="120" placeholder="Your contact details">
-
-    <label for="orderNote">Order details</label>
-    <textarea id="orderNote" rows="3" maxlength="500"
-      placeholder="Tell us what you need"></textarea>
-
-    <p class="muted">
-      Demo only: this form does not collect payment or send your details
-      to a seller. Do not enter passwords or game login credentials.
-    </p>
-    <div class="dialog-actions">
-      <button type="submit" class="primary">Preview order</button>
-      <button type="button" class="secondary" onclick="orderDialog.close()">Cancel</button>
-    </div>
-  </form>
-  <p id="orderResult" class="muted" role="status"></p>
-</dialog>
+<a class="whatsapp" id="whatsappLink" href="#" target="_blank"
+   rel="noopener" aria-label="Contact us on WhatsApp">✆</a>
 
 <script>
-const products = [
-  {
-    id: 1,
-    game: "Free Fire",
-    name: "Gaming Profile Design",
-    price: 2500,
-    icon: "🎨",
-    description: "Custom profile artwork and gaming identity."
-  },
-  {
-    id: 2,
-    game: "Free Fire",
-    name: "Gaming Banner Design",
-    price: 3500,
-    icon: "🔥",
-    description: "A custom banner for your gaming profile."
-  },
-  {
-    id: 3,
-    game: "COD Mobile",
-    name: "Custom Gaming Logo",
-    price: 3000,
-    icon: "🎯",
-    description: "Personalized logo for your gaming brand."
-  },
-  {
-    id: 4,
-    game: "COD Mobile",
-    name: "Gaming Poster Design",
-    price: 4000,
-    icon: "🖼️",
-    description: "Promotional poster made to your specifications."
-  },
-  {
-    id: 5,
-    game: "Blood Strike",
-    name: "Gaming Avatar Design",
-    price: 2000,
-    icon: "⚡",
-    description: "Custom avatar artwork for your gaming identity."
-  },
-  {
-    id: 6,
-    game: "Blood Strike",
-    name: "Gaming Thumbnail Design",
-    price: 2500,
-    icon: "🎮",
-    description: "Thumbnail artwork for gaming videos."
-  }
+
+/* ==========================================
+   BUSINESS SETTINGS
+   EDIT THESE BEFORE PUBLISHING YOUR WEBSITE
+========================================== */
+
+// Your WhatsApp number with country code.
+// Example Nigerian format: 2348012345678
+const ADMIN_WHATSAPP = "2348012345678";
+
+// Change the sample prices below to your actual prices.
+// Amounts are in Nigerian Naira.
+
+const packages = [
+  // FREE FIRE
+  {game:"Free Fire",name:"Starter Diamonds",quantity:"100 Diamonds",price:1500},
+  {game:"Free Fire",name:"Basic Diamonds",quantity:"210 Diamonds",price:3000},
+  {game:"Free Fire",name:"Standard Diamonds",quantity:"530 Diamonds",price:7000},
+  {game:"Free Fire",name:"Premium Diamonds",quantity:"1080 Diamonds",price:14000},
+  {game:"Free Fire",name:"Mega Diamonds",quantity:"2200 Diamonds",price:28000},
+  {game:"Free Fire",name:"Ultimate Diamonds",quantity:"5600 Diamonds",price:70000},
+
+  // CALL OF DUTY MOBILE
+  {game:"COD Mobile",name:"Starter CP",quantity:"80 CP",price:1500},
+  {game:"COD Mobile",name:"Basic CP",quantity:"160 CP",price:3000},
+  {game:"COD Mobile",name:"Standard CP",quantity:"420 CP",price:7000},
+  {game:"COD Mobile",name:"Premium CP",quantity:"880 CP",price:14000},
+  {game:"COD Mobile",name:"Mega CP",quantity:"2400 CP",price:35000},
+  {game:"COD Mobile",name:"Ultimate CP",quantity:"5000 CP",price:70000},
+
+  // BLOOD STRIKE
+  {game:"Blood Strike",name:"Starter Gold",quantity:"100 Gold",price:1500},
+  {game:"Blood Strike",name:"Basic Gold",quantity:"300 Gold",price:3000},
+  {game:"Blood Strike",name:"Standard Gold",quantity:"600 Gold",price:6000},
+  {game:"Blood Strike",name:"Premium Gold",quantity:"1200 Gold",price:12000},
+  {game:"Blood Strike",name:"Mega Gold",quantity:"3000 Gold",price:28000},
+  {game:"Blood Strike",name:"Ultimate Gold",quantity:"6000 Gold",price:55000},
+
+  // PUBG MOBILE
+  {game:"PUBG Mobile",name:"Starter UC",quantity:"60 UC",price:1500},
+  {game:"PUBG Mobile",name:"Basic UC",quantity:"325 UC",price:6000},
+  {game:"PUBG Mobile",name:"Standard UC",quantity:"660 UC",price:12000},
+  {game:"PUBG Mobile",name:"Premium UC",quantity:"1800 UC",price:30000},
+  {game:"PUBG Mobile",name:"Mega UC",quantity:"3850 UC",price:60000},
+  {game:"PUBG Mobile",name:"Ultimate UC",quantity:"8100 UC",price:120000}
 ];
 
-const naira = amount =>
-  "₦" + amount.toLocaleString("en-NG");
+/* ==========================================
+   WEBSITE FUNCTIONS
+========================================== */
 
-function renderProducts() {
-  const query = document.getElementById("search").value.toLowerCase();
-  const category = document.getElementById("category").value;
-  const sort = document.getElementById("sort").value;
+let selectedGame = "Free Fire";
+let selectedPackage = null;
 
-  let list = products.filter(p =>
-    (category === "all" || p.game === category) &&
-    (p.name + " " + p.game + " " + p.description)
-      .toLowerCase().includes(query)
+function naira(amount){
+  return "₦" + Number(amount).toLocaleString("en-NG");
+}
+
+function chooseGame(game){
+  selectedGame = game;
+
+  document.querySelectorAll(".game-card").forEach(card=>{
+    card.classList.toggle("active",card.dataset.game===game);
+  });
+
+  document.getElementById("packageHeading").textContent =
+    game + " Packages";
+
+  document.getElementById("search").value = "";
+  renderPackages();
+
+  document.getElementById("packages").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function renderPackages(){
+  const search = document.getElementById("search")
+    .value.toLowerCase();
+
+  const filtered = packages.filter(item =>
+    item.game === selectedGame &&
+    (item.name+" "+item.quantity).toLowerCase().includes(search)
   );
 
-  if (sort === "low") list.sort((a,b) => a.price - b.price);
-  if (sort === "high") list.sort((a,b) => b.price - a.price);
+  const grid = document.getElementById("packageGrid");
 
-  document.getElementById("empty").hidden = list.length !== 0;
+  document.getElementById("empty").style.display =
+    filtered.length ? "none" : "block";
 
-  document.getElementById("products").innerHTML = list.map(p => `
-    <article class="card">
-      <div class="art" aria-hidden="true">${p.icon}</div>
-      <div class="card-content">
-        <div class="game">${p.game}</div>
-        <h3>${p.name}</h3>
-        <div class="muted">${p.description}</div>
-        <div class="price">${naira(p.price)}</div>
-        <button class="primary" onclick="openOrder(${p.id})">
-          Order enquiry
-        </button>
-      </div>
+  grid.innerHTML = filtered.map((item,index)=>`
+    <article class="package">
+      <div class="game-name">${item.game}</div>
+      <h3>${item.name}</h3>
+      <div class="quantity">${item.quantity}</div>
+      <div class="price">${naira(item.price)}</div>
+      <button class="btn" onclick="selectPackage(${packages.indexOf(item)})">
+        BUY NOW
+      </button>
+      <div class="delivery">UID delivery • Payment verification required</div>
     </article>
   `).join("");
 }
 
-const orderDialog = document.getElementById("orderDialog");
-let selectedProduct = null;
+function selectPackage(index){
+  selectedPackage = packages[index];
 
-function openOrder(id) {
-  selectedProduct = products.find(p => p.id === id);
-  document.getElementById("chosenProduct").textContent =
-    selectedProduct.name + " — " + naira(selectedProduct.price);
-  document.getElementById("orderResult").textContent = "";
-  orderDialog.showModal();
+  document.getElementById("selectedPackage").textContent =
+    selectedPackage.game + " | " +
+    selectedPackage.quantity + " | " +
+    naira(selectedPackage.price);
+
+  document.getElementById("order").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
-document.getElementById("orderForm").addEventListener("submit", event => {
+document.getElementById("orderForm").addEventListener("submit",function(event){
   event.preventDefault();
 
-  document.getElementById("orderResult").textContent =
-    "Order preview created for " + selectedProduct.name +
-    ". No payment was taken and no order was sent. A real checkout " +
-    "must be securely connected before accepting orders.";
+  if(!selectedPackage){
+    alert("Please select a game package first.");
+    return;
+  }
 
-  document.getElementById("orderResult").scrollIntoView({block:"nearest"});
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const uid = document.getElementById("playerUID").value.trim();
+  const player = document.getElementById("playerName").value.trim();
+  const payment = document.getElementById("paymentMethod").value;
+  const reference = document.getElementById("paymentReference").value.trim();
+
+  if(!name || !phone || !uid || !payment){
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  const message =
+`🎮 NEW GAMING TOP-UP ORDER
+------------------------------
+Store: YunG Top 1 Medidator
+
+Customer Name: ${name}
+Customer WhatsApp: ${phone}
+
+Game: ${selectedPackage.game}
+Package: ${selectedPackage.name}
+Quantity: ${selectedPackage.quantity}
+Amount: ${naira(selectedPackage.price)}
+
+Player UID: ${uid}
+In-game Name: ${player || "Not provided"}
+
+Payment Method: ${payment}
+Payment Reference: ${reference || "Not provided"}
+
+ORDER STATUS: AWAITING PAYMENT VERIFICATION
+
+Please confirm this order before delivery.
+------------------------------
+Thank you for choosing YunG Top 1!`;
+
+  const status = document.getElementById("orderStatus");
+
+  if(!/^234\d{10}$/.test(ADMIN_WHATSAPP)){
+    status.textContent =
+      "Your order details are ready, but the store owner's WhatsApp number has not been configured. Update ADMIN_WHATSAPP in the code.";
+    alert("Please configure your business WhatsApp number in the code before accepting orders.");
+    return;
+  }
+
+  const whatsappURL =
+    "https://wa.me/" + ADMIN_WHATSAPP +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL,"_blank","noopener");
+
+  status.textContent =
+    "Your WhatsApp order message has been prepared. Send it to the store to complete your order.";
 });
 
-renderProducts();
+document.getElementById("whatsappLink").href =
+  "https://wa.me/" + ADMIN_WHATSAPP;
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+renderPackages();
+
 </script>
 </body>
 </html>
