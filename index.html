@@ -1,698 +1,1557 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#081426">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
 <title>YunG Top 1 Meditator | Game Top-Ups</title>
+
 <style>
-:root{--blue:#1769ff;--navy:#081426;--ink:#172033;--muted:#667085;--line:#e7ebf2}
+:root{
+  --blue:#1769ff;
+  --navy:#071426;
+  --ink:#172033;
+  --muted:#667085;
+  --line:#e7ebf2;
+  --bg:#f5f7fb;
+  --green:#07844f;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
 button,input,select{font:inherit}
 button{cursor:pointer}
 [hidden]{display:none!important}
-header{background:white;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
-.top{max-width:1400px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:22px}
-.brand{display:flex;align-items:center;gap:8px;font-size:25px;letter-spacing:-1px;color:#0872f9;text-decoration:none;font-weight:900;white-space:nowrap}
-.brandmark{width:31px;height:31px;border-radius:50%;display:inline-grid;place-items:center;background:#0872f9;color:#fff;font-size:20px}
-.brandwords{white-space:nowrap}
+
+/* HEADER */
+header{
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid var(--line);
+}
+.top{
+  max-width:1400px;
+  margin:auto;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#0872f9;
+  text-decoration:none;
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.brandmark{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:var(--blue);
+  color:white;
+  font-size:23px;
+}
 .search{flex:1}
-.search input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7f9fc}
-.account{margin-left:auto}
-.account button{border:0;background:white;font-weight:bold;padding:10px}
-.account .out{border:1px solid var(--line);border-radius:7px}
-.nav{display:flex;justify-content:flex-start;gap:30px;padding:12px 22px;flex-wrap:wrap;border-top:1px solid #f2f4f7;max-width:1400px;margin:auto}
-.nav a{font-size:13px;font-weight:bold;text-decoration:none;color:#344054}
-.nav a:first-child{color:#0872f9}
-.trust{background:var(--navy);color:white;text-align:center;padding:12px;display:flex;justify-content:center;gap:35px;flex-wrap:wrap;font-size:13px}
+.search input{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#f7f9fc;
+  outline:none;
+}
+.search input:focus{border-color:var(--blue)}
+.account{display:flex;gap:8px;align-items:center}
+.account button{
+  border:0;
+  background:white;
+  font-weight:bold;
+  padding:10px;
+}
+.account .out{
+  border:1px solid var(--line);
+  border-radius:7px;
+}
+.nav{
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  gap:27px;
+  padding:12px 22px;
+  border-top:1px solid #f2f4f7;
+  overflow-x:auto;
+}
+.nav a{
+  color:#344054;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.nav a:first-child{color:var(--blue)}
+.trust{
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  flex-wrap:wrap;
+  padding:12px;
+  font-size:12px;
+}
+
+/* MAIN LAYOUT */
 .wrap{max-width:1400px;margin:auto;padding:24px}
-.hero{min-height:310px;padding:55px;border-radius:14px;color:white;background:radial-gradient(circle at 80% 20%,#2099e8,transparent 35%),linear-gradient(110deg,#071a3b,#0754c9 60%,#0e9fcb)}
-.hero small{font-weight:900;letter-spacing:2px;color:#b9f1ff}
-.hero h1{font-size:clamp(35px,5vw,60px);line-height:1.02;margin:15px 0}
-.hero p{max-width:570px;line-height:1.6;color:#e5f3ff}
-.cta{display:inline-block;background:white;color:#0759ce;text-decoration:none;font-weight:900;padding:13px 20px;border-radius:7px;margin-top:10px}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
-.quick div{background:white;padding:16px;border:1px solid var(--line);border-radius:9px;font-weight:bold;font-size:13px}
-.section{margin-top:34px}
-.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:15px}
+.hero{
+  min-height:320px;
+  padding:50px;
+  border-radius:14px;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,#25a9ec,transparent 32%),
+    radial-gradient(circle at 70% 100%,#073a9e,transparent 45%),
+    linear-gradient(110deg,#071a3b,#0754c9 65%,#087fbb);
+  overflow:hidden;
+}
+.hero small{
+  font-weight:900;
+  letter-spacing:2px;
+  color:#b9f1ff;
+}
+.hero h1{
+  font-size:clamp(36px,5vw,62px);
+  line-height:1.02;
+  margin:16px 0;
+  max-width:650px;
+}
+.hero p{
+  max-width:580px;
+  color:#e5f3ff;
+  line-height:1.7;
+  font-size:14px;
+}
+.cta{
+  display:inline-block;
+  background:white;
+  color:#0759ce;
+  text-decoration:none;
+  font-weight:900;
+  padding:14px 20px;
+  border-radius:7px;
+  margin-top:10px;
+}
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:22px 0;
+}
+.quick div{
+  background:white;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  font-size:13px;
+  font-weight:bold;
+}
+.section{margin-top:35px}
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:16px;
+}
 .head h2{margin:0;font-size:23px}
-.head p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
-.tab{background:white;border:1px solid var(--line);padding:9px 14px;border-radius:30px;font-size:12px;font-weight:bold}
-.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
-.product{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}
-.product:hover{transform:translateY(-3px);box-shadow:0 8px 22px #172b4d18}
-.art{height:160px;display:grid;place-items:center;color:white;font-size:38px;font-weight:900;text-shadow:0 2px 10px #0008;background:#101b30;overflow:hidden}
+.head p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:10px 15px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:bold;
+}
+.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+}
+.product{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+}
+.product:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px #172b4d18;
+}
+.art{
+  height:155px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  color:white;
+  background:linear-gradient(135deg,#10254a,#1769ff);
+}
 .art img{width:100%;height:100%;object-fit:cover;display:block}
-.art .fallback{width:100%;height:100%;display:grid;place-items:center;font-size:38px}
+.art-fallback{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:12px;
+  background:
+    radial-gradient(circle at 80% 15%,#ffffff33,transparent 30%),
+    linear-gradient(135deg,var(--art1,#10254a),var(--art2,#1769ff));
+}
+.art-fallback strong{
+  font-size:30px;
+  letter-spacing:1px;
+  text-shadow:0 3px 12px #0008;
+}
+.art-fallback span{
+  font-size:11px;
+  font-weight:bold;
+  opacity:.9;
+  margin-top:8px;
+}
 .info{padding:12px}
-.info h3{font-size:14px;margin:0 0 6px;min-height:32px}
-.info small{color:var(--muted)}
-.info button{width:100%;border:0;background:#edf4ff;color:#075bd6;padding:10px;border-radius:6px;font-weight:900;font-size:12px;margin-top:10px}
-.panel{background:white;border:1px solid var(--line);border-radius:11px;padding:22px;margin-top:25px}
+.info h3{font-size:14px;margin:0 0 7px;min-height:32px}
+.info small{color:var(--muted);font-size:12px}
+.info button{
+  width:100%;
+  border:0;
+  background:#edf4ff;
+  color:#075bd6;
+  padding:10px;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:900;
+  margin-top:12px;
+}
+.empty{
+  grid-column:1/-1;
+  padding:35px;
+  text-align:center;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:var(--muted);
+}
+
+/* PANELS */
+.panel{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:22px;
+  margin-top:25px;
+}
 .panel h2{margin:0 0 8px}
-.muted{color:var(--muted);font-size:14px;line-height:1.6}
+.muted{color:var(--muted);font-size:14px;line-height:1.7}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.field{margin-top:13px}
-.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
-.field input,.field select{width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}
-.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin-top:12px}
-.pkg{border:1px solid #dce3ed;padding:13px;border-radius:8px;text-align:center;cursor:pointer}
-.pkg.selected,.pkg:hover{border-color:var(--blue);background:#f1f6ff}
+.field{margin-top:14px}
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+.field input,.field select{
+  width:100%;
+  padding:12px;
+  border:1px solid #d0d7e2;
+  border-radius:7px;
+  background:white;
+}
+.field input:focus,.field select:focus{outline:1px solid var(--blue)}
+.packages{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:9px;
+  margin-top:12px;
+}
+.pkg{
+  border:1px solid #dce3ed;
+  padding:13px;
+  border-radius:8px;
+  text-align:center;
+  cursor:pointer;
+  background:white;
+}
+.pkg.selected,.pkg:hover{
+  border-color:var(--blue);
+  background:#f1f6ff;
+}
 .pkg strong,.pkg em{display:block}
-.pkg em{font-style:normal;color:#07844f;font-weight:900;margin-top:6px}
-.summary,.bank{background:#f5f8ff;border:1px solid #d5e3ff;border-radius:8px;padding:14px;margin-top:14px}
-.line{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;gap:10px}
-.total{font-size:18px;color:#07844f;font-weight:900}
-.btn{background:var(--blue);color:white;border:0;border-radius:7px;padding:14px;font-weight:900}
+.pkg em{
+  font-style:normal;
+  color:var(--green);
+  font-weight:900;
+  margin-top:6px;
+}
+.summary,.bank{
+  background:#f5f8ff;
+  border:1px solid #d5e3ff;
+  border-radius:8px;
+  padding:14px;
+  margin-top:14px;
+}
+.line{
+  display:flex;
+  justify-content:space-between;
+  padding:7px 0;
+  font-size:13px;
+  gap:10px;
+}
+.total{font-size:18px;color:var(--green);font-weight:900}
+.btn{
+  background:var(--blue);
+  color:white;
+  border:0;
+  border-radius:7px;
+  padding:14px;
+  font-weight:900;
+}
 .full{width:100%;margin-top:16px}
-.secondary{background:#edf4ff;color:#075bd6;border:1px solid #c9dcff;margin-top:8px}
-.note{font-size:12px;color:var(--muted);line-height:1.6}
+.secondary{
+  background:#edf4ff;
+  color:#075bd6;
+  border:1px solid #c9dcff;
+  margin-top:8px;
+}
+.note{font-size:12px;color:var(--muted);line-height:1.7}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.step{background:#f7f9fc;border:1px solid var(--line);padding:15px;border-radius:8px;font-size:13px;line-height:1.5}
+.step{
+  background:#f7f9fc;
+  border:1px solid var(--line);
+  padding:15px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.6;
+}
 .step b{display:block;color:#075bd6;margin-bottom:5px}
-footer{background:var(--navy);color:#c5d0df;text-align:center;padding:28px;line-height:1.7;margin-top:35px}
+
+/* GAME DETAIL PAGE */
+.detail-page{
+  display:none;
+  max-width:1400px;
+  margin:auto;
+  padding:25px 24px 50px;
+  min-height:65vh;
+}
+.detail-page.active{display:block}
+.detail-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.back-games{
+  border:0;
+  background:#edf4ff;
+  color:#075bd6;
+  padding:11px 15px;
+  border-radius:7px;
+  font-weight:800;
+}
+.detail-crumb{font-size:12px;color:var(--muted)}
+.detail-hero{
+  display:grid;
+  grid-template-columns:minmax(220px,340px) 1fr;
+  gap:28px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:22px;
+  align-items:center;
+}
+.detail-cover{
+  height:235px;
+  border-radius:10px;
+  overflow:hidden;
+  background:#102d55;
+}
+.detail-cover img{width:100%;height:100%;object-fit:cover}
+.detail-copy h1{font-size:32px;margin:0 0 10px}
+.detail-copy p{color:var(--muted);line-height:1.7;font-size:14px}
+.detail-order{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:22px;
+  margin-top:22px;
+}
+.detail-order h2{margin-top:0}
+.detail-order .btn{margin-top:12px}
+
+/* FOOTER */
+footer{
+  background:var(--navy);
+  color:#c5d0df;
+  text-align:center;
+  padding:30px 15px;
+  line-height:1.8;
+  margin-top:35px;
+}
 footer strong{color:white}
-.auth{display:none;position:fixed;inset:0;z-index:100;background:#061225cc;align-items:center;justify-content:center;padding:15px}
+
+/* AUTH */
+.auth{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#061225cc;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
 .auth.open{display:flex}
-.authbox{background:white;border-radius:13px;padding:25px;width:100%;max-width:430px;max-height:92vh;overflow:auto;position:relative}
-.close{position:absolute;right:12px;top:10px;border:0;border-radius:50%;width:32px;height:32px;font-size:20px}
+.authbox{
+  background:white;
+  border-radius:13px;
+  padding:25px;
+  width:100%;
+  max-width:430px;
+  max-height:92vh;
+  overflow:auto;
+  position:relative;
+}
+.close{
+  position:absolute;
+  right:12px;
+  top:10px;
+  border:0;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  font-size:20px;
+}
 .logo{text-align:center;color:var(--blue);font-size:22px;font-weight:900}
 .authbox h2{text-align:center}
 .authbox label{display:block;font-size:13px;font-weight:bold;margin:13px 0 6px}
-.authbox input:not([type=checkbox]){width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}
-.links{display:flex;justify-content:space-between;margin-top:14px}
-.links button,.policyLink{border:0;background:none;color:var(--blue);text-decoration:underline;font-size:12px;font-weight:bold}
-.msg{text-align:center;font-size:13px;color:#07844f}
+.authbox input:not([type=checkbox]){
+  width:100%;
+  padding:12px;
+  border:1px solid #d0d7e2;
+  border-radius:7px;
+}
+.links{display:flex;justify-content:space-between;margin-top:14px;gap:10px}
+.links button,.policyLink{
+  border:0;
+  background:none;
+  color:var(--blue);
+  text-decoration:underline;
+  font-size:12px;
+  font-weight:bold;
+}
+.msg{text-align:center;font-size:13px;color:var(--green);line-height:1.5}
 .error{color:#d92d20}
-.agree{display:flex!important;gap:8px;align-items:flex-start;font-weight:normal!important;line-height:1.5}
+.agree{
+  display:flex!important;
+  gap:8px;
+  align-items:flex-start;
+  font-weight:normal!important;
+  line-height:1.5;
+}
 .agree input{margin-top:3px}
 .policy{font-size:13px;line-height:1.7;color:#475467}
-.detail-page{display:none;max-width:1400px;margin:auto;padding:26px 24px 50px;min-height:65vh}
-.detail-page.active{display:block}
-.detail-top{display:flex;align-items:center;gap:10px;margin-bottom:22px}
-.back-games{border:0;background:#edf4ff;color:#075bd6;padding:11px 15px;border-radius:7px;font-weight:800}
-.detail-crumb{font-size:13px;color:#667085}
-.detail-hero{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:28px;background:#fff;border:1px solid #e7ebf2;border-radius:12px;padding:22px;align-items:center}
-.detail-cover{height:230px;border-radius:10px;overflow:hidden;background:#102d55}
-.detail-cover img{width:100%;height:100%;object-fit:cover}
-.detail-cover .fallback{height:100%;display:grid;place-items:center;color:white;font-size:72px}
-.detail-copy h1{font-size:32px;margin:0 0 8px;color:#172033}
-.detail-copy p{color:#667085;line-height:1.65}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:700px){
-.top{flex-wrap:wrap;padding:12px}
-.brand{font-size:21px}
-.search{order:3;flex-basis:100%}
-.nav{gap:15px}
-.nav a{font-size:11px}
-.wrap{padding:14px}
-.hero{padding:25px;min-height:270px}
-.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.art{height:130px}
-.quick{grid-template-columns:repeat(2,1fr);gap:8px}
-.quick div{padding:12px;font-size:11px}
-.cols,.steps{grid-template-columns:1fr}
-.panel{padding:15px}
-.detail-page{padding:16px}
-.detail-hero{grid-template-columns:1fr;padding:14px}
-.detail-cover{height:190px}
-.detail-copy h1{font-size:25px}
+.policy h2{color:var(--ink)}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:750px){
+  .top{flex-wrap:wrap;padding:12px}
+  .brand{font-size:19px}
+  .search{order:3;flex-basis:100%}
+  .nav{gap:18px;padding:12px}
+  .nav a{font-size:11px}
+  .trust{gap:12px;font-size:10px}
+  .wrap{padding:14px}
+  .hero{padding:27px;min-height:275px}
+  .hero h1{font-size:39px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .art{height:130px}
+  .quick{grid-template-columns:repeat(2,1fr);gap:8px}
+  .quick div{padding:12px;font-size:11px}
+  .cols,.steps{grid-template-columns:1fr}
+  .panel{padding:15px}
+  .detail-page{padding:15px}
+  .detail-hero{grid-template-columns:1fr;padding:14px}
+  .detail-cover{height:190px}
+  .detail-copy h1{font-size:25px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="top">
-<a class="brand" href="#home"><span class="brandmark">Y</span><span class="brandwords">YunG Top 1</span></a>
-<div class="search"><input id="search" placeholder="Search games and top-ups..."></div>
-<div class="account">
-<button id="accountBtn">Sign In / Sign Up</button>
-<button class="out" id="signOut" hidden>Sign Out</button>
-</div>
-</div>
-<nav class="nav">
-<a href="#home">HOME</a>
-<a href="#games">ALL GAMES</a>
-<a href="#vouchers">GIFT CARDS</a>
-<a href="#order">PLACE ORDER</a>
-<a href="#how">HOW TO ORDER</a>
-</nav>
+  <div class="top">
+    <a class="brand" href="#home" id="brandHome">
+      <span class="brandmark">Y</span>
+      <span>YunG Top 1 Meditator</span>
+    </a>
+
+    <div class="search">
+      <input id="search" type="search" placeholder="Search games, gift cards and top-ups...">
+    </div>
+
+    <div class="account">
+      <button id="accountBtn">Sign In / Sign Up</button>
+      <button class="out" id="signOut" hidden>Sign Out</button>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#home" id="homeNav">HOME</a>
+    <a href="#games" id="gamesNav">ALL GAMES</a>
+    <a href="#vouchers" id="voucherNav">GIFT CARDS</a>
+    <a href="#order" id="orderNav">PLACE ORDER</a>
+    <a href="#how" id="howNav">HOW TO ORDER</a>
+  </nav>
 </header>
 
 <div class="trust">
-<span>⚡ Quick order process</span>
-<span>🎮 Wide game selection</span>
-<span>💬 WhatsApp support</span>
-<span>✓ Manual payment confirmation</span>
+  <span>⚡ Easy ordering</span>
+  <span>🎮 Gaming top-ups</span>
+  <span>💬 WhatsApp support</span>
+  <span>✓ Manual payment confirmation</span>
 </div>
 
 <main class="wrap" id="home">
-<section class="hero">
-<small>WELCOME TO YUNG TOP 1 MEDITATOR</small>
-<h1>YOUR GAME.<br>YOUR TOP-UP.<br>YOUR VICTORY.</h1>
-<p>Explore game currencies, passes and digital gaming vouchers. Choose a product and contact us to confirm the latest package price before payment.</p>
-<a class="cta" href="#games">EXPLORE ALL GAMES →</a>
-</section>
 
-<div class="quick">
-<div>🎮 &nbsp; Games & top-ups</div>
-<div>💳 &nbsp; Easy OPay transfer</div>
-<div>📲 &nbsp; WhatsApp ordering</div>
-<div>🛡️ &nbsp; Manual payment check</div>
-</div>
+  <section class="hero">
+    <small>WELCOME TO YUNG TOP 1 MEDITATOR</small>
+    <h1>YOUR GAME.<br>YOUR TOP-UP.<br>YOUR VICTORY.</h1>
+    <p>
+      Discover game currencies, passes, subscriptions and digital vouchers.
+      Choose what you need and contact us to confirm availability and the latest price.
+    </p>
+    <a class="cta" href="#games">EXPLORE ALL GAMES →</a>
+  </section>
 
-<section class="section" id="games">
-<div class="head"><div><h2>Explore Games</h2><p>Browse the full range of game top-up products.</p></div></div>
-<div class="tabs" id="tabs">
-<button class="tab active" data-filter="all">All Games</button>
-<button class="tab" data-filter="popular">Popular</button>
-<button class="tab" data-filter="mobile">Mobile Games</button>
-<button class="tab" data-filter="pc">PC & Console</button>
-</div>
-<div class="grid" id="gameGrid"></div>
-</section>
+  <div class="quick">
+    <div>🎮 &nbsp; Games and top-ups</div>
+    <div>💳 &nbsp; Easy OPay transfer</div>
+    <div>📲 &nbsp; WhatsApp ordering</div>
+    <div>🛡️ &nbsp; Manual payment check</div>
+  </div>
 
-<section class="section" id="vouchers">
-<div class="head"><div><h2>Gaming Gift Cards & Vouchers</h2><p>Voucher region and availability must be confirmed before payment.</p></div></div>
-<div class="grid" id="voucherGrid"></div>
-</section>
+  <section class="section" id="games">
+    <div class="head">
+      <div>
+        <h2>Explore Games</h2>
+        <p>Choose a game to view its top-up products.</p>
+      </div>
+    </div>
 
-<section class="panel" id="order">
-<h2>Place Your Order</h2>
-<p class="muted">Select a product. If its price is not listed, request the current price on WhatsApp. Do not transfer money until we confirm the final total.</p>
-<div class="cols">
-<div>
-<div class="field"><label>Game / Product</label><select id="product"></select></div>
-<div class="field"><label>Package / Voucher Value</label><select id="pack"><option value="">Select a package</option></select></div>
-<div class="packages" id="packageCards"></div>
-<div class="summary">
-<div class="line"><span>Product</span><b id="sProduct">Not selected</b></div>
-<div class="line"><span>Package</span><b id="sPack">Not selected</b></div>
-<div class="line total"><span>Price</span><b id="sPrice">To be confirmed</b></div>
-</div>
-</div>
-<div>
-<div class="field"><label>Full Name</label><input id="name" placeholder="Enter your full name"></div>
-<div class="field"><label>WhatsApp Number</label><input id="phone" type="tel" placeholder="e.g. 08012345678"></div>
-<div class="field"><label>Player ID / UID (if required)</label><input id="uid" placeholder="Enter game UID"></div>
-<div class="field"><label>In-game Name (optional)</label><input id="ign" placeholder="Enter game name"></div>
-<div class="field"><label>Game / Voucher Region</label><input id="region" placeholder="e.g. Global, US, EU"></div>
-<div class="field"><label>Other Details</label><input id="extra" placeholder="Additional information (optional)"></div>
-</div>
-</div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-filter="all">All Games</button>
+      <button class="tab" data-filter="popular">Popular</button>
+      <button class="tab" data-filter="mobile">Mobile Games</button>
+      <button class="tab" data-filter="pc">PC & Console</button>
+    </div>
 
-<div class="bank">
-<b>Payment instructions — only pay after price confirmation</b><br>
-Bank: <b>OPay</b><br>
-Account Name: <b>Betty Onyiyechi Paul</b><br>
-Account Number: <b>9074239739</b><br>
-<button class="btn secondary" id="copy">Copy Account Number</button>
-</div>
-<div class="field"><label>Payment Reference (if already paid)</label><input id="reference" placeholder="Do not pay until price is confirmed"></div>
-<div class="field"><label>Payment Receipt (if already paid)</label><input id="receipt" type="file" accept="image/*,.pdf"></div>
-<p class="note">Receipt files are not uploaded automatically. Attach your receipt manually in WhatsApp.</p>
-<button class="btn full" id="submit">CONTINUE TO WHATSAPP ORDER</button>
-</section>
+    <div class="grid" id="gameGrid"></div>
+  </section>
 
-<section class="panel" id="how">
-<h2>How to Order</h2>
-<div class="steps">
-<div class="step"><b>01 — Choose a game</b>Browse the catalogue and select a game or voucher.</div>
-<div class="step"><b>02 — Select a package</b>Choose a listed package or request current prices.</div>
-<div class="step"><b>03 — Enter your details</b>Provide your name, WhatsApp number and correct player ID.</div>
-<div class="step"><b>04 — Confirm the price</b>Send your request and wait for us to confirm availability and total.</div>
-<div class="step"><b>05 — Make payment</b>Transfer only after the final price is confirmed.</div>
-<div class="step"><b>06 — Verification & delivery</b>Send your receipt; payment is checked manually before processing.</div>
-</div>
-</section>
+  <section class="section" id="vouchers">
+    <div class="head">
+      <div>
+        <h2>Gift Cards & Digital Vouchers</h2>
+        <p>Choose a voucher to request its available region and value.</p>
+      </div>
+    </div>
+    <div class="grid" id="voucherGrid"></div>
+  </section>
+
+  <section class="panel" id="order">
+    <h2>Place Your Order</h2>
+    <p class="muted">
+      Select a product and package. If a price is not listed, request the current price
+      on WhatsApp. Do not transfer money until we confirm the final amount.
+    </p>
+
+    <div class="cols">
+      <div>
+        <div class="field">
+          <label>Game / Product</label>
+          <select id="product">
+            <option value="">Choose a product</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Package / Voucher Value</label>
+          <select id="pack">
+            <option value="">Select a package</option>
+          </select>
+        </div>
+
+        <div class="packages" id="packageCards"></div>
+
+        <div class="summary">
+          <div class="line"><span>Product</span><b id="sProduct">Not selected</b></div>
+          <div class="line"><span>Package</span><b id="sPack">Not selected</b></div>
+          <div class="line total"><span>Price</span><b id="sPrice">To be confirmed</b></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="field">
+          <label>Full Name</label>
+          <input id="name" placeholder="Enter your full name">
+        </div>
+
+        <div class="field">
+          <label>WhatsApp Number</label>
+          <input id="phone" type="tel" placeholder="e.g. 08012345678">
+        </div>
+
+        <div class="field">
+          <label>Player ID / UID (if required)</label>
+          <input id="uid" placeholder="Enter game UID">
+        </div>
+
+        <div class="field">
+          <label>In-game Name (optional)</label>
+          <input id="ign" placeholder="Enter game name">
+        </div>
+
+        <div class="field">
+          <label>Game / Voucher Region</label>
+          <input id="region" placeholder="e.g. Global, US, EU">
+        </div>
+
+        <div class="field">
+          <label>Other Details</label>
+          <input id="extra" placeholder="Additional information (optional)">
+        </div>
+      </div>
+    </div>
+
+    <div class="bank">
+      <b>Payment instructions — pay only after price confirmation</b><br>
+      Bank: <b>OPay</b><br>
+      Account Name: <b>Betty Onyiyechi Paul</b><br>
+      Account Number: <b>9074239739</b><br>
+      <button class="btn secondary" id="copy">Copy Account Number</button>
+    </div>
+
+    <div class="field">
+      <label>Payment Reference (if already paid)</label>
+      <input id="reference" placeholder="Enter payment reference if applicable">
+    </div>
+
+    <div class="field">
+      <label>Payment Receipt (if already paid)</label>
+      <input id="receipt" type="file" accept="image/*,.pdf">
+    </div>
+
+    <p class="note">
+      Receipt files are not uploaded automatically. Attach your receipt manually in WhatsApp.
+    </p>
+
+    <button class="btn full" id="submit">CONTINUE TO WHATSAPP ORDER</button>
+  </section>
+
+  <section class="panel" id="how">
+    <h2>How to Order</h2>
+    <div class="steps">
+      <div class="step"><b>01 — Choose a game</b>Browse the catalogue and select your game or voucher.</div>
+      <div class="step"><b>02 — Select a package</b>Choose a listed package or request the current price.</div>
+      <div class="step"><b>03 — Enter your details</b>Provide your name, WhatsApp number and correct player ID.</div>
+      <div class="step"><b>04 — Confirm the price</b>Send your request and wait for price and availability confirmation.</div>
+      <div class="step"><b>05 — Make payment</b>Transfer only after the final amount is confirmed.</div>
+      <div class="step"><b>06 — Verification and delivery</b>Send your receipt. Payment is checked manually before processing.</div>
+    </div>
+  </section>
+
 </main>
 
 <section id="gameDetailPage" class="detail-page" aria-live="polite"></section>
 
 <footer>
-<strong>YunG Top 1 Meditator</strong><br>
-Your gaming top-up and digital voucher store<br>
-WhatsApp: +234 907 423 9739<br>
-© 2026 YunG Top 1 Meditator. All rights reserved.
+  <strong>YunG Top 1 Meditator</strong><br>
+  Your gaming top-up and digital voucher store<br>
+  WhatsApp: +234 907 423 9739<br>
+  <a href="https://wa.me/2349074239739" style="color:#fff">Chat with us on WhatsApp</a><br>
+  © 2026 YunG Top 1 Meditator. All rights reserved.
 </footer>
 
+<!-- SIGN IN / SIGN UP -->
 <section class="auth" id="auth">
-<div class="authbox">
-<button class="close" id="close">×</button>
-<div class="logo">YunG Top 1 Meditator</div>
-<p class="muted" style="text-align:center">Sign in or create an account to continue your order.</p>
+  <div class="authbox">
+    <button class="close" id="close">×</button>
+    <div class="logo">YunG Top 1 Meditator</div>
+    <p class="muted" style="text-align:center">
+      Sign in or create an account to continue your order.
+    </p>
 
-<div id="loginPanel">
-<h2>Customer Sign In</h2>
-<form id="loginForm">
-<label>Email Address</label><input id="loginEmail" type="email" required>
-<label>Password</label><input id="loginPassword" type="password" required>
-<button class="btn full">SIGN IN</button>
-</form>
-<div class="links">
-<button id="toSignup" type="button">Create Account</button>
-<button id="toReset" type="button">Forgot Password?</button>
-</div>
-</div>
+    <div id="loginPanel">
+      <h2>Customer Sign In</h2>
+      <form id="loginForm">
+        <label>Email Address</label>
+        <input id="loginEmail" type="email" required>
+        <label>Password</label>
+        <input id="loginPassword" type="password" required>
+        <button class="btn full">SIGN IN</button>
+      </form>
+      <div class="links">
+        <button id="toSignup" type="button">Create Account</button>
+        <button id="toReset" type="button">Forgot Password?</button>
+      </div>
+    </div>
 
-<div id="signupPanel" hidden>
-<h2>Create Your Account</h2>
-<form id="signupForm">
-<label>Full Name</label><input id="signupName" required>
-<label>Email Address</label><input id="signupEmail" type="email" required>
-<label>Password</label><input id="signupPassword" type="password" minlength="6" required>
-<label class="agree"><input id="agree" type="checkbox" required><span>I agree to the <button class="policyLink" type="button" id="privacyBtn">Privacy Policy</button> and <button class="policyLink" type="button" id="termsBtn">Terms & Conditions</button>.</span></label>
-<button class="btn full">CREATE ACCOUNT</button>
-</form>
-<div class="links"><button id="back1" type="button">Back to Sign In</button></div>
-</div>
+    <div id="signupPanel" hidden>
+      <h2>Create Your Account</h2>
+      <form id="signupForm">
+        <label>Full Name</label>
+        <input id="signupName" required>
+        <label>Email Address</label>
+        <input id="signupEmail" type="email" required>
+        <label>Password</label>
+        <input id="signupPassword" type="password" minlength="6" required>
 
-<div id="resetPanel" hidden>
-<h2>Reset Password</h2>
-<form id="resetForm">
-<label>Email Address</label><input id="resetEmail" type="email" required>
-<button class="btn full">SEND RESET LINK</button>
-</form>
-<div class="links"><button id="back2" type="button">Back to Sign In</button></div>
-</div>
+        <label class="agree">
+          <input id="agree" type="checkbox" required>
+          <span>
+            I agree to the
+            <button class="policyLink" type="button" id="privacyBtn">Privacy Policy</button>
+            and
+            <button class="policyLink" type="button" id="termsBtn">Terms & Conditions</button>.
+          </span>
+        </label>
 
-<div id="privacyPanel" class="policy" hidden>
-<h2>Privacy Policy</h2>
-<p>We collect information you submit, including name, email, WhatsApp number, player ID, order details and payment references, to manage accounts, process orders and provide support. Firebase Authentication manages email/password sign-in. You send order messages and any receipts through WhatsApp. We do not ask for bank PINs, passwords or OTPs, and we do not sell personal information. Contact WhatsApp +234 907 423 9739 for privacy requests.</p>
-<button class="btn secondary full" id="backPrivacy" type="button">BACK TO CREATE ACCOUNT</button>
-</div>
+        <button class="btn full">CREATE ACCOUNT</button>
+      </form>
+      <div class="links">
+        <button id="back1" type="button">Back to Sign In</button>
+      </div>
+    </div>
 
-<div id="termsPanel" class="policy" hidden>
-<h2>Terms & Conditions</h2>
-<p>Customers must provide correct game, player ID, region and contact details. Package availability and prices may change. An order is confirmed only after we confirm the product, price and payment instructions. Do not pay until the final amount is confirmed. Payment is manually verified before processing. Incorrect player details supplied by a customer may prevent correction or refund. If an order cannot be fulfilled after confirmed payment, contact us for a suitable resolution. Support: WhatsApp +234 907 423 9739.</p>
-<button class="btn secondary full" id="backTerms" type="button">BACK TO CREATE ACCOUNT</button>
-</div>
-<p id="msg" class="msg"></p>
-</div>
+    <div id="resetPanel" hidden>
+      <h2>Reset Password</h2>
+      <form id="resetForm">
+        <label>Email Address</label>
+        <input id="resetEmail" type="email" required>
+        <button class="btn full">SEND RESET LINK</button>
+      </form>
+      <div class="links">
+        <button id="back2" type="button">Back to Sign In</button>
+      </div>
+    </div>
+
+    <div id="privacyPanel" class="policy" hidden>
+      <h2>Privacy Policy</h2>
+      <p>
+        We collect information you submit, including name, email, WhatsApp number,
+        player ID, order details and payment references, to manage accounts, process
+        orders and provide support. Firebase Authentication manages email/password
+        sign-in. You send order messages and any receipts through WhatsApp.
+        We do not ask for bank PINs, passwords or OTPs, and we do not sell personal
+        information. Contact WhatsApp +234 907 423 9739 for privacy requests.
+      </p>
+      <button class="btn secondary full" id="backPrivacy" type="button">
+        BACK TO CREATE ACCOUNT
+      </button>
+    </div>
+
+    <div id="termsPanel" class="policy" hidden>
+      <h2>Terms & Conditions</h2>
+      <p>
+        Customers must provide correct game, player ID, region and contact details.
+        Package availability and prices may change. An order is confirmed only after
+        we confirm the product, price and payment instructions. Do not pay until the
+        final amount is confirmed. Payment is manually verified before processing.
+        Incorrect player details supplied by a customer may prevent correction or
+        refund. If an order cannot be fulfilled after confirmed payment, contact us
+        for a suitable resolution. Support: WhatsApp +234 907 423 9739.
+      </p>
+      <button class="btn secondary full" id="backTerms" type="button">
+        BACK TO CREATE ACCOUNT
+      </button>
+    </div>
+
+    <p id="msg" class="msg"></p>
+  </div>
 </section>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 <script>
-const firebaseConfig={
-apiKey:"AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",
-authDomain:"yung-top-1-meditator.firebaseapp.com",
-projectId:"yung-top-1-meditator",
-storageBucket:"yung-top-1-meditator.firebasestorage.app",
-messagingSenderId:"1084880443507",
-appId:"1:1084880443507:web:65c9c51733b955b2543206"
+/* FIREBASE CONFIGURATION */
+const firebaseConfig = {
+  apiKey: "AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",
+  authDomain: "yung-top-1-meditator.firebaseapp.com",
+  projectId: "yung-top-1-meditator",
+  storageBucket: "yung-top-1-meditator.firebasestorage.app",
+  messagingSenderId: "1084880443507",
+  appId: "1:1084880443507:web:65c9c51733b955b2543206"
 };
 
 firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth(),WA="2349074239739";
-let user=null,pending=false,filter="all";
-const $=id=>document.getElementById(id);
-const money=n=>"₦"+Number(n).toLocaleString("en-NG");
 
-const games=[
-["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","🎯"],
-["Free Fire","Diamonds","mobile","popular","🔥"],
-["PUBG Mobile","UC & Royale Pass","mobile","popular","🪖"],
-["Blood Strike","Gold & Pass","mobile","popular","💥"],
-["Mobile Legends","Diamonds & Passes","mobile","popular","⚔️"],
-["EA SPORTS FC Mobile","FC Points & Silver","mobile","popular","⚽"],
-["Delta Force","Global Coins","mobile","mobile","🎖️"],
-["Genshin Impact","Genesis Crystals","mobile","mobile","✨"],
-["Arena Breakout","Bonds","mobile","mobile","🎯"],
-["Honor of Kings","Tokens","mobile","mobile","👑"],
-["Lords Mobile","Diamonds & Packages","mobile","mobile","🏰"],
-["Marvel Rivals","Lattices","pc","mobile","🦸"],
-["Farlight 84","Diamonds & Passes","mobile","mobile","🚀"],
-["Asphalt Legends Unite","Tokens","mobile","mobile","🏎️"],
-["Zenless Zone Zero","Monochrome","mobile","mobile","🌌"],
-["ZEPETO","ZEMs & Coins","mobile","mobile","💎"],
-["Whiteout Survival","Frost Star","mobile","mobile","❄️"],
-["Football Dream","Points","mobile","mobile","⚽"],
-["Age of Empires Mobile","Coins","mobile","mobile","🏛️"],
-["Ragnarok Origin","Nyan Berry","mobile","mobile","🐉"],
-["Wuthering Waves","Lunites","mobile","mobile","🌊"],
-["Love and Deepspace","Crystals","mobile","mobile","💗"],
-["Undawn","RC (EU)","mobile","mobile","🌅"],
-["Once Human","Crystgin","pc","mobile","☣️"],
-["Where Winds Meet","Top-Up","pc","mobile","🗡️"],
-["EverMerge Lite","Top-Up","mobile","mobile","🧩"],
-["BIGO Live","Diamonds","mobile","mobile","💠"],
-["Yalla Ludo","Gold & Diamonds","mobile","mobile","🎲"],
-["Chamet","Diamonds","mobile","mobile","💬"],
-["Hago","Diamonds","mobile","mobile","🎮"],
-["Poppo Live","Coins","mobile","mobile","🪙"],
-["Sawa Play","Coins","mobile","mobile","🎧"],
-["StarMaker","Coins","mobile","mobile","🎤"],
-["Tarbi3ah Baloot","Gold","mobile","mobile","🃏"],
-["YoHo","Coins","mobile","mobile","🎙️"],
-["Tango","Coins","mobile","mobile","💬"],
-["Honkai: Star Rail","Oneiric Shards","mobile","mobile","🚄"],
-["CapCut","Subscription","mobile","mobile","✂️"]
+const auth = firebase.auth();
+const WA = "2349074239739";
+
+let user = null;
+let pendingOrder = false;
+let currentFilter = "all";
+let currentProduct = null;
+
+const $ = id => document.getElementById(id);
+const money = n => "₦" + Number(n).toLocaleString("en-NG");
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[char]);
+}
+
+/*
+  PRODUCT CATALOGUE
+
+  To add a product, add another entry to the games or vouchers list.
+  The five fields are:
+  [Product name, product description, platform, category, initials]
+*/
+
+const games = [
+  ["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","COD"],
+  ["Free Fire","Diamonds & Membership","mobile","popular","FF"],
+  ["PUBG Mobile","UC & Royale Pass","mobile","popular","PUBG"],
+  ["Blood Strike","Gold & Pass","mobile","popular","BS"],
+  ["Mobile Legends","Diamonds & Passes","mobile","popular","ML"],
+  ["EA SPORTS FC Mobile","FC Points & Silver","mobile","popular","FC"],
+  ["Delta Force","Global Coins","mobile","popular","DF"],
+  ["Genshin Impact","Genesis Crystals","mobile","mobile","GI"],
+  ["Arena Breakout","Bonds","mobile","mobile","AB"],
+  ["Honor of Kings","Tokens","mobile","mobile","HOK"],
+  ["Lords Mobile","Diamonds & Packages","mobile","mobile","LM"],
+  ["Marvel Rivals","Lattices","pc","popular","MR"],
+  ["Farlight 84","Diamonds & Passes","mobile","mobile","F84"],
+  ["Asphalt Legends Unite","Tokens","mobile","mobile","AL"],
+  ["Zenless Zone Zero","Monochrome","mobile","mobile","ZZZ"],
+  ["ZEPETO","ZEMs & Coins","mobile","mobile","Z"],
+  ["Whiteout Survival","Frost Star","mobile","mobile","WS"],
+  ["Football Dream","Points","mobile","mobile","FD"],
+  ["Age of Empires Mobile","Coins","mobile","mobile","AOE"],
+  ["Ragnarok Origin","Nyan Berry","mobile","mobile","RO"],
+  ["Wuthering Waves","Lunites","mobile","mobile","WW"],
+  ["Love and Deepspace","Crystals","mobile","mobile","LD"],
+  ["Undawn","RC","mobile","mobile","U"],
+  ["Once Human","Crystgin","pc","pc","OH"],
+  ["Where Winds Meet","Top-Up","pc","pc","WWM"],
+  ["BIGO Live","Diamonds","mobile","mobile","BIGO"],
+  ["Yalla Ludo","Gold & Diamonds","mobile","mobile","YL"],
+  ["Chamet","Diamonds","mobile","mobile","CH"],
+  ["Hago","Diamonds","mobile","mobile","H"],
+  ["Poppo Live","Coins","mobile","mobile","P"],
+  ["Sawa Play","Coins","mobile","mobile","SP"],
+  ["StarMaker","Coins","mobile","mobile","SM"],
+  ["Tarbi3ah Baloot","Gold","mobile","mobile","TB"],
+  ["YoHo","Coins","mobile","mobile","Y"],
+  ["Tango","Coins","mobile","mobile","T"],
+  ["Honkai: Star Rail","Oneiric Shards","mobile","mobile","HSR"],
+  ["CapCut","Subscription","mobile","mobile","CC"],
+  ["Roblox","Robux","pc","popular","R"],
+  ["Minecraft","Game Product","pc","pc","MC"],
+  ["Fortnite","V-Bucks","pc","popular","FN"],
+  ["GTA Online","Shark Cards","pc","pc","GTA"],
+  ["eFootball","Coins","mobile","popular","EF"]
 ];
 
-const vouchers=[
-["Roblox Gift Card","Gift Card","pc","popular","🟥"],
-["Steam Gift Card","Wallet Code","pc","popular","🎮"],
-["PlayStation Card","PSN Wallet","pc","popular","🎮"],
-["Xbox Live Gift Card","Xbox Wallet","pc","popular","🟩"],
-["Nintendo Voucher","eShop Code","pc","popular","🔴"],
-["Razer Gold","Gift Card","pc","popular","🟢"],
-["Apple Gift Card","Gift Card","pc","popular","🍎"],
-["Amazon Gift Card","Gift Card","pc","popular","📦"],
-["Google Play Gift Card","Gift Card","pc","popular","▶️"],
-["Epic Games / Fortnite","Gift Card","pc","popular","⚡"],
-["GameStop Gift Card","Gift Card","pc","pc","🕹️"],
-["Obucks Gift Card","Gift Card","pc","pc","🪙"],
-["ExitLag Subscription","Subscription","pc","pc","🌐"],
-["Gangstar Mirage City","Pink Diamonds","mobile","mobile","🚘"],
-["GTA VI","Game Product","pc","pc","🎮"],
-["eFootball","Game Product","mobile","mobile","⚽"]
+const vouchers = [
+  ["Roblox Gift Card","Gift Card","pc","popular","R"],
+  ["Steam Gift Card","Wallet Code","pc","popular","S"],
+  ["PlayStation Card","PSN Wallet","pc","popular","PS"],
+  ["Xbox Gift Card","Xbox Wallet","pc","popular","X"],
+  ["Nintendo eShop Card","eShop Code","pc","popular","N"],
+  ["Razer Gold","Gift Card","pc","popular","RG"],
+  ["Apple Gift Card","Gift Card","pc","popular","A"],
+  ["Amazon Gift Card","Gift Card","pc","popular","AM"],
+  ["Google Play Gift Card","Gift Card","pc","popular","GP"],
+  ["Epic Games Gift Card","Gift Card","pc","popular","EG"],
+  ["GameStop Gift Card","Gift Card","pc","pc","GS"],
+  ["ExitLag Subscription","Subscription","pc","pc","EL"]
 ];
 
-const fixed={
-"Free Fire":[["100 Diamonds",900],["210 Diamonds",1850],["530 Diamonds",4600],["1080 Diamonds",9000]],
-"Call of Duty: Mobile":[["80 CP",900],["420 CP",4600],["880 CP",9000]],
-"Blood Strike":[["100 Gold",900],["500 Gold",4600],["1000 Gold",9000]],
-"PUBG Mobile":[["60 UC",900],["325 UC",4600],["660 UC",9000]]
+/*
+  PRICES YOU HAVE ALREADY PROVIDED.
+
+  You can change these prices here.
+  Any product not listed here will request a price confirmation.
+*/
+const packages = {
+  "Free Fire":[
+    ["100 Diamonds",900],
+    ["210 Diamonds",1850],
+    ["530 Diamonds",4600],
+    ["1080 Diamonds",9000]
+  ],
+  "Call of Duty: Mobile":[
+    ["80 CP",900],
+    ["420 CP",4600],
+    ["880 CP",9000]
+  ],
+  "Blood Strike":[
+    ["100 Gold",900],
+    ["500 Gold",4600],
+    ["1000 Gold",9000]
+  ],
+  "PUBG Mobile":[
+    ["60 UC",900],
+    ["325 UC",4600],
+    ["660 UC",9000]
+  ]
 };
 
-const officialProfiles={
-"Call of Duty: Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIyNTdiMjMzYi0wOTBlLTQ3ZTktOGI3MC0yMzllZDQ4N2Q3YmMucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"Free Fire":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIxOThlNzQ1Mi1iZWRlLTQ5ZTEtYTYzZC02NWQ4OTIzYjRkZDQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"PUBG Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJmNzhlMTMyNC1hOTg2LTQ3MWItYWUwMS1jNjBkOGFlOTk3YjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"Blood Strike":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJiNzVkYzMxZi1iN2E5LTQ2ZWEtOTY1Ni0wNDY2ZTlhOGRiYjQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"Mobile Legends":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIyYzY5MzBkMi01ZDJlLTQzMjYtOTY3Yy1kYzYzMjc3ZWQwMDgucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOjEyMDB9LCJ3ZWJwIjp7InF1YWxpdHkiOjc1fX0=",
-"EA SPORTS FC Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJhYTRkNDdlMC0xOWU5LTQyMWQtYTRmMC0xZWVmMmQxNTA4MjEucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19"
-};
+/*
+  OPTIONAL PRODUCT ARTWORK
 
-function draw(list,target,isVoucher=false){
-let q=$("search").value.toLowerCase().trim();
-$(target).innerHTML="";
-list.forEach((p,i)=>{
-if(q&&!(p[0]+" "+p[1]).toLowerCase().includes(q))return;
-if(!isVoucher&&filter!=="all"&&!(filter==="popular"?p[3]==="popular":p[2]===filter))return;
-let card=document.createElement("article");
-card.className="product";
-let art=document.createElement("div");
-art.className="art";
-let profile=officialProfiles[p[0]];
-if(profile){
-let img=document.createElement("img");
-img.src=profile;
-img.alt=p[0]+" official game profile";
-img.loading="lazy";
-img.onerror=()=>{
-art.innerHTML="";
-let f=document.createElement("div");
-f.className="fallback";
-f.textContent=p[4];
-art.append(f);
-};
-art.append(img);
-}else{
-let f=document.createElement("div");
-f.className="fallback";
-f.textContent=p[4];
-art.append(f);
-}
-let info=document.createElement("div");
-info.className="info";
-let h=document.createElement("h3");
-h.textContent=p[0];
-let small=document.createElement("small");
-small.textContent=p[1];
-let b=document.createElement("button");
-b.textContent="VIEW TOP-UP";
-b.onclick=()=>choose(p[0]);
-info.append(h,small,b);
-card.append(art,info);
-card.onclick=e=>{if(e.target!==b)choose(p[0]);};
-$(target).append(card);
-});
+  You can add an image URL for a product here.
+  Example:
+  "Free Fire":"https://your-image-address.com/freefire.jpg"
+
+  If no image is supplied, the card displays a designed product cover
+  using the product initials and colours.
+*/
+const productImages = {};
+
+const colours = [
+  ["#10254a","#1769ff"],
+  ["#3b123d","#a62ca8"],
+  ["#123b36","#078b76"],
+  ["#3d2111","#d76b20"],
+  ["#19254c","#6248d8"],
+  ["#292044","#b3447d"],
+  ["#132d46","#1598bc"],
+  ["#3a2a13","#bd8b28"]
+];
+
+function getProductImage(name){
+  return productImages[name] || "";
 }
 
-function render(){
-draw(games,"gameGrid");
-draw(vouchers,"voucherGrid",true);
+function makeArtwork(product){
+  const image = getProductImage(product[0]);
+  const colourIndex = Math.abs(product[0].length + product[0].charCodeAt(0)) % colours.length;
+  const colour = colours[colourIndex];
+
+  const art = document.createElement("div");
+  art.className = "art";
+
+  if(image){
+    const img = document.createElement("img");
+    img.src = image;
+    img.alt = product[0];
+    img.loading = "lazy";
+    img.onerror = () => {
+      art.innerHTML = "";
+      art.appendChild(makeFallback(product,colour));
+    };
+    art.appendChild(img);
+  }else{
+    art.appendChild(makeFallback(product,colour));
+  }
+  return art;
 }
 
-function choose(name){
-const item=[...games,...vouchers].find(x=>x[0]===name);
-if(!item)return;
-$("product").value=name;
-updateProduct();
-const page=$("gameDetailPage");
-const profile=officialProfiles[name];
-const cover=profile
-? `<img src="${profile}" alt="${name} official game artwork">`
-: `<div class="fallback">${item[4]||"🎮"}</div>`;
+function makeFallback(product,colour){
+  const cover = document.createElement("div");
+  cover.className = "art-fallback";
+  cover.style.setProperty("--art1",colour[0]);
+  cover.style.setProperty("--art2",colour[1]);
 
-page.innerHTML=`
-<div class="detail-top">
-<button class="back-games" id="backToGames">← Back to games</button>
-<span class="detail-crumb">Home / All Games / ${name}</span>
-</div>
-<div class="detail-hero">
-<div class="detail-cover">${cover}</div>
-<div class="detail-copy">
-<h1>${name}</h1>
-<p>${item[1]}. Select the top-up package you need below. Package availability and final prices are confirmed by our team before payment.</p>
-<button class="btn" id="detailOrderNow">Choose package</button>
-</div>
-</div>
-<div id="detailOrderSlot"></div>
-`;
+  const title = document.createElement("strong");
+  title.textContent = product[4];
 
-const order=$("order");
-$("detailOrderSlot").appendChild(order);
-order.hidden=false;
-page.classList.add("active");
-$("home").hidden=true;
-window.history.pushState({game:name},"","#game-"+encodeURIComponent(name.replace(/\s+/g,"-")));
-$("backToGames").onclick=backToHome;
-$("detailOrderNow").onclick=()=>order.scrollIntoView({behavior:"smooth",block:"start"});
-window.scrollTo({top:0,behavior:"smooth"});
+  const subtitle = document.createElement("span");
+  subtitle.textContent = product[0].toUpperCase();
+
+  cover.append(title,subtitle);
+  return cover;
 }
 
-function backToHome(){
-const order=$("order");
-const home=$("home");
-const how=$("how");
-const detail=$("gameDetailPage");
-if(order&&home)home.appendChild(order);
-if(how&&home)home.appendChild(how);
-order.hidden=false;
-home.hidden=false;
-detail.classList.remove("active");
-detail.innerHTML="";
-window.scrollTo({top:0,behavior:"smooth"});
-}
-window.addEventListener("popstate",backToHome);
+function createCard(product){
+  const card = document.createElement("article");
+  card.className = "product";
 
-[...new Set([...games,...vouchers].map(p=>p[0]))].forEach(n=>{
-let o=document.createElement("option");
-o.value=n;
-o.textContent=n;
-$("product").append(o);
-});
+  const art = makeArtwork(product);
+
+  const info = document.createElement("div");
+  info.className = "info";
+
+  const title = document.createElement("h3");
+  title.textContent = product[0];
+
+  const description = document.createElement("small");
+  description.textContent = product[1];
+
+  const button = document.createElement("button");
+  button.textContent = "VIEW TOP-UP";
+  button.type = "button";
+  button.onclick = () => openProduct(product[0]);
+
+  info.append(title,description,button);
+  card.append(art,info);
+
+  card.onclick = event => {
+    if(event.target !== button) openProduct(product[0]);
+  };
+
+  return card;
+}
+
+function drawProducts(list,target,isVoucher=false){
+  const search = $("search").value.toLowerCase().trim();
+  const container = $(target);
+  container.innerHTML = "";
+
+  const filtered = list.filter(product => {
+    const matchesSearch = !search ||
+      (product[0]+" "+product[1]).toLowerCase().includes(search);
+
+    let matchesFilter = true;
+
+    if(!isVoucher && currentFilter !== "all"){
+      if(currentFilter === "popular"){
+        matchesFilter = product[3] === "popular";
+      }else{
+        matchesFilter = product[2] === currentFilter;
+      }
+    }
+
+    return matchesSearch && matchesFilter;
+  });
+
+  if(filtered.length === 0){
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "No products found. Try another search.";
+    container.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach(product => container.appendChild(createCard(product)));
+}
+
+function renderCatalogue(){
+  drawProducts(games,"gameGrid");
+  drawProducts(vouchers,"voucherGrid",true);
+}
+
+/* PRODUCT SELECTOR */
+function fillProductSelector(){
+  $("product").innerHTML = '<option value="">Choose a product</option>';
+
+  [...games,...vouchers].forEach(product => {
+    const option = document.createElement("option");
+    option.value = product[0];
+    option.textContent = product[0];
+    $("product").appendChild(option);
+  });
+}
 
 function updateProduct(){
-let n=$("product").value,d=fixed[n],s=$("pack");
-s.innerHTML='<option value="">Select a package</option>';
-$("packageCards").innerHTML="";
-$("sProduct").textContent=n||"Not selected";
-if(d){
-d.forEach((x,i)=>{
-let o=document.createElement("option");
-o.value=x[0];
-o.textContent=x[0]+" — "+money(x[1]);
-o.dataset.price=x[1];
-s.append(o);
-let el=document.createElement("div");
-el.className="pkg";
-el.innerHTML="<strong>"+x[0]+"</strong><em>"+money(x[1])+"</em>";
-el.onclick=()=>{s.selectedIndex=i+1;summary();};
-$("packageCards").append(el);
-});
-}else if(n){
-let o=document.createElement("option");
-o.value="Request current packages and price";
-o.textContent=o.value;
-s.append(o);
-$("packageCards").innerHTML='<p class="note">Current packages and price will be confirmed on WhatsApp. Do not pay before confirmation.</p>';
-}
-summary();
+  const name = $("product").value;
+  const product = [...games,...vouchers].find(item => item[0] === name);
+
+  currentProduct = product || null;
+
+  const packSelect = $("pack");
+  packSelect.innerHTML = '<option value="">Select a package</option>';
+  $("packageCards").innerHTML = "";
+
+  $("sProduct").textContent = name || "Not selected";
+
+  if(!name){
+    summary();
+    return;
+  }
+
+  const productPackages = packages[name];
+
+  if(productPackages && productPackages.length){
+    productPackages.forEach((item,index) => {
+      const option = document.createElement("option");
+      option.value = item[0];
+      option.textContent = item[0] + " — " + money(item[1]);
+      option.dataset.price = item[1];
+      packSelect.appendChild(option);
+
+      const card = document.createElement("div");
+      card.className = "pkg";
+
+      const strong = document.createElement("strong");
+      strong.textContent = item[0];
+
+      const price = document.createElement("em");
+      price.textContent = money(item[1]);
+
+      card.append(strong,price);
+
+      card.onclick = () => {
+        packSelect.selectedIndex = index + 1;
+        summary();
+      };
+
+      $("packageCards").appendChild(card);
+    });
+  }else{
+    const option = document.createElement("option");
+    option.value = "Request current packages and price";
+    option.textContent = "Request current packages and price";
+    packSelect.appendChild(option);
+
+    const note = document.createElement("p");
+    note.className = "note";
+    note.textContent =
+      "Contact us to confirm available packages and the latest price.";
+    $("packageCards").appendChild(note);
+  }
+
+  summary();
 }
 
 function summary(){
-let s=$("pack"),o=s.options[s.selectedIndex],price=o&&o.dataset.price?Number(o.dataset.price):0;
-$("sPack").textContent=o&&o.value?o.textContent:"Not selected";
-$("sPrice").textContent=price?money(price):"To be confirmed";
-document.querySelectorAll(".pkg").forEach((e,i)=>e.classList.toggle("selected",i===s.selectedIndex-1&&s.selectedIndex>0));
+  const select = $("pack");
+  const option = select.options[select.selectedIndex];
+
+  const price = option && option.dataset.price
+    ? Number(option.dataset.price)
+    : 0;
+
+  $("sPack").textContent =
+    option && option.value ? option.textContent : "Not selected";
+
+  $("sPrice").textContent = price ? money(price) : "To be confirmed";
+
+  document.querySelectorAll(".pkg").forEach((card,index) => {
+    card.classList.toggle(
+      "selected",
+      index === select.selectedIndex - 1 && select.selectedIndex > 0
+    );
+  });
 }
 
-$("product").onchange=updateProduct;
-$("pack").onchange=summary;
-$("search").oninput=render;
+$("product").addEventListener("change",updateProduct);
+$("pack").addEventListener("change",summary);
+$("search").addEventListener("input",renderCatalogue);
 
-$("tabs").onclick=e=>{
-let b=e.target.closest("[data-filter]");
-if(!b)return;
-filter=b.dataset.filter;
-document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
-render();
-};
+$("tabs").addEventListener("click",event => {
+  const button = event.target.closest("[data-filter]");
+  if(!button) return;
 
-$("copy").onclick=()=>{
-navigator.clipboard?.writeText("9074239739")
-.then(()=>alert("Account number copied"))
-.catch(()=>alert("OPay account: 9074239739"));
-};
+  currentFilter = button.dataset.filter;
 
-render();
-updateProduct();
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.toggle("active",tab === button);
+  });
 
-const authBox=$("auth"),msg=$("msg");
+  renderCatalogue();
+});
 
-function say(t,err=false){
-msg.textContent=t;
-msg.classList.toggle("error",err);
+/* PRODUCT DETAIL PAGES */
+function openProduct(name){
+  const product = [...games,...vouchers].find(item => item[0] === name);
+  if(!product) return;
+
+  $("product").value = name;
+  updateProduct();
+
+  const page = $("gameDetailPage");
+  const image = getProductImage(name);
+  const colourIndex = Math.abs(name.length + name.charCodeAt(0)) % colours.length;
+  const colour = colours[colourIndex];
+
+  let coverHTML = "";
+
+  if(image){
+    coverHTML = `
+      <img src="${escapeHTML(image)}"
+           alt="${escapeHTML(name)}"
+           onerror="this.style.display='none';this.nextElementSibling.hidden=false">
+      <div class="art-fallback" style="--art1:${colour[0]};--art2:${colour[1]}" hidden>
+        <strong>${escapeHTML(product[4])}</strong>
+        <span>${escapeHTML(name.toUpperCase())}</span>
+      </div>`;
+  }else{
+    coverHTML = `
+      <div class="art-fallback" style="--art1:${colour[0]};--art2:${colour[1]}">
+        <strong>${escapeHTML(product[4])}</strong>
+        <span>${escapeHTML(name.toUpperCase())}</span>
+      </div>`;
+  }
+
+  page.innerHTML = `
+    <div class="detail-top">
+      <button class="back-games" id="backToGames">← Back to shop</button>
+      <span class="detail-crumb">Home / Games / ${escapeHTML(name)}</span>
+    </div>
+
+    <div class="detail-hero">
+      <div class="detail-cover">${coverHTML}</div>
+      <div class="detail-copy">
+        <h1>${escapeHTML(name)}</h1>
+        <p>${escapeHTML(product[1])}</p>
+        <p>
+          Select your package below. If your required package is not listed,
+          contact us to confirm availability and the current price.
+        </p>
+        <button class="btn" id="detailOrderNow">SELECT PACKAGE</button>
+      </div>
+    </div>
+
+    <div class="detail-order">
+      <h2>Choose your package</h2>
+      <p class="muted">Select your product package and continue with your order.</p>
+      <div id="detailPackages"></div>
+      <button class="btn full" id="detailContinue">CONTINUE TO ORDER</button>
+    </div>
+  `;
+
+  const detailPackages = $("detailPackages");
+  const available = packages[name];
+
+  if(available && available.length){
+    const cards = document.createElement("div");
+    cards.className = "packages";
+
+    available.forEach((item,index) => {
+      const card = document.createElement("div");
+      card.className = "pkg" + (index === 0 ? " selected" : "");
+
+      const strong = document.createElement("strong");
+      strong.textContent = item[0];
+
+      const price = document.createElement("em");
+      price.textContent = money(item[1]);
+
+      card.append(strong,price);
+
+      card.onclick = () => {
+        $("pack").selectedIndex = index + 1;
+        summary();
+
+        cards.querySelectorAll(".pkg").forEach((el,i) => {
+          el.classList.toggle("selected",i === index);
+        });
+      };
+
+      cards.appendChild(card);
+    });
+
+    detailPackages.appendChild(cards);
+
+    // Select the first available package automatically.
+    $("pack").selectedIndex = 1;
+    summary();
+  }else{
+    detailPackages.innerHTML =
+      '<p class="note">Packages and prices for this product will be confirmed on WhatsApp.</p>';
+  }
+
+  $("home").hidden = true;
+  page.classList.add("active");
+
+  $("backToGames").onclick = backToShop;
+
+  $("detailOrderNow").onclick = () => {
+    $("detailPackages").scrollIntoView({behavior:"smooth",block:"center"});
+  };
+
+  $("detailContinue").onclick = () => {
+    $("order").scrollIntoView({behavior:"smooth",block:"start"});
+  };
+
+  history.pushState({product:name},"","#product-"+encodeURIComponent(name.replace(/\s+/g,"-")));
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function panel(n){
-["login","signup","reset","privacy","terms"].forEach(x=>$(x+"Panel").hidden=x!==n);
-say("");
+function backToShop(){
+  $("gameDetailPage").classList.remove("active");
+  $("gameDetailPage").innerHTML = "";
+  $("home").hidden = false;
+
+  if(location.hash.startsWith("#product-")){
+    history.replaceState({},"",location.pathname + location.search);
+  }
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+window.addEventListener("popstate",() => {
+  if($("gameDetailPage").classList.contains("active")){
+    $("gameDetailPage").classList.remove("active");
+    $("gameDetailPage").innerHTML = "";
+    $("home").hidden = false;
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+});
+
+$("brandHome").onclick = event => {
+  if($("gameDetailPage").classList.contains("active")){
+    event.preventDefault();
+    backToShop();
+  }
+};
+
+/* COPY OPay ACCOUNT NUMBER */
+$("copy").onclick = async () => {
+  try{
+    await navigator.clipboard.writeText("9074239739");
+    alert("OPay account number copied.");
+  }catch(error){
+    alert("OPay account number: 9074239739");
+  }
+};
+
+/* AUTHENTICATION */
+const authBox = $("auth");
+const message = $("msg");
+
+function say(text,error=false){
+  message.textContent = text;
+  message.classList.toggle("error",error);
+}
+
+function showAuthPanel(name){
+  ["login","signup","reset","privacy","terms"].forEach(panel => {
+    $(panel+"Panel").hidden = panel !== name;
+  });
+  say("");
 }
 
 function openAuth(){
-authBox.classList.add("open");
-panel("login");
+  authBox.classList.add("open");
+  showAuthPanel("login");
 }
 
 function closeAuth(){
-authBox.classList.remove("open");
-pending=false;
+  authBox.classList.remove("open");
 }
 
-$("accountBtn").onclick=()=>user?alert("You are already signed in."):openAuth();
-$("close").onclick=closeAuth;
-authBox.onclick=e=>{if(e.target===authBox)closeAuth();};
-$("toSignup").onclick=()=>panel("signup");
-$("toReset").onclick=()=>panel("reset");
-$("back1").onclick=$("back2").onclick=()=>panel("login");
-$("privacyBtn").onclick=()=>panel("privacy");
-$("termsBtn").onclick=()=>panel("terms");
-$("backPrivacy").onclick=$("backTerms").onclick=()=>panel("signup");
-
-function authErr(e){
-return ({
-"auth/email-already-in-use":"This email already has an account. Sign in instead.",
-"auth/invalid-email":"Enter a valid email address.",
-"auth/weak-password":"Password must contain at least 6 characters.",
-"auth/user-not-found":"No account found with this email.",
-"auth/wrong-password":"Incorrect email or password.",
-"auth/invalid-credential":"Incorrect email or password.",
-"auth/too-many-requests":"Too many attempts. Try again later.",
-"auth/network-request-failed":"Check your internet connection.",
-"auth/unauthorized-domain":"This website domain is not authorised in Firebase."
-})[e.code]||e.message;
-}
-
-$("signupForm").onsubmit=async e=>{
-e.preventDefault();
-if(!$("agree").checked)return say("Please accept the Privacy Policy and Terms.",true);
-try{
-let r=await auth.createUserWithEmailAndPassword($("signupEmail").value.trim(),$("signupPassword").value);
-await r.user.updateProfile({displayName:$("signupName").value.trim()});
-$("name").value=$("signupName").value.trim();
-say("Account created. Continuing your order...");
-}catch(x){say(authErr(x),true);}
+$("accountBtn").onclick = () => {
+  if(user){
+    alert("You are already signed in.");
+  }else{
+    openAuth();
+  }
 };
 
-$("loginForm").onsubmit=async e=>{
-e.preventDefault();
-try{
-await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value);
-}catch(x){say(authErr(x),true);}
+$("close").onclick = closeAuth;
+
+authBox.onclick = event => {
+  if(event.target === authBox) closeAuth();
 };
 
-$("resetForm").onsubmit=async e=>{
-e.preventDefault();
-try{
-await auth.sendPasswordResetEmail($("resetEmail").value.trim());
-say("Password reset email sent. Check inbox and spam folder.");
-}catch(x){say(authErr(x),true);}
+$("toSignup").onclick = () => showAuthPanel("signup");
+$("toReset").onclick = () => showAuthPanel("reset");
+$("back1").onclick = () => showAuthPanel("login");
+$("back2").onclick = () => showAuthPanel("login");
+$("privacyBtn").onclick = () => showAuthPanel("privacy");
+$("termsBtn").onclick = () => showAuthPanel("terms");
+$("backPrivacy").onclick = () => showAuthPanel("signup");
+$("backTerms").onclick = () => showAuthPanel("signup");
+
+function authError(error){
+  const messages = {
+    "auth/email-already-in-use":"This email already has an account. Sign in instead.",
+    "auth/invalid-email":"Enter a valid email address.",
+    "auth/weak-password":"Password must contain at least 6 characters.",
+    "auth/user-not-found":"No account found with this email.",
+    "auth/wrong-password":"Incorrect email or password.",
+    "auth/invalid-credential":"Incorrect email or password.",
+    "auth/too-many-requests":"Too many attempts. Try again later.",
+    "auth/network-request-failed":"Check your internet connection.",
+    "auth/unauthorized-domain":"This website domain is not authorised in Firebase."
+  };
+
+  return messages[error.code] || error.message;
+}
+
+/* CREATE ACCOUNT */
+$("signupForm").onsubmit = async event => {
+  event.preventDefault();
+
+  if(!$("agree").checked){
+    say("Please accept the Privacy Policy and Terms.",true);
+    return;
+  }
+
+  try{
+    const result = await auth.createUserWithEmailAndPassword(
+      $("signupEmail").value.trim(),
+      $("signupPassword").value
+    );
+
+    await result.user.updateProfile({
+      displayName:$("signupName").value.trim()
+    });
+
+    $("name").value = $("signupName").value.trim();
+    say("Account created successfully. Continuing your order...");
+  }catch(error){
+    say(authError(error),true);
+  }
 };
 
-$("signOut").onclick=()=>auth.signOut();
+/* SIGN IN */
+$("loginForm").onsubmit = async event => {
+  event.preventDefault();
 
-auth.onAuthStateChanged(u=>{
-user=u;
-$("accountBtn").hidden=!!u;
-$("signOut").hidden=!u;
-if(u){
-if(u.displayName&&!$("name").value)$("name").value=u.displayName;
-closeAuth();
-if(pending){
-pending=false;
-sendOrder();
-}
-}
+  try{
+    await auth.signInWithEmailAndPassword(
+      $("loginEmail").value.trim(),
+      $("loginPassword").value
+    );
+  }catch(error){
+    say(authError(error),true);
+  }
+};
+
+/* RESET PASSWORD */
+$("resetForm").onsubmit = async event => {
+  event.preventDefault();
+
+  try{
+    await auth.sendPasswordResetEmail($("resetEmail").value.trim());
+    say("Password reset email sent. Check your inbox and spam folder.");
+  }catch(error){
+    say(authError(error),true);
+  }
+};
+
+/* SIGN OUT */
+$("signOut").onclick = () => auth.signOut();
+
+/* LOGIN STATE */
+auth.onAuthStateChanged(currentUser => {
+  user = currentUser;
+
+  $("accountBtn").hidden = !!user;
+  $("signOut").hidden = !user;
+
+  if(user){
+    if(user.displayName && !$("name").value){
+      $("name").value = user.displayName;
+    }
+
+    closeAuth();
+
+    if(pendingOrder){
+      pendingOrder = false;
+      sendOrder();
+    }
+  }
 });
 
+/* WHATSAPP ORDER */
 function sendOrder(){
-let n=$("name").value.trim();
-let ph=$("phone").value.trim();
-let p=$("product").value;
-let pack=$("pack").value||"Confirm available packages";
-let uid=$("uid").value.trim()||"Not provided";
-let ign=$("ign").value.trim()||"Not provided";
-let reg=$("region").value.trim()||"Not provided";
-let extra=$("extra").value.trim()||"None";
-let ref=$("reference").value.trim()||"Not provided";
-let file=$("receipt").files[0];
-let email=user?.email||"";
-let op=$("pack").options[$("pack").selectedIndex];
-let price=op?.dataset.price?money(op.dataset.price):"To be confirmed";
+  const customerName = $("name").value.trim();
+  const customerPhone = $("phone").value.trim();
+  const product = $("product").value;
+  const packageName = $("pack").value || "Confirm available packages";
+  const uid = $("uid").value.trim() || "Not provided";
+  const gameName = $("ign").value.trim() || "Not provided";
+  const region = $("region").value.trim() || "Not provided";
+  const extra = $("extra").value.trim() || "None";
+  const reference = $("reference").value.trim() || "Not provided";
+  const receipt = $("receipt").files[0];
+  const email = user ? user.email : "";
 
-let text=`NEW ORDER / PRICE ENQUIRY — YUNG TOP 1 MEDITATOR
+  const selectedOption = $("pack").options[$("pack").selectedIndex];
+  const price = selectedOption && selectedOption.dataset.price
+    ? money(selectedOption.dataset.price)
+    : "To be confirmed";
 
-Customer: ${n}
+  const messageText = `NEW ORDER / PRICE ENQUIRY
+YUNG TOP 1 MEDITATOR
+
+Customer: ${customerName}
 Email: ${email}
-WhatsApp: ${ph}
-Product: ${p}
-Package: ${pack}
+WhatsApp: ${customerPhone}
+
+Product: ${product}
+Package: ${packageName}
 Price shown: ${price}
+
 Player UID: ${uid}
-In-game name: ${ign}
-Region: ${reg}
+In-game name: ${gameName}
+Region: ${region}
 Other details: ${extra}
-Payment reference: ${ref}
-Receipt selected: ${file?file.name:"No"}
 
-Please confirm availability and final price. I will make payment only after confirmation. If already paid after confirmation, I will attach my receipt here.`;
+Payment reference: ${reference}
+Receipt selected: ${receipt ? receipt.name : "No"}
 
-let url="https://wa.me/"+WA+"?text="+encodeURIComponent(text);
-let w=window.open(url,"_blank");
-if(!w)location.href=url;
+Please confirm availability and final price. I will make payment only after confirmation. If I have already paid after confirmation, I will attach my receipt here.`;
+
+  const whatsappURL =
+    "https://wa.me/" + WA + "?text=" + encodeURIComponent(messageText);
+
+  const newWindow = window.open(whatsappURL,"_blank");
+
+  if(!newWindow){
+    window.location.href = whatsappURL;
+  }
 }
 
-$("submit").onclick=()=>{
-if(!$("product").value||!$("pack").value)return alert("Select a product and package, or request current prices.");
-if(!$("name").value.trim()||!$("phone").value.trim())return alert("Enter your full name and WhatsApp number.");
-if(!user){
-pending=true;
-openAuth();
-say("Please sign in or create an account to continue your order.");
-return;
-}
-sendOrder();
+$("submit").onclick = () => {
+  if(!$("product").value || !$("pack").value){
+    alert("Select a product and package, or request current prices.");
+    return;
+  }
+
+  if(!$("name").value.trim() || !$("phone").value.trim()){
+    alert("Enter your full name and WhatsApp number.");
+    return;
+  }
+
+  if(!user){
+    pendingOrder = true;
+    openAuth();
+    say("Please sign in or create an account to continue your order.");
+    return;
+  }
+
+  sendOrder();
 };
+
+/* START THE WEBSITE */
+fillProductSelector();
+renderCatalogue();
+updateProduct();
 </script>
+
 </body>
 </html>
