@@ -29,7 +29,7 @@ nav a:hover{color:var(--cyan)}
 
 /* ACCOUNT SCREEN */
 .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px;background:radial-gradient(circle at top right,#142c49,#070a13 55%)}
-.auth-card{width:100%;max-width:440px;background:#111827;border:1px solid #28516a;border-radius:18px;padding:28px;box-shadow:0 0 35px #00e5ff17}
+.auth-card{width:100%;max-width:500px;background:#111827;border:1px solid #28516a;border-radius:18px;padding:28px;box-shadow:0 0 35px #00e5ff17}
 .auth-logo{text-align:center;font-size:27px;font-weight:900;color:var(--cyan);margin-bottom:8px}
 .auth-sub{text-align:center;color:var(--muted);margin-bottom:24px;line-height:1.5}
 .auth-card h2{color:white;text-align:center;margin:0 0 18px}
@@ -39,10 +39,19 @@ nav a:hover{color:var(--cyan)}
 .auth-button{width:100%;padding:14px;margin-top:17px;border:0;border-radius:9px;background:linear-gradient(90deg,#00c9e8,#00e879);color:#001018;font-weight:900}
 .auth-button:disabled{opacity:.6;cursor:wait}
 .auth-links{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:18px}
-.auth-links button{background:none;border:0;color:var(--cyan);text-decoration:underline;padding:5px}
+.auth-links button,.policy-link-button{background:none;border:0;color:var(--cyan);text-decoration:underline;padding:5px}
 .auth-message{font-size:13px;line-height:1.5;margin-top:15px;text-align:center;color:var(--green)}
 .auth-error{color:#ff8c8c}
 .signout-button{padding:9px 13px;background:#14243a;color:var(--cyan);border:1px solid var(--cyan);border-radius:7px;font-weight:bold}
+
+/* PRIVACY AGREEMENT */
+.agreement{display:flex!important;align-items:flex-start;gap:9px;margin:18px 0 5px!important;font-size:13px;line-height:1.7;font-weight:normal!important}
+.agreement input{width:18px!important;height:18px;flex-shrink:0;margin:2px 0 0;accent-color:#00e5ff}
+.agreement a{color:var(--cyan);text-decoration:underline}
+.policy-content{color:#d0d9e8;font-size:14px;line-height:1.8}
+.policy-content h3{color:var(--cyan);margin-top:22px}
+.policy-content h2{color:var(--cyan);text-align:left;margin-top:0}
+.policy-back{width:100%;padding:12px;margin-top:20px;background:#14243a;color:var(--cyan);border:1px solid var(--cyan);border-radius:8px;font-weight:bold}
 
 /* PROMOTIONAL BANNER */
 .hero{min-height:260px;position:relative;overflow:hidden;border-radius:18px;margin:20px auto;background:linear-gradient(120deg,#101d3a,#25104b,#061c2d);border:1px solid #24516a;display:flex;align-items:center;padding:30px}
@@ -108,59 +117,156 @@ footer strong{color:var(--cyan)}
 
 <!-- CUSTOMER ACCOUNT SCREEN -->
 <section class="auth-wrap" id="authScreen">
-  <div class="auth-card">
-    <div class="auth-logo">YunG Top 1 Meditator</div>
-    <p class="auth-sub">Welcome to your trusted gaming top-up store. Sign in or create an account to continue.</p>
+<div class="auth-card">
+  <div class="auth-logo">YunG Top 1 Meditator</div>
+  <p class="auth-sub">Welcome to your trusted gaming top-up store. Sign in or create an account to continue.</p>
 
-    <div id="loginPanel">
-      <h2>Customer Sign In</h2>
-      <form id="loginForm">
-        <label for="loginEmail">Email Address</label>
-        <input id="loginEmail" type="email" placeholder="Enter your email" required>
-        <label for="loginPassword">Password</label>
-        <input id="loginPassword" type="password" placeholder="Enter your password" required>
-        <button class="auth-button" type="submit">SIGN IN</button>
-      </form>
-      <div class="auth-links">
-        <button type="button" id="showSignup">Create Account</button>
-        <button type="button" id="showReset">Forgot Password?</button>
-      </div>
+  <div id="loginPanel">
+    <h2>Customer Sign In</h2>
+    <form id="loginForm">
+      <label for="loginEmail">Email Address</label>
+      <input id="loginEmail" type="email" placeholder="Enter your email" required>
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" placeholder="Enter your password" required>
+      <button class="auth-button" type="submit">SIGN IN</button>
+    </form>
+    <div class="auth-links">
+      <button type="button" id="showSignup">Create Account</button>
+      <button type="button" id="showReset">Forgot Password?</button>
     </div>
-
-    <div id="signupPanel" hidden>
-      <h2>Create Your Account</h2>
-      <form id="signupForm">
-        <label for="signupName">Full Name</label>
-        <input id="signupName" type="text" placeholder="Enter your full name" required>
-        <label for="signupEmail">Email Address</label>
-        <input id="signupEmail" type="email" placeholder="Enter your email" required>
-        <label for="signupPassword">Create Password</label>
-        <input id="signupPassword" type="password" minlength="6" placeholder="At least 6 characters" required>
-        <button class="auth-button" type="submit">CREATE ACCOUNT</button>
-      </form>
-      <div class="auth-links">
-        <button type="button" id="backToLogin1">Back to Sign In</button>
-      </div>
-    </div>
-
-    <div id="resetPanel" hidden>
-      <h2>Reset Your Password</h2>
-      <p class="muted">Enter your registered email address. Firebase will send you a password-reset link.</p>
-      <form id="resetForm">
-        <label for="resetEmail">Email Address</label>
-        <input id="resetEmail" type="email" placeholder="Enter your registered email" required>
-        <button class="auth-button" type="submit">SEND RESET LINK</button>
-      </form>
-      <div class="auth-links">
-        <button type="button" id="backToLogin2">Back to Sign In</button>
-      </div>
-    </div>
-
-    <p id="authMessage" class="auth-message" role="status"></p>
   </div>
+
+  <div id="signupPanel" hidden>
+    <h2>Create Your Account</h2>
+    <form id="signupForm">
+      <label for="signupName">Full Name</label>
+      <input id="signupName" type="text" placeholder="Enter your full name" required>
+      <label for="signupEmail">Email Address</label>
+      <input id="signupEmail" type="email" placeholder="Enter your email" required>
+      <label for="signupPassword">Create Password</label>
+      <input id="signupPassword" type="password" minlength="6" placeholder="At least 6 characters" required>
+
+      <label class="agreement" for="policyAgreement">
+        <input id="policyAgreement" type="checkbox" required>
+        <span>I have read and agree to the
+          <a href="#" id="openPrivacy">Privacy Policy</a>
+          and
+          <a href="#" id="openTerms">Terms &amp; Conditions</a>.
+        </span>
+      </label>
+
+      <button class="auth-button" type="submit">CREATE ACCOUNT</button>
+    </form>
+    <div class="auth-links">
+      <button type="button" id="backToLogin1">Back to Sign In</button>
+    </div>
+  </div>
+
+  <!-- PRIVACY POLICY PAGE -->
+  <div id="privacyPanel" hidden class="policy-content">
+    <h2>Privacy Policy</h2>
+    <p><strong>YunG Top 1 Meditator</strong></p>
+    <p>Last updated: 31 October 2026</p>
+
+    <p>This Privacy Policy explains how YunG Top 1 Meditator collects, uses and handles information when customers use our gaming top-up website and services.</p>
+
+    <h3>1. Information We Collect</h3>
+    <p>When you create an account or place an order, we may collect your full name, email address, WhatsApp phone number, game name, player UID, selected package, payment reference and payment receipt that you choose to send to us.</p>
+
+    <h3>2. How We Use Your Information</h3>
+    <p>We use the information you provide to create and manage your account, process top-up orders, identify the correct game account, verify payments, communicate with you about orders and provide customer support.</p>
+
+    <h3>3. Account Authentication</h3>
+    <p>Our website uses Firebase Authentication to manage customer email and password sign-in. Authentication information is processed by Google's Firebase service. We do not ask customers to send us their account passwords.</p>
+
+    <h3>4. Payments and Receipts</h3>
+    <p>Payments are made using the payment instructions displayed on our website. Customers may send payment references and receipts through WhatsApp for manual verification. We do not ask for your bank PIN, card PIN, banking password or one-time password (OTP).</p>
+
+    <h3>5. Sharing of Information</h3>
+    <p>We do not sell customers' personal information. Information may be processed by service providers necessary to operate the website, such as Firebase for authentication and WhatsApp for customer communication. Information may also be disclosed where required by applicable law.</p>
+
+    <h3>6. Data Protection</h3>
+    <p>We take reasonable steps to protect customer information. However, no website, internet transmission or electronic storage system can be guaranteed to be completely secure.</p>
+
+    <h3>7. Data Retention and Deletion Requests</h3>
+    <p>We retain information for as long as reasonably necessary to manage accounts, complete orders, resolve disputes and meet applicable legal requirements. You may contact us to request access to, correction of or deletion of your personal information, subject to applicable legal obligations.</p>
+
+    <h3>8. Children's Privacy</h3>
+    <p>Our services are not intended for children who are not legally able to enter into the relevant transactions. A parent or guardian should supervise any permitted use by a minor.</p>
+
+    <h3>9. Changes to This Policy</h3>
+    <p>We may update this Privacy Policy when our services or practices change. The updated version will be published on this website with a revised date.</p>
+
+    <h3>10. Contact Us</h3>
+    <p>For privacy questions or requests, contact YunG Top 1 Meditator through WhatsApp:</p>
+    <p><strong>+234 907 423 9739</strong></p>
+
+    <button type="button" class="policy-back" id="privacyBack">BACK TO CREATE ACCOUNT</button>
+  </div>
+
+  <!-- TERMS AND CONDITIONS PAGE -->
+  <div id="termsPanel" hidden class="policy-content">
+    <h2>Terms &amp; Conditions</h2>
+    <p><strong>YunG Top 1 Meditator</strong></p>
+    <p>Last updated: 31 October 2026</p>
+
+    <p>By creating an account or placing an order with YunG Top 1 Meditator, you agree to the following Terms &amp; Conditions.</p>
+
+    <h3>1. Our Services</h3>
+    <p>We provide gaming top-up services for supported games and packages displayed on our website. Package availability, prices and supported games may change from time to time.</p>
+
+    <h3>2. Customer Account</h3>
+    <p>You must provide accurate information when creating an account. You are responsible for keeping your login details secure and for activity carried out through your account. Do not share your password with anyone.</p>
+
+    <h3>3. Correct Game Information</h3>
+    <p>You are responsible for providing the correct game, player UID and any other required account details. Please carefully check your information before submitting an order. We cannot guarantee correction of a top-up sent to an incorrect UID supplied by a customer.</p>
+
+    <h3>4. Prices and Packages</h3>
+    <p>All prices are displayed in Nigerian Naira (₦). Prices and package availability may change. The price confirmed with you before payment will apply to your order. An order is not confirmed merely because it has been added to your WhatsApp message.</p>
+
+    <h3>5. Payment</h3>
+    <p>Customers must pay the correct amount using the payment method displayed on the website. Do not make payment to an account unless it matches the payment details confirmed by YunG Top 1 Meditator. We will manually verify payment before processing a top-up.</p>
+
+    <h3>6. Order Processing and Delivery</h3>
+    <p>Orders are processed after payment has been verified and the required game details have been checked. Processing time may vary due to supplier availability, game platform delays or technical issues. We will communicate with customers if there is a delay.</p>
+
+    <h3>7. Refunds and Order Problems</h3>
+    <p>If an order cannot be fulfilled after payment has been confirmed, contact us for assistance and an appropriate resolution. Refunds or corrections will be assessed based on the payment status, order status, supplier rules and applicable law. Incorrect customer-provided UID details may affect eligibility for a refund.</p>
+
+    <h3>8. Customer Conduct</h3>
+    <p>Customers must not use the website for fraudulent payments, false claims, abusive conduct or any unlawful activity. We may refuse or suspend orders where fraud or misuse is reasonably suspected.</p>
+
+    <h3>9. Third-Party Services</h3>
+    <p>Our website may rely on third-party services such as Firebase, WhatsApp, game publishers and top-up suppliers. Their services may be subject to separate terms, availability and policies.</p>
+
+    <h3>10. Changes to These Terms</h3>
+    <p>We may update these Terms &amp; Conditions when necessary. Updated terms will be published on this website. Continued use of the service after an update means you accept the revised terms where permitted by law.</p>
+
+    <h3>11. Contact and Support</h3>
+    <p>For order questions, payment verification or support, contact us through WhatsApp:</p>
+    <p><strong>+234 907 423 9739</strong></p>
+
+    <button type="button" class="policy-back" id="termsBack">BACK TO CREATE ACCOUNT</button>
+  </div>
+
+  <div id="resetPanel" hidden>
+    <h2>Reset Your Password</h2>
+    <p class="muted">Enter your registered email address. Firebase will send you a password-reset link.</p>
+    <form id="resetForm">
+      <label for="resetEmail">Email Address</label>
+      <input id="resetEmail" type="email" placeholder="Enter your registered email" required>
+      <button class="auth-button" type="submit">SEND RESET LINK</button>
+    </form>
+    <div class="auth-links">
+      <button type="button" id="backToLogin2">Back to Sign In</button>
+    </div>
+  </div>
+
+  <p id="authMessage" class="auth-message" role="status"></p>
+</div>
 </section>
 
-<!-- MAIN STORE: SHOWN AFTER SUCCESSFUL SIGN-IN -->
+<!-- MAIN STORE -->
 <div id="storeContent" hidden>
 
 <header>
@@ -177,7 +283,6 @@ footer strong{color:var(--cyan)}
 </nav>
 
 <main class="container" id="home">
-
   <section class="hero">
     <div class="hero-content">
       <div>
@@ -186,10 +291,7 @@ footer strong{color:var(--cyan)}
         <p id="heroText">Get your favourite game credits at competitive prices. Fast ordering and friendly support.</p>
       </div>
       <div class="hero-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
       </div>
     </div>
   </section>
@@ -197,18 +299,13 @@ footer strong{color:var(--cyan)}
   <section id="games">
     <h2 class="section-title">Choose Your Game</h2>
     <p class="muted">Select your favourite game and explore available top-up packages.</p>
-
     <div class="games-grid">
       <article class="game-card">
         <div class="game-art">
           <img src="https://cdn.esports.id/media/article/793020260503051552.jpg" alt="Free Fire profile" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#6b1c13,#e76b20,#30121a)'">
           <span class="game-label">FREE FIRE</span>
         </div>
-        <div class="game-info">
-          <h3>Free Fire</h3>
-          <p>Diamonds for your favourite Free Fire items and upgrades.</p>
-          <button class="game-button" onclick="chooseGame('Free Fire')">View Packages</button>
-        </div>
+        <div class="game-info"><h3>Free Fire</h3><p>Diamonds for your favourite Free Fire items and upgrades.</p><button class="game-button" onclick="chooseGame('Free Fire')">View Packages</button></div>
       </article>
 
       <article class="game-card">
@@ -216,11 +313,7 @@ footer strong{color:var(--cyan)}
           <img src="https://lblog.fp.guinfra.com/file/698e9ddb6f332c4ed401325fsa84ivAw03" alt="Call of Duty Mobile profile" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#182d46,#2875a0,#111827)'">
           <span class="game-label">CALL OF DUTY MOBILE</span>
         </div>
-        <div class="game-info">
-          <h3>Call of Duty Mobile</h3>
-          <p>Get CP for your COD Mobile gaming experience.</p>
-          <button class="game-button" onclick="chooseGame('COD Mobile')">View Packages</button>
-        </div>
+        <div class="game-info"><h3>Call of Duty Mobile</h3><p>Get CP for your COD Mobile gaming experience.</p><button class="game-button" onclick="chooseGame('COD Mobile')">View Packages</button></div>
       </article>
 
       <article class="game-card">
@@ -228,11 +321,7 @@ footer strong{color:var(--cyan)}
           <img src="https://media.pocketgamer.com/artwork/na-36044-1723131768/blood-strike-keyvisual.jpg" alt="Blood Strike profile" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#4c1020,#b52e4c,#170c1a)'">
           <span class="game-label">BLOOD STRIKE</span>
         </div>
-        <div class="game-info">
-          <h3>Blood Strike</h3>
-          <p>Top up Gold and enjoy more in-game content.</p>
-          <button class="game-button" onclick="chooseGame('Blood Strike')">View Packages</button>
-        </div>
+        <div class="game-info"><h3>Blood Strike</h3><p>Top up Gold and enjoy more in-game content.</p><button class="game-button" onclick="chooseGame('Blood Strike')">View Packages</button></div>
       </article>
 
       <article class="game-card">
@@ -240,11 +329,7 @@ footer strong{color:var(--cyan)}
           <img src="https://cdn.aptoide.com/imgs/a/9/a/a9a7147e6d537dfbf596667fbb505a41_screen.jpg" alt="PUBG Mobile profile" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#65501b,#b98a2b,#17130c)'">
           <span class="game-label">PUBG MOBILE</span>
         </div>
-        <div class="game-info">
-          <h3>PUBG Mobile</h3>
-          <p>Get UC for your PUBG Mobile account.</p>
-          <button class="game-button" onclick="chooseGame('PUBG Mobile')">View Packages</button>
-        </div>
+        <div class="game-info"><h3>PUBG Mobile</h3><p>Get UC for your PUBG Mobile account.</p><button class="game-button" onclick="chooseGame('PUBG Mobile')">View Packages</button></div>
       </article>
     </div>
   </section>
@@ -265,28 +350,20 @@ footer strong{color:var(--cyan)}
   <section class="card" id="order">
     <h2 class="section-title">Complete Your Order</h2>
     <p class="muted">Enter your details carefully and follow the payment instructions.</p>
-
     <form id="orderForm">
       <label for="customerName">Full Name</label>
       <input id="customerName" type="text" placeholder="Enter your full name" required>
-
       <label for="customerPhone">Your WhatsApp Number</label>
       <input id="customerPhone" type="tel" placeholder="e.g. 08012345678" required>
-
       <label for="selectedGame">Selected Game</label>
       <input id="selectedGame" readonly>
-
       <label for="playerUID">Player UID</label>
       <input id="playerUID" type="text" placeholder="Enter your game UID" required>
       <p class="uid-note">Make sure you provide a valid UID.</p>
-
       <label for="gameName">In-game Name (Optional)</label>
       <input id="gameName" type="text" placeholder="Enter your game name">
-
       <label for="packageSelect">Selected Package</label>
-      <select id="packageSelect" required>
-        <option value="">Select a package</option>
-      </select>
+      <select id="packageSelect" required><option value="">Select a package</option></select>
 
       <div class="order-summary">
         <h3 style="color:#00e5ff;margin-top:0">Your Order Summary</h3>
@@ -296,10 +373,7 @@ footer strong{color:var(--cyan)}
       </div>
 
       <label for="payment">Payment Method</label>
-      <select id="payment" required>
-        <option value="">Choose payment method</option>
-        <option value="OPay Bank Transfer">OPay Bank Transfer</option>
-      </select>
+      <select id="payment" required><option value="">Choose payment method</option><option value="OPay Bank Transfer">OPay Bank Transfer</option></select>
 
       <div class="bank-details">
         <h3 style="color:#00e5ff;margin-top:0">OPay Bank Transfer</h3>
@@ -311,11 +385,9 @@ footer strong{color:var(--cyan)}
 
       <label for="reference">Payment Reference (Optional)</label>
       <input id="reference" type="text" placeholder="Enter payment reference">
-
       <label for="receipt">Choose Payment Receipt</label>
       <input id="receipt" type="file" accept="image/*,.pdf">
       <p class="small-note">Your receipt is not uploaded automatically. After WhatsApp opens, attach the receipt file to your message before sending.</p>
-
       <button class="primary-button" type="submit">SUBMIT ORDER VIA WHATSAPP</button>
     </form>
   </section>
@@ -341,7 +413,6 @@ footer strong{color:var(--cyan)}
 </footer>
 </div>
 
-<!-- FIREBASE AUTHENTICATION -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
@@ -358,19 +429,19 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-const authScreen = document.getElementById("authScreen");
-const storeContent = document.getElementById("storeContent");
-const authMessage = document.getElementById("authMessage");
+const authScreen=document.getElementById("authScreen");
+const storeContent=document.getElementById("storeContent");
+const authMessage=document.getElementById("authMessage");
 
 function showMessage(message,isError=false){
-  authMessage.textContent = message;
+  authMessage.textContent=message;
   authMessage.classList.toggle("auth-error",isError);
 }
 
 function showAuthPanel(panel){
-  document.getElementById("loginPanel").hidden = panel !== "login";
-  document.getElementById("signupPanel").hidden = panel !== "signup";
-  document.getElementById("resetPanel").hidden = panel !== "reset";
+  ["login","signup","reset","privacy","terms"].forEach(name=>{
+    document.getElementById(name+"Panel").hidden=name!==panel;
+  });
   showMessage("");
 }
 
@@ -379,8 +450,19 @@ document.getElementById("showReset").addEventListener("click",()=>showAuthPanel(
 document.getElementById("backToLogin1").addEventListener("click",()=>showAuthPanel("login"));
 document.getElementById("backToLogin2").addEventListener("click",()=>showAuthPanel("login"));
 
+document.getElementById("openPrivacy").addEventListener("click",event=>{
+  event.preventDefault();
+  showAuthPanel("privacy");
+});
+document.getElementById("openTerms").addEventListener("click",event=>{
+  event.preventDefault();
+  showAuthPanel("terms");
+});
+document.getElementById("privacyBack").addEventListener("click",()=>showAuthPanel("signup"));
+document.getElementById("termsBack").addEventListener("click",()=>showAuthPanel("signup"));
+
 function friendlyAuthError(error){
-  const messages = {
+  const messages={
     "auth/email-already-in-use":"This email already has an account. Please sign in instead.",
     "auth/invalid-email":"Please enter a valid email address.",
     "auth/weak-password":"Your password must contain at least 6 characters.",
@@ -392,16 +474,25 @@ function friendlyAuthError(error){
     "auth/operation-not-allowed":"Email/Password sign-in is not enabled in Firebase.",
     "auth/unauthorized-domain":"This website domain is not authorised in Firebase."
   };
-  return messages[error.code] || error.message || "Something went wrong. Please try again.";
+  return messages[error.code]||error.message||"Something went wrong. Please try again.";
 }
 
-/* CREATE ACCOUNT */
+/* CREATE ACCOUNT - PRIVACY AGREEMENT IS REQUIRED */
 document.getElementById("signupForm").addEventListener("submit",async function(event){
   event.preventDefault();
+
+  const agreement=document.getElementById("policyAgreement");
+  if(!agreement.checked){
+    showMessage("Please tick the box to agree to the Privacy Policy and Terms & Conditions.",true);
+    agreement.focus();
+    return;
+  }
+
   const name=document.getElementById("signupName").value.trim();
   const email=document.getElementById("signupEmail").value.trim();
   const password=document.getElementById("signupPassword").value;
   const button=this.querySelector("button[type=submit]");
+
   button.disabled=true;
   button.textContent="CREATING ACCOUNT...";
   showMessage("");
@@ -428,7 +519,6 @@ document.getElementById("loginForm").addEventListener("submit",async function(ev
   button.disabled=true;
   button.textContent="SIGNING IN...";
   showMessage("");
-
   try{
     await auth.signInWithEmailAndPassword(email,password);
   }catch(error){
@@ -439,7 +529,7 @@ document.getElementById("loginForm").addEventListener("submit",async function(ev
   }
 });
 
-/* FORGOTTEN PASSWORD */
+/* PASSWORD RESET */
 document.getElementById("resetForm").addEventListener("submit",async function(event){
   event.preventDefault();
   const email=document.getElementById("resetEmail").value.trim();
@@ -447,7 +537,6 @@ document.getElementById("resetForm").addEventListener("submit",async function(ev
   button.disabled=true;
   button.textContent="SENDING...";
   showMessage("");
-
   try{
     await auth.sendPasswordResetEmail(email);
     showMessage("Password reset email sent. Check your inbox and spam folder.");
@@ -461,20 +550,17 @@ document.getElementById("resetForm").addEventListener("submit",async function(ev
 
 /* SIGN OUT */
 document.getElementById("signOutButton").addEventListener("click",async()=>{
-  try{
-    await auth.signOut();
-  }catch(error){
-    alert("Unable to sign out. Please try again.");
-  }
+  try{await auth.signOut();}
+  catch(error){alert("Unable to sign out. Please try again.");}
 });
 
-/* SHOW STORE ONLY AFTER FIREBASE CONFIRMS SIGN-IN */
+/* AUTHENTICATION STATE */
 auth.onAuthStateChanged(user=>{
   if(user){
     authScreen.hidden=true;
     storeContent.hidden=false;
-    const name=user.displayName || "";
-    if(name && !document.getElementById("customerName").value){
+    const name=user.displayName||"";
+    if(name&&!document.getElementById("customerName").value){
       document.getElementById("customerName").value=name;
     }
     updatePackages();
@@ -495,9 +581,7 @@ const packageData={
   "PUBG Mobile":[["60 UC",900],["325 UC",4600],["660 UC",9000]]
 };
 
-function money(amount){
-  return "₦"+Number(amount).toLocaleString("en-NG");
-}
+function money(amount){return "₦"+Number(amount).toLocaleString("en-NG");}
 
 function chooseGame(game){
   document.getElementById("game").value=game;
@@ -515,8 +599,7 @@ function updatePackages(){
   packagesBox.innerHTML="";
 
   packageData[game].forEach((item,index)=>{
-    const title=item[0];
-    const amount=item[1];
+    const title=item[0],amount=item[1];
     const option=document.createElement("option");
     option.value=title+" - "+money(amount);
     option.textContent=title+" - "+money(amount);
@@ -569,7 +652,7 @@ function copyAccount(){
   }
 }
 
-/* AUTOMATIC PROMOTIONAL SLIDESHOW */
+/* PROMOTIONAL SLIDESHOW */
 const slides=[
   {tag:"GAMING TOP-UP STORE",title:'LEVEL UP YOUR <span>GAME!</span>',text:"Get your favourite game credits at competitive prices. Fast ordering and friendly support."},
   {tag:"FREE FIRE DIAMONDS",title:'GET MORE <span>DIAMONDS!</span>',text:"Choose your Free Fire package and place your order in just a few steps."},
