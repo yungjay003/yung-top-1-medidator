@@ -1,169 +1,698 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#081426">
 <title>YunG Top 1 Meditator | Game Top-Ups</title>
 <style>
-:root{--navy:#081426;--navy2:#10213b;--blue:#1769ff;--cyan:#22c7f2;--ink:#172033;--muted:#667085;--line:#e7ebf2;--bg:#f5f7fb;--green:#12a66a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}[hidden]{display:none!important}
-header{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line)}.top{max-width:1400px;margin:auto;display:flex;align-items:center;gap:24px;padding:15px 24px;min-height:76px}.brand{font-size:23px;font-weight:950;color:#1264ed;text-decoration:none;white-space:nowrap;letter-spacing:-.8px}.search{flex:1;max-width:560px;position:relative}.search input{width:100%;padding:13px 16px 13px 42px;border:1px solid #e2e7ef;border-radius:9px;background:#f7f9fc;outline:none}.search:before{content:"⌕";position:absolute;left:15px;top:6px;font-size:26px;color:#718096}.account{margin-left:auto;display:flex;align-items:center;gap:12px}.account button{border:0;background:none;font-weight:800;color:#25334a;padding:10px}.account .signout{border:1px solid #d9e0ea;border-radius:7px}.nav{display:flex;gap:30px;justify-content:center;padding:13px 15px;border-top:1px solid #f1f3f7}.nav a{font-size:13px;font-weight:800;text-decoration:none;color:#36445a}.nav a:hover{color:var(--blue)}
-.trust{background:var(--navy);color:#fff;display:flex;justify-content:center;gap:clamp(18px,5vw,65px);padding:12px 18px;flex-wrap:wrap;font-size:13px}.trust span{white-space:nowrap}
-.wrap{max-width:1400px;margin:auto;padding:25px 24px}.hero{min-height:330px;border-radius:15px;overflow:hidden;background:radial-gradient(circle at 80% 20%,#1c8ce9 0,transparent 35%),linear-gradient(110deg,#071a3b,#0754c9 58%,#0e9fcb);color:white;display:flex;align-items:center;padding:clamp(25px,5vw,65px);position:relative}.hero:after{content:"";position:absolute;width:390px;height:390px;border:1px solid #ffffff35;border-radius:50%;right:9%;top:-90px;box-shadow:0 0 0 35px #ffffff09,0 0 0 75px #ffffff07}.hero-content{max-width:650px;position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:900;letter-spacing:1.5px;color:#b9f1ff}.hero h1{font-size:clamp(34px,5vw,60px);line-height:1.02;letter-spacing:-1.8px;margin:15px 0}.hero p{color:#e2f1ff;line-height:1.65;max-width:560px}.cta{display:inline-block;background:#fff;color:#0759ce;padding:13px 20px;border-radius:7px;text-decoration:none;font-weight:900;margin-top:10px}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:23px 0}.quick div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:17px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:13px}.quick b{font-size:23px}
-.section{margin-top:36px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.section-head h2{font-size:23px;margin:0}.section-head p{font-size:13px;color:var(--muted);margin:5px 0 0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 17px}.tab{border:1px solid #dfe5ee;background:#fff;padding:9px 15px;border-radius:30px;font-size:12px;font-weight:800;color:#475467}.tab.active{background:#0c5fe8;color:white;border-color:#0c5fe8}
-.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px}.product{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;transition:.2s;cursor:pointer}.product:hover{transform:translateY(-3px);box-shadow:0 9px 24px #172b4d13;border-color:#bfd5ff}.art{height:145px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;font-weight:950;letter-spacing:-1px;background:linear-gradient(135deg,#172b4b,#0879d7);position:relative;overflow:hidden}.art:before,.art:after{content:"";position:absolute;border:1px solid #ffffff2a;border-radius:50%;width:160px;height:160px}.art:after{width:110px;height:110px}.art span{position:relative;z-index:1;text-shadow:0 2px 12px #0007}.product-info{padding:13px}.product-info h3{font-size:14px;margin:0 0 6px;min-height:34px}.kind{font-size:11px;color:#667085}.product-info button{width:100%;margin-top:12px;border:0;background:#edf4ff;color:#075bd6;padding:10px;border-radius:6px;font-size:12px;font-weight:900}.product-info button:hover{background:#dceaff}
-.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:23px;margin-top:25px}.panel h2{margin:0 0 7px;font-size:22px}.muted{color:var(--muted);font-size:14px;line-height:1.6}.columns{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}.field{margin-top:14px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:7px;color:#344054}.field input,.field select{width:100%;padding:13px;border:1px solid #d0d7e2;border-radius:7px;background:#fff;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769ff18}.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;margin-top:14px}.package{border:1px solid #dce3ed;border-radius:8px;padding:13px;text-align:center;cursor:pointer}.package.selected,.package:hover{border-color:var(--blue);background:#f1f6ff}.package strong{display:block;font-size:13px}.package em{display:block;font-style:normal;color:#07945b;font-weight:900;margin-top:7px}.summary{background:#f5f8ff;border:1px solid #d5e3ff;border-radius:9px;padding:15px;margin-top:16px}.sumline{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px}.sumline.total{font-size:18px;color:#07834f;font-weight:950}.bank{background:#f3f7ff;border:1px solid #c8dcff;border-radius:8px;padding:14px;font-size:14px;line-height:1.9;margin-top:15px}.bank strong{color:#075bd6}.btn{border:0;background:var(--blue);color:white;border-radius:7px;padding:14px 18px;font-weight:900}.btn.full{width:100%;margin-top:17px}.btn.secondary{background:#edf4ff;color:#075bd6;border:1px solid #c9dcff}.note{font-size:12px;color:#667085;line-height:1.6}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{padding:16px;background:#f7f9fc;border:1px solid var(--line);border-radius:8px;font-size:13px;line-height:1.55;color:#475467}.step b{display:block;color:#075bd6;margin-bottom:6px}
-footer{background:#081426;color:#c5d0df;text-align:center;padding:30px 15px;margin-top:35px;line-height:1.7}footer strong{color:white}
-.auth-wrap{display:none;position:fixed;inset:0;z-index:1000;background:#061225c9;backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:15px}.auth-wrap.open{display:flex}.auth-card{width:100%;max-width:440px;max-height:92vh;overflow:auto;background:#fff;border-radius:14px;padding:26px;position:relative}.close{position:absolute;right:13px;top:10px;border:0;background:#f0f2f5;border-radius:50%;width:32px;height:32px;font-size:20px}.auth-logo{text-align:center;color:#1264ed;font-size:22px;font-weight:950;margin:8px 22px}.auth-card h2{text-align:center;font-size:20px}.auth-card label{display:block;font-size:13px;font-weight:800;margin:14px 0 7px}.auth-card input:not([type=checkbox]){width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}.auth-links{display:flex;justify-content:space-between;margin-top:15px;gap:8px}.auth-links button,.policy-link{border:0;background:none;color:#075bd6;text-decoration:underline;font-weight:800;font-size:12px}.msg{text-align:center;font-size:13px;color:#07945b;line-height:1.5}.msg.error{color:#d92d20}.agreement{display:flex!important;align-items:flex-start;gap:8px;font-size:12px!important;line-height:1.5;font-weight:normal!important}.agreement input{width:16px;height:16px;margin-top:2px}.policy{font-size:13px;line-height:1.7;color:#475467}.policy h3{color:#075bd6}.policy button{width:100%;margin-top:15px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}.quick{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.top{padding:12px;gap:10px;flex-wrap:wrap}.brand{font-size:18px}.search{order:3;flex-basis:100%;max-width:none}.account{margin-left:auto}.nav{gap:17px;flex-wrap:wrap}.nav a{font-size:11px}.wrap{padding:14px}.hero{min-height:280px;padding:24px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.art{height:125px;font-size:30px}.product-info{padding:10px}.product-info h3{font-size:13px}.quick{gap:8px}.quick div{padding:12px;font-size:11px}.columns{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.panel{padding:15px}.section-head h2{font-size:20px}}
+:root{--blue:#1769ff;--navy:#081426;--ink:#172033;--muted:#667085;--line:#e7ebf2}
+*{box-sizing:border-box}
+body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+header{background:white;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line)}
+.top{max-width:1400px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:8px;font-size:25px;letter-spacing:-1px;color:#0872f9;text-decoration:none;font-weight:900;white-space:nowrap}
+.brandmark{width:31px;height:31px;border-radius:50%;display:inline-grid;place-items:center;background:#0872f9;color:#fff;font-size:20px}
+.brandwords{white-space:nowrap}
+.search{flex:1}
+.search input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:#f7f9fc}
+.account{margin-left:auto}
+.account button{border:0;background:white;font-weight:bold;padding:10px}
+.account .out{border:1px solid var(--line);border-radius:7px}
+.nav{display:flex;justify-content:flex-start;gap:30px;padding:12px 22px;flex-wrap:wrap;border-top:1px solid #f2f4f7;max-width:1400px;margin:auto}
+.nav a{font-size:13px;font-weight:bold;text-decoration:none;color:#344054}
+.nav a:first-child{color:#0872f9}
+.trust{background:var(--navy);color:white;text-align:center;padding:12px;display:flex;justify-content:center;gap:35px;flex-wrap:wrap;font-size:13px}
+.wrap{max-width:1400px;margin:auto;padding:24px}
+.hero{min-height:310px;padding:55px;border-radius:14px;color:white;background:radial-gradient(circle at 80% 20%,#2099e8,transparent 35%),linear-gradient(110deg,#071a3b,#0754c9 60%,#0e9fcb)}
+.hero small{font-weight:900;letter-spacing:2px;color:#b9f1ff}
+.hero h1{font-size:clamp(35px,5vw,60px);line-height:1.02;margin:15px 0}
+.hero p{max-width:570px;line-height:1.6;color:#e5f3ff}
+.cta{display:inline-block;background:white;color:#0759ce;text-decoration:none;font-weight:900;padding:13px 20px;border-radius:7px;margin-top:10px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.quick div{background:white;padding:16px;border:1px solid var(--line);border-radius:9px;font-weight:bold;font-size:13px}
+.section{margin-top:34px}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:15px}
+.head h2{margin:0;font-size:23px}
+.head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tab{background:white;border:1px solid var(--line);padding:9px 14px;border-radius:30px;font-size:12px;font-weight:bold}
+.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.product{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}
+.product:hover{transform:translateY(-3px);box-shadow:0 8px 22px #172b4d18}
+.art{height:160px;display:grid;place-items:center;color:white;font-size:38px;font-weight:900;text-shadow:0 2px 10px #0008;background:#101b30;overflow:hidden}
+.art img{width:100%;height:100%;object-fit:cover;display:block}
+.art .fallback{width:100%;height:100%;display:grid;place-items:center;font-size:38px}
+.info{padding:12px}
+.info h3{font-size:14px;margin:0 0 6px;min-height:32px}
+.info small{color:var(--muted)}
+.info button{width:100%;border:0;background:#edf4ff;color:#075bd6;padding:10px;border-radius:6px;font-weight:900;font-size:12px;margin-top:10px}
+.panel{background:white;border:1px solid var(--line);border-radius:11px;padding:22px;margin-top:25px}
+.panel h2{margin:0 0 8px}
+.muted{color:var(--muted);font-size:14px;line-height:1.6}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.field{margin-top:13px}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
+.field input,.field select{width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}
+.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin-top:12px}
+.pkg{border:1px solid #dce3ed;padding:13px;border-radius:8px;text-align:center;cursor:pointer}
+.pkg.selected,.pkg:hover{border-color:var(--blue);background:#f1f6ff}
+.pkg strong,.pkg em{display:block}
+.pkg em{font-style:normal;color:#07844f;font-weight:900;margin-top:6px}
+.summary,.bank{background:#f5f8ff;border:1px solid #d5e3ff;border-radius:8px;padding:14px;margin-top:14px}
+.line{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;gap:10px}
+.total{font-size:18px;color:#07844f;font-weight:900}
+.btn{background:var(--blue);color:white;border:0;border-radius:7px;padding:14px;font-weight:900}
+.full{width:100%;margin-top:16px}
+.secondary{background:#edf4ff;color:#075bd6;border:1px solid #c9dcff;margin-top:8px}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.step{background:#f7f9fc;border:1px solid var(--line);padding:15px;border-radius:8px;font-size:13px;line-height:1.5}
+.step b{display:block;color:#075bd6;margin-bottom:5px}
+footer{background:var(--navy);color:#c5d0df;text-align:center;padding:28px;line-height:1.7;margin-top:35px}
+footer strong{color:white}
+.auth{display:none;position:fixed;inset:0;z-index:100;background:#061225cc;align-items:center;justify-content:center;padding:15px}
+.auth.open{display:flex}
+.authbox{background:white;border-radius:13px;padding:25px;width:100%;max-width:430px;max-height:92vh;overflow:auto;position:relative}
+.close{position:absolute;right:12px;top:10px;border:0;border-radius:50%;width:32px;height:32px;font-size:20px}
+.logo{text-align:center;color:var(--blue);font-size:22px;font-weight:900}
+.authbox h2{text-align:center}
+.authbox label{display:block;font-size:13px;font-weight:bold;margin:13px 0 6px}
+.authbox input:not([type=checkbox]){width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}
+.links{display:flex;justify-content:space-between;margin-top:14px}
+.links button,.policyLink{border:0;background:none;color:var(--blue);text-decoration:underline;font-size:12px;font-weight:bold}
+.msg{text-align:center;font-size:13px;color:#07844f}
+.error{color:#d92d20}
+.agree{display:flex!important;gap:8px;align-items:flex-start;font-weight:normal!important;line-height:1.5}
+.agree input{margin-top:3px}
+.policy{font-size:13px;line-height:1.7;color:#475467}
+.detail-page{display:none;max-width:1400px;margin:auto;padding:26px 24px 50px;min-height:65vh}
+.detail-page.active{display:block}
+.detail-top{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.back-games{border:0;background:#edf4ff;color:#075bd6;padding:11px 15px;border-radius:7px;font-weight:800}
+.detail-crumb{font-size:13px;color:#667085}
+.detail-hero{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:28px;background:#fff;border:1px solid #e7ebf2;border-radius:12px;padding:22px;align-items:center}
+.detail-cover{height:230px;border-radius:10px;overflow:hidden;background:#102d55}
+.detail-cover img{width:100%;height:100%;object-fit:cover}
+.detail-cover .fallback{height:100%;display:grid;place-items:center;color:white;font-size:72px}
+.detail-copy h1{font-size:32px;margin:0 0 8px;color:#172033}
+.detail-copy p{color:#667085;line-height:1.65}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){
+.top{flex-wrap:wrap;padding:12px}
+.brand{font-size:21px}
+.search{order:3;flex-basis:100%}
+.nav{gap:15px}
+.nav a{font-size:11px}
+.wrap{padding:14px}
+.hero{padding:25px;min-height:270px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.art{height:130px}
+.quick{grid-template-columns:repeat(2,1fr);gap:8px}
+.quick div{padding:12px;font-size:11px}
+.cols,.steps{grid-template-columns:1fr}
+.panel{padding:15px}
+.detail-page{padding:16px}
+.detail-hero{grid-template-columns:1fr;padding:14px}
+.detail-cover{height:190px}
+.detail-copy h1{font-size:25px}
+}
 </style>
 </head>
 <body>
+
 <header>
- <div class="top">
-  <a class="brand" href="#home">YunG Top 1 Meditator</a>
-  <div class="search"><input id="searchInput" type="search" placeholder="Search games and top-ups..." aria-label="Search games"></div>
-  <div class="account"><button id="accountButton">Sign In / Sign Up</button><button id="signOutButton" class="signout" hidden>Sign Out</button></div>
- </div>
- <nav class="nav"><a href="#home">HOME</a><a href="#games">ALL GAMES</a><a href="#vouchers">GIFT CARDS</a><a href="#order">MY ORDER</a><a href="#how">HOW TO ORDER</a></nav>
+<div class="top">
+<a class="brand" href="#home"><span class="brandmark">Y</span><span class="brandwords">YunG Top 1</span></a>
+<div class="search"><input id="search" placeholder="Search games and top-ups..."></div>
+<div class="account">
+<button id="accountBtn">Sign In / Sign Up</button>
+<button class="out" id="signOut" hidden>Sign Out</button>
+</div>
+</div>
+<nav class="nav">
+<a href="#home">HOME</a>
+<a href="#games">ALL GAMES</a>
+<a href="#vouchers">GIFT CARDS</a>
+<a href="#order">PLACE ORDER</a>
+<a href="#how">HOW TO ORDER</a>
+</nav>
 </header>
-<div class="trust"><span>⚡ Quick order process</span><span>🎮 Wide game selection</span><span>💬 WhatsApp support</span><span>✓ Manual payment confirmation</span></div>
+
+<div class="trust">
+<span>⚡ Quick order process</span>
+<span>🎮 Wide game selection</span>
+<span>💬 WhatsApp support</span>
+<span>✓ Manual payment confirmation</span>
+</div>
+
 <main class="wrap" id="home">
- <section class="hero"><div class="hero-content"><div class="eyebrow">WELCOME TO YUNG TOP 1 MEDITATOR</div><h1>YOUR GAME.<br>YOUR TOP-UP.<br>YOUR VICTORY.</h1><p>Explore game currencies, passes and digital gaming vouchers. Choose your product and contact us to confirm the latest package price before payment.</p><a class="cta" href="#games">EXPLORE ALL GAMES →</a></div></section>
- <div class="quick"><div><b>🎮</b> Games & top-ups</div><div><b>💳</b> Easy OPay transfer</div><div><b>📲</b> WhatsApp ordering</div><div><b>🛡️</b> Payment checked manually</div></div>
-
- <section class="section" id="games">
-  <div class="section-head"><div><h2>Explore Games</h2><p>Browse the game top-up range. Select a game to start an order.</p></div></div>
-  <div class="tabs" id="gameTabs"><button class="tab active" data-filter="all">All Games</button><button class="tab" data-filter="popular">Popular</button><button class="tab" data-filter="mobile">Mobile Games</button><button class="tab" data-filter="pc-console">PC & Console</button></div>
-  <div class="grid" id="gameGrid"></div>
- </section>
-
- <section class="section" id="vouchers">
-  <div class="section-head"><div><h2>Gaming Gift Cards & Vouchers</h2><p>Digital vouchers and gaming wallet products. Availability and region must be confirmed.</p></div></div>
-  <div class="grid" id="voucherGrid"></div>
- </section>
-
- <section class="panel" id="order">
-  <h2>Place Your Order</h2><p class="muted">Choose a product above or select it below. If a package price is not listed, request the current price on WhatsApp. Please do not transfer money until we confirm your order total.</p>
-  <div class="columns">
-   <div>
-    <div class="field"><label for="productSelect">Game / Product</label><select id="productSelect"></select></div>
-    <div class="field"><label for="packageSelect">Package / Voucher Value</label><select id="packageSelect"><option value="">Select a package</option></select></div>
-    <div id="packageCards" class="packages"></div>
-    <div class="summary"><div class="sumline"><span>Product</span><strong id="sumProduct">Not selected</strong></div><div class="sumline"><span>Package</span><strong id="sumPackage">Not selected</strong></div><div class="sumline total"><span>Price</span><strong id="sumPrice">To be confirmed</strong></div></div>
-   </div>
-   <div>
-    <div class="field"><label for="customerName">Full Name</label><input id="customerName" placeholder="Enter your full name" required></div>
-    <div class="field"><label for="customerPhone">WhatsApp Number</label><input id="customerPhone" type="tel" placeholder="e.g. 08012345678" required></div>
-    <div class="field"><label for="playerUID">Player ID / UID (if required)</label><input id="playerUID" placeholder="Enter your game UID"></div>
-    <div class="field"><label for="gameName">In-game Name (optional)</label><input id="gameName" placeholder="Enter your game name"></div>
-    <div class="field"><label for="region">Game / Voucher Region (if applicable)</label><input id="region" placeholder="e.g. Global, US, EU, Nigeria"></div>
-    <div class="field"><label for="extraDetails">Other Details (optional)</label><input id="extraDetails" placeholder="Any additional order information"></div>
-   </div>
-  </div>
-  <div class="bank"><strong>Payment instructions (only pay after price confirmation)</strong><br>Bank: <strong>OPay</strong><br>Account Name: <strong>Betty Onyiyechi Paul</strong><br>Account Number: <strong>9074239739</strong><button class="btn secondary" type="button" id="copyAccount" style="display:block;margin-top:9px">Copy Account Number</button></div>
-  <div class="field"><label for="reference">Payment Reference (if already paid)</label><input id="reference" placeholder="Do not pay until your price is confirmed"></div>
-  <div class="field"><label for="receipt">Payment Receipt (if already paid)</label><input id="receipt" type="file" accept="image/*,.pdf"></div>
-  <p class="note">Receipt files are not uploaded automatically. If you have paid after confirmation, attach your receipt manually in WhatsApp.</p>
-  <button class="btn full" id="submitOrder" type="button">CONTINUE TO WHATSAPP ORDER</button>
- </section>
-
- <section class="panel" id="how"><h2>How to Order</h2><div class="steps"><div class="step"><b>01 — Choose a game</b>Browse the game catalogue and select your preferred game or voucher.</div><div class="step"><b>02 — Select a package</b>Choose an available package or request the latest price.</div><div class="step"><b>03 — Enter your details</b>Provide your name, WhatsApp number and correct player ID where required.</div><div class="step"><b>04 — Confirm the price</b>Send your order request on WhatsApp and wait for us to confirm availability and total price.</div><div class="step"><b>05 — Make payment</b>Transfer to the OPay account only after the final price is confirmed.</div><div class="step"><b>06 — Verification & delivery</b>Send your receipt. Payment is checked manually before the order is processed.</div></div></section>
-</main>
-<footer><strong>YunG Top 1 Meditator</strong><br>Your gaming top-up and digital voucher store<br>WhatsApp: +234 907 423 9739<br>© 2026 YunG Top 1 Meditator. All rights reserved.</footer>
-
-<section class="auth-wrap" id="authScreen" role="dialog" aria-modal="true" aria-label="Customer account">
- <div class="auth-card"><button class="close" id="closeAuth" aria-label="Close">×</button><div class="auth-logo">YunG Top 1 Meditator</div><p class="muted" style="text-align:center">Sign in or create an account to continue your order.</p>
-  <div id="loginPanel"><h2>Customer Sign In</h2><form id="loginForm"><label>Email Address</label><input id="loginEmail" type="email" required placeholder="Enter your email"><label>Password</label><input id="loginPassword" type="password" required placeholder="Enter your password"><button class="btn full" type="submit">SIGN IN</button></form><div class="auth-links"><button id="showSignup" type="button">Create Account</button><button id="showReset" type="button">Forgot Password?</button></div></div>
-  <div id="signupPanel" hidden><h2>Create Your Account</h2><form id="signupForm"><label>Full Name</label><input id="signupName" required placeholder="Enter your full name"><label>Email Address</label><input id="signupEmail" type="email" required placeholder="Enter your email"><label>Password</label><input id="signupPassword" type="password" minlength="6" required placeholder="At least 6 characters"><label class="agreement"><input id="agreement" type="checkbox" required><span>I agree to the <button type="button" class="policy-link" id="showPrivacy">Privacy Policy</button> and <button type="button" class="policy-link" id="showTerms">Terms & Conditions</button>.</span></label><button class="btn full" type="submit">CREATE ACCOUNT</button></form><div class="auth-links"><button id="backLogin1" type="button">Back to Sign In</button></div></div>
-  <div id="resetPanel" hidden><h2>Reset Password</h2><form id="resetForm"><label>Email Address</label><input id="resetEmail" type="email" required placeholder="Your registered email"><button class="btn full" type="submit">SEND RESET LINK</button></form><div class="auth-links"><button id="backLogin2" type="button">Back to Sign In</button></div></div>
-  <div id="privacyPanel" class="policy" hidden><h2>Privacy Policy</h2><p>We collect information you submit, such as name, email, WhatsApp number, player ID, order details and payment references, to manage accounts, process orders and provide support. Firebase Authentication is used for email/password sign-in. Order messages and optional receipts are sent by you through WhatsApp. We do not ask for bank PINs, passwords or OTPs. We do not sell personal information. Contact us on WhatsApp +234 907 423 9739 for privacy requests.</p><button class="btn secondary" id="backSignupPrivacy" type="button">BACK TO CREATE ACCOUNT</button></div>
-  <div id="termsPanel" class="policy" hidden><h2>Terms & Conditions</h2><p>Customers must provide correct game, player ID, region and contact details. Package availability and prices may change. An order is confirmed only after we confirm the product, price and payment instructions. Do not pay until the final amount is confirmed. Payment is manually verified before processing. If an order cannot be fulfilled after payment confirmation, contact us for a suitable resolution. Incorrect player details supplied by a customer may prevent correction or refund. Contact WhatsApp +234 907 423 9739 for support.</p><button class="btn secondary" id="backSignupTerms" type="button">BACK TO CREATE ACCOUNT</button></div>
-  <p id="authMessage" class="msg" role="status"></p>
- </div>
+<section class="hero">
+<small>WELCOME TO YUNG TOP 1 MEDITATOR</small>
+<h1>YOUR GAME.<br>YOUR TOP-UP.<br>YOUR VICTORY.</h1>
+<p>Explore game currencies, passes and digital gaming vouchers. Choose a product and contact us to confirm the latest package price before payment.</p>
+<a class="cta" href="#games">EXPLORE ALL GAMES →</a>
 </section>
+
+<div class="quick">
+<div>🎮 &nbsp; Games & top-ups</div>
+<div>💳 &nbsp; Easy OPay transfer</div>
+<div>📲 &nbsp; WhatsApp ordering</div>
+<div>🛡️ &nbsp; Manual payment check</div>
+</div>
+
+<section class="section" id="games">
+<div class="head"><div><h2>Explore Games</h2><p>Browse the full range of game top-up products.</p></div></div>
+<div class="tabs" id="tabs">
+<button class="tab active" data-filter="all">All Games</button>
+<button class="tab" data-filter="popular">Popular</button>
+<button class="tab" data-filter="mobile">Mobile Games</button>
+<button class="tab" data-filter="pc">PC & Console</button>
+</div>
+<div class="grid" id="gameGrid"></div>
+</section>
+
+<section class="section" id="vouchers">
+<div class="head"><div><h2>Gaming Gift Cards & Vouchers</h2><p>Voucher region and availability must be confirmed before payment.</p></div></div>
+<div class="grid" id="voucherGrid"></div>
+</section>
+
+<section class="panel" id="order">
+<h2>Place Your Order</h2>
+<p class="muted">Select a product. If its price is not listed, request the current price on WhatsApp. Do not transfer money until we confirm the final total.</p>
+<div class="cols">
+<div>
+<div class="field"><label>Game / Product</label><select id="product"></select></div>
+<div class="field"><label>Package / Voucher Value</label><select id="pack"><option value="">Select a package</option></select></div>
+<div class="packages" id="packageCards"></div>
+<div class="summary">
+<div class="line"><span>Product</span><b id="sProduct">Not selected</b></div>
+<div class="line"><span>Package</span><b id="sPack">Not selected</b></div>
+<div class="line total"><span>Price</span><b id="sPrice">To be confirmed</b></div>
+</div>
+</div>
+<div>
+<div class="field"><label>Full Name</label><input id="name" placeholder="Enter your full name"></div>
+<div class="field"><label>WhatsApp Number</label><input id="phone" type="tel" placeholder="e.g. 08012345678"></div>
+<div class="field"><label>Player ID / UID (if required)</label><input id="uid" placeholder="Enter game UID"></div>
+<div class="field"><label>In-game Name (optional)</label><input id="ign" placeholder="Enter game name"></div>
+<div class="field"><label>Game / Voucher Region</label><input id="region" placeholder="e.g. Global, US, EU"></div>
+<div class="field"><label>Other Details</label><input id="extra" placeholder="Additional information (optional)"></div>
+</div>
+</div>
+
+<div class="bank">
+<b>Payment instructions — only pay after price confirmation</b><br>
+Bank: <b>OPay</b><br>
+Account Name: <b>Betty Onyiyechi Paul</b><br>
+Account Number: <b>9074239739</b><br>
+<button class="btn secondary" id="copy">Copy Account Number</button>
+</div>
+<div class="field"><label>Payment Reference (if already paid)</label><input id="reference" placeholder="Do not pay until price is confirmed"></div>
+<div class="field"><label>Payment Receipt (if already paid)</label><input id="receipt" type="file" accept="image/*,.pdf"></div>
+<p class="note">Receipt files are not uploaded automatically. Attach your receipt manually in WhatsApp.</p>
+<button class="btn full" id="submit">CONTINUE TO WHATSAPP ORDER</button>
+</section>
+
+<section class="panel" id="how">
+<h2>How to Order</h2>
+<div class="steps">
+<div class="step"><b>01 — Choose a game</b>Browse the catalogue and select a game or voucher.</div>
+<div class="step"><b>02 — Select a package</b>Choose a listed package or request current prices.</div>
+<div class="step"><b>03 — Enter your details</b>Provide your name, WhatsApp number and correct player ID.</div>
+<div class="step"><b>04 — Confirm the price</b>Send your request and wait for us to confirm availability and total.</div>
+<div class="step"><b>05 — Make payment</b>Transfer only after the final price is confirmed.</div>
+<div class="step"><b>06 — Verification & delivery</b>Send your receipt; payment is checked manually before processing.</div>
+</div>
+</section>
+</main>
+
+<section id="gameDetailPage" class="detail-page" aria-live="polite"></section>
+
+<footer>
+<strong>YunG Top 1 Meditator</strong><br>
+Your gaming top-up and digital voucher store<br>
+WhatsApp: +234 907 423 9739<br>
+© 2026 YunG Top 1 Meditator. All rights reserved.
+</footer>
+
+<section class="auth" id="auth">
+<div class="authbox">
+<button class="close" id="close">×</button>
+<div class="logo">YunG Top 1 Meditator</div>
+<p class="muted" style="text-align:center">Sign in or create an account to continue your order.</p>
+
+<div id="loginPanel">
+<h2>Customer Sign In</h2>
+<form id="loginForm">
+<label>Email Address</label><input id="loginEmail" type="email" required>
+<label>Password</label><input id="loginPassword" type="password" required>
+<button class="btn full">SIGN IN</button>
+</form>
+<div class="links">
+<button id="toSignup" type="button">Create Account</button>
+<button id="toReset" type="button">Forgot Password?</button>
+</div>
+</div>
+
+<div id="signupPanel" hidden>
+<h2>Create Your Account</h2>
+<form id="signupForm">
+<label>Full Name</label><input id="signupName" required>
+<label>Email Address</label><input id="signupEmail" type="email" required>
+<label>Password</label><input id="signupPassword" type="password" minlength="6" required>
+<label class="agree"><input id="agree" type="checkbox" required><span>I agree to the <button class="policyLink" type="button" id="privacyBtn">Privacy Policy</button> and <button class="policyLink" type="button" id="termsBtn">Terms & Conditions</button>.</span></label>
+<button class="btn full">CREATE ACCOUNT</button>
+</form>
+<div class="links"><button id="back1" type="button">Back to Sign In</button></div>
+</div>
+
+<div id="resetPanel" hidden>
+<h2>Reset Password</h2>
+<form id="resetForm">
+<label>Email Address</label><input id="resetEmail" type="email" required>
+<button class="btn full">SEND RESET LINK</button>
+</form>
+<div class="links"><button id="back2" type="button">Back to Sign In</button></div>
+</div>
+
+<div id="privacyPanel" class="policy" hidden>
+<h2>Privacy Policy</h2>
+<p>We collect information you submit, including name, email, WhatsApp number, player ID, order details and payment references, to manage accounts, process orders and provide support. Firebase Authentication manages email/password sign-in. You send order messages and any receipts through WhatsApp. We do not ask for bank PINs, passwords or OTPs, and we do not sell personal information. Contact WhatsApp +234 907 423 9739 for privacy requests.</p>
+<button class="btn secondary full" id="backPrivacy" type="button">BACK TO CREATE ACCOUNT</button>
+</div>
+
+<div id="termsPanel" class="policy" hidden>
+<h2>Terms & Conditions</h2>
+<p>Customers must provide correct game, player ID, region and contact details. Package availability and prices may change. An order is confirmed only after we confirm the product, price and payment instructions. Do not pay until the final amount is confirmed. Payment is manually verified before processing. Incorrect player details supplied by a customer may prevent correction or refund. If an order cannot be fulfilled after confirmed payment, contact us for a suitable resolution. Support: WhatsApp +234 907 423 9739.</p>
+<button class="btn secondary full" id="backTerms" type="button">BACK TO CREATE ACCOUNT</button>
+</div>
+<p id="msg" class="msg"></p>
+</div>
+</section>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script>
-const firebaseConfig={apiKey:"AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",authDomain:"yung-top-1-meditator.firebaseapp.com",projectId:"yung-top-1-meditator",storageBucket:"yung-top-1-meditator.firebasestorage.app",messagingSenderId:"1084880443507",appId:"1:1084880443507:web:65c9c51733b955b2543206"};
-firebase.initializeApp(firebaseConfig);const auth=firebase.auth();const ADMIN_WHATSAPP="2349074239739";
-let currentUser=null,pendingOrder=false,activeFilter="all",selectedProduct="";
-const products=[
-["Call of Duty: Mobile","CODM","mobile","popular","🎯"],["Free Fire","Diamonds","mobile","popular","🔥"],["PUBG Mobile","UC","mobile","popular","🪖"],["Blood Strike","Gold & Pass","mobile","popular","💥"],["Mobile Legends","Diamonds & Passes","mobile","popular","⚔️"],["EA SPORTS FC Mobile","FC Points & Silver","mobile","popular","⚽"],["Delta Force","Global Coins","mobile","mobile","🎖️"],["Genshin Impact","Genesis Crystals","mobile","mobile","✨"],["Arena Breakout","Bonds","mobile","mobile","🎯"],["Honor of Kings","Tokens","mobile","mobile","👑"],["Lords Mobile","Diamonds & Packages","mobile","mobile","🏰"],["Marvel Rivals","Lattices","pc-console","mobile","🦸"],["Farlight 84","Diamonds & Passes","mobile","mobile","🚀"],["Asphalt Legends Unite","Tokens","mobile","mobile","🏎️"],["Zenless Zone Zero","Monochrome","mobile","mobile","🌌"],["ZEPETO","ZEMs & Coins","mobile","mobile","💎"],["Whiteout Survival","Frost Star","mobile","mobile","❄️"],["Football Dream","Points","mobile","mobile","⚽"],["Age of Empires Mobile","Coins","mobile","mobile","🏛️"],["Ragnarok Origin","Nyan Berry","mobile","mobile","🐉"],["Wuthering Waves","Lunites","mobile","mobile","🌊"],["Love and Deepspace","Crystals","mobile","mobile","💗"],["Undawn","RC (EU)","mobile","mobile","🌅"],["Once Human","Crystgin","pc-console","mobile","☣️"],["Where Winds Meet","Top-Up","pc-console","mobile","🗡️"],["EverMerge","Lite Top-Up","mobile","mobile","🧩"],["BIGO Live","Diamonds","mobile","mobile","💠"],["Farlight 84","Diamonds","mobile","mobile","🚀"],["Yalla Ludo","Gold & Diamonds","mobile","mobile","🎲"],["Chamet","Diamonds","mobile","mobile","💬"],["Hago","Diamonds","mobile","mobile","🎮"],["Poppo Live","Coins","mobile","mobile","🪙"],["Sawa Play","Coins","mobile","mobile","🎧"],["StarMaker","Coins","mobile","mobile","🎤"],["Tarbi3ah Baloot","Gold","mobile","mobile","🃏"],["YoHo","Coins","mobile","mobile","🎙️"],["Tango","Coins","mobile","mobile","💬"],["Honkai: Star Rail","Oneiric Shards","mobile","mobile","🚄"],["CapCut","Subscription","mobile","mobile","✂️"]
+const firebaseConfig={
+apiKey:"AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",
+authDomain:"yung-top-1-meditator.firebaseapp.com",
+projectId:"yung-top-1-meditator",
+storageBucket:"yung-top-1-meditator.firebasestorage.app",
+messagingSenderId:"1084880443507",
+appId:"1:1084880443507:web:65c9c51733b955b2543206"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(),WA="2349074239739";
+let user=null,pending=false,filter="all";
+const $=id=>document.getElementById(id);
+const money=n=>"₦"+Number(n).toLocaleString("en-NG");
+
+const games=[
+["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","🎯"],
+["Free Fire","Diamonds","mobile","popular","🔥"],
+["PUBG Mobile","UC & Royale Pass","mobile","popular","🪖"],
+["Blood Strike","Gold & Pass","mobile","popular","💥"],
+["Mobile Legends","Diamonds & Passes","mobile","popular","⚔️"],
+["EA SPORTS FC Mobile","FC Points & Silver","mobile","popular","⚽"],
+["Delta Force","Global Coins","mobile","mobile","🎖️"],
+["Genshin Impact","Genesis Crystals","mobile","mobile","✨"],
+["Arena Breakout","Bonds","mobile","mobile","🎯"],
+["Honor of Kings","Tokens","mobile","mobile","👑"],
+["Lords Mobile","Diamonds & Packages","mobile","mobile","🏰"],
+["Marvel Rivals","Lattices","pc","mobile","🦸"],
+["Farlight 84","Diamonds & Passes","mobile","mobile","🚀"],
+["Asphalt Legends Unite","Tokens","mobile","mobile","🏎️"],
+["Zenless Zone Zero","Monochrome","mobile","mobile","🌌"],
+["ZEPETO","ZEMs & Coins","mobile","mobile","💎"],
+["Whiteout Survival","Frost Star","mobile","mobile","❄️"],
+["Football Dream","Points","mobile","mobile","⚽"],
+["Age of Empires Mobile","Coins","mobile","mobile","🏛️"],
+["Ragnarok Origin","Nyan Berry","mobile","mobile","🐉"],
+["Wuthering Waves","Lunites","mobile","mobile","🌊"],
+["Love and Deepspace","Crystals","mobile","mobile","💗"],
+["Undawn","RC (EU)","mobile","mobile","🌅"],
+["Once Human","Crystgin","pc","mobile","☣️"],
+["Where Winds Meet","Top-Up","pc","mobile","🗡️"],
+["EverMerge Lite","Top-Up","mobile","mobile","🧩"],
+["BIGO Live","Diamonds","mobile","mobile","💠"],
+["Yalla Ludo","Gold & Diamonds","mobile","mobile","🎲"],
+["Chamet","Diamonds","mobile","mobile","💬"],
+["Hago","Diamonds","mobile","mobile","🎮"],
+["Poppo Live","Coins","mobile","mobile","🪙"],
+["Sawa Play","Coins","mobile","mobile","🎧"],
+["StarMaker","Coins","mobile","mobile","🎤"],
+["Tarbi3ah Baloot","Gold","mobile","mobile","🃏"],
+["YoHo","Coins","mobile","mobile","🎙️"],
+["Tango","Coins","mobile","mobile","💬"],
+["Honkai: Star Rail","Oneiric Shards","mobile","mobile","🚄"],
+["CapCut","Subscription","mobile","mobile","✂️"]
 ];
+
 const vouchers=[
-["Roblox Gift Card","Gift Card","pc-console","popular","🟥"],["Steam Gift Card","Wallet Code","pc-console","popular","🎮"],["PlayStation Card","PSN Wallet","pc-console","popular","🎮"],["Xbox Live Gift Card","Xbox Wallet","pc-console","popular","🟩"],["Nintendo Voucher","eShop Code","pc-console","popular","🔴"],["Razer Gold","Gift Card","pc-console","popular","🟢"],["Apple Gift Card","Gift Card","pc-console","popular","🍎"],["Amazon Gift Card","Gift Card","pc-console","popular","📦"],["Google Play Gift Card","Gift Card","pc-console","popular","▶️"],["Epic Games / Fortnite","Gift Card","pc-console","popular","⚡"],["GameStop Gift Card","Gift Card","pc-console","pc-console","🕹️"],["Obucks Gift Card","Gift Card","pc-console","pc-console","🪙"],["ExitLag Subscription","Subscription","pc-console","pc-console","🌐"],["Gangstar Mirage City","Pink Diamonds","mobile","mobile","🚘"],["GTA VI","Game Product","pc-console","pc-console","🎮"],["eFootball","Game Product","mobile","mobile","⚽"]
+["Roblox Gift Card","Gift Card","pc","popular","🟥"],
+["Steam Gift Card","Wallet Code","pc","popular","🎮"],
+["PlayStation Card","PSN Wallet","pc","popular","🎮"],
+["Xbox Live Gift Card","Xbox Wallet","pc","popular","🟩"],
+["Nintendo Voucher","eShop Code","pc","popular","🔴"],
+["Razer Gold","Gift Card","pc","popular","🟢"],
+["Apple Gift Card","Gift Card","pc","popular","🍎"],
+["Amazon Gift Card","Gift Card","pc","popular","📦"],
+["Google Play Gift Card","Gift Card","pc","popular","▶️"],
+["Epic Games / Fortnite","Gift Card","pc","popular","⚡"],
+["GameStop Gift Card","Gift Card","pc","pc","🕹️"],
+["Obucks Gift Card","Gift Card","pc","pc","🪙"],
+["ExitLag Subscription","Subscription","pc","pc","🌐"],
+["Gangstar Mirage City","Pink Diamonds","mobile","mobile","🚘"],
+["GTA VI","Game Product","pc","pc","🎮"],
+["eFootball","Game Product","mobile","mobile","⚽"]
 ];
-const fixedPackages={
+
+const fixed={
 "Free Fire":[["100 Diamonds",900],["210 Diamonds",1850],["530 Diamonds",4600],["1080 Diamonds",9000]],
 "Call of Duty: Mobile":[["80 CP",900],["420 CP",4600],["880 CP",9000]],
 "Blood Strike":[["100 Gold",900],["500 Gold",4600],["1000 Gold",9000]],
 "PUBG Mobile":[["60 UC",900],["325 UC",4600],["660 UC",9000]]
 };
-const $=id=>document.getElementById(id);
-function money(n){return "₦"+Number(n).toLocaleString("en-NG")}
-function renderCards(list,target,isVoucher=false){
- const q=$("searchInput").value.trim().toLowerCase();const grid=$(target);grid.innerHTML="";
- list.forEach((p,i)=>{
-  const name=p[0];const matches=!q||(name+" "+p[1]).toLowerCase().includes(q);
-  const filterOk=activeFilter==="all"||(activeFilter==="popular"&&p[3]==="popular")||(activeFilter==="mobile"&&p[2]==="mobile")||(activeFilter==="pc-console"&&p[2]==="pc-console");
-  if(!matches||(!isVoucher&&!filterOk))return;
-  const card=document.createElement("article");card.className="product";
-  const art=document.createElement("div");art.className="art";art.style.background=artBackground(i);const icon=document.createElement("span");icon.textContent=p[4];art.appendChild(icon);
-  const info=document.createElement("div");info.className="product-info";const h=document.createElement("h3");h.textContent=name;const kind=document.createElement("div");kind.className="kind";kind.textContent=p[1];const btn=document.createElement("button");btn.textContent="VIEW TOP-UP";btn.addEventListener("click",()=>selectProduct(name,isVoucher));info.append(h,kind,btn);card.append(art,info);card.addEventListener("click",e=>{if(e.target!==btn)selectProduct(name,isVoucher)});grid.appendChild(card);
- });
-}
-function artBackground(i){const colors=[["#153c78","#08a6cf"],["#63251b","#e56d2e"],["#5a4516","#d6a12c"],["#321b54","#a23bb4"],["#064d4b","#1aa68e"],["#16335d","#488ce0"],["#3d1f36","#c34c78"]];const c=colors[i%colors.length];return `linear-gradient(135deg,${c[0]},${c[1]})`}
-function renderAll(){renderCards(products,"gameGrid");renderCards(vouchers,"voucherGrid",true)}
-function selectProduct(name,isVoucher=false){$("productSelect").value=name;selectedProduct=name;updateProduct();$("order").scrollIntoView({behavior:"smooth"})}
-function updateProduct(){
- const name=$("productSelect").value;selectedProduct=name;const data=fixedPackages[name]||null;const select=$("packageSelect");const cards=$("packageCards");select.innerHTML='<option value="">Select a package</option>';cards.innerHTML="";
- $("sumProduct").textContent=name||"Not selected";
- if(data){data.forEach((item,i)=>{const op=document.createElement("option");op.value=item[0];op.textContent=item[0]+" — "+money(item[1]);op.dataset.price=item[1];select.appendChild(op);const box=document.createElement("div");box.className="package";box.innerHTML="<strong>"+item[0]+"</strong><em>"+money(item[1])+"</em>";box.addEventListener("click",()=>{select.selectedIndex=i+1;updateSummary()});cards.appendChild(box)})}
- else if(name){const op=document.createElement("option");op.value="Request current packages and price";op.textContent="Request current packages and price";select.appendChild(op);cards.innerHTML='<p class="note">Current package options and price will be confirmed on WhatsApp. Please do not make payment before confirmation.</p>'}
- updateSummary();
-}
-function updateSummary(){const s=$("packageSelect"),op=s.options[s.selectedIndex],price=op&&op.dataset.price?Number(op.dataset.price):0;$("sumPackage").textContent=op&&op.value?op.textContent:"Not selected";$("sumPrice").textContent=price?money(price):"To be confirmed";document.querySelectorAll(".package").forEach((el,i)=>el.classList.toggle("selected",i===s.selectedIndex-1&&s.selectedIndex>0))}
-const allNames=[...new Set([...products.map(p=>p[0]),...vouchers.map(p=>p[0])])];allNames.forEach(name=>{const o=document.createElement("option");o.value=name;o.textContent=name;$("productSelect").appendChild(o)});
-$("productSelect").addEventListener("change",updateProduct);$("packageSelect").addEventListener("change",updateSummary);
-$("searchInput").addEventListener("input",renderAll);
-$("gameTabs").addEventListener("click",e=>{const b=e.target.closest("button[data-filter]");if(!b)return;activeFilter=b.dataset.filter;document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===b));renderAll()});
-$("copyAccount").addEventListener("click",()=>{const account="9074239739";if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(account).then(()=>alert("OPay account number copied")).catch(()=>alert(account));else alert("OPay account number: "+account)});
-renderAll();updateProduct();
 
-/* Firebase authentication is requested only when the customer submits an order */
-const authScreen=$("authScreen"),authMessage=$("authMessage");
-function message(t,error=false){authMessage.textContent=t;authMessage.classList.toggle("error",error)}
-function panel(name){["login","signup","reset","privacy","terms"].forEach(n=>$(n+"Panel").hidden=n!==name);message("")}
-function openAuth(){authScreen.classList.add("open");panel("login")}
-function closeAuth(){authScreen.classList.remove("open");pendingOrder=false}
-$("accountButton").addEventListener("click",()=>currentUser?alert("You are already signed in."):openAuth());
-$("closeAuth").addEventListener("click",closeAuth);authScreen.addEventListener("click",e=>{if(e.target===authScreen)closeAuth()});
-$("showSignup").onclick=()=>panel("signup");$("showReset").onclick=()=>panel("reset");$("backLogin1").onclick=()=>panel("login");$("backLogin2").onclick=()=>panel("login");
-$("showPrivacy").onclick=()=>panel("privacy");$("showTerms").onclick=()=>panel("terms");$("backSignupPrivacy").onclick=()=>panel("signup");$("backSignupTerms").onclick=()=>panel("signup");
-function authError(e){const m={"auth/email-already-in-use":"This email already has an account. Please sign in.","auth/invalid-email":"Enter a valid email address.","auth/weak-password":"Password must contain at least 6 characters.","auth/user-not-found":"No account found with this email.","auth/wrong-password":"Incorrect email or password.","auth/invalid-credential":"Incorrect email or password.","auth/too-many-requests":"Too many attempts. Please wait and try again.","auth/network-request-failed":"Check your internet connection.","auth/unauthorized-domain":"This website domain is not authorised in Firebase."};return m[e.code]||e.message||"Something went wrong."}
-$("signupForm").addEventListener("submit",async e=>{e.preventDefault();if(!$("agreement").checked){message("Please accept the Privacy Policy and Terms & Conditions.",true);return}const name=$("signupName").value.trim();try{const r=await auth.createUserWithEmailAndPassword($("signupEmail").value.trim(),$("signupPassword").value);await r.user.updateProfile({displayName:name});$("customerName").value=name;message("Account created. Continuing your order...")}catch(err){message(authError(err),true)}});
-$("loginForm").addEventListener("submit",async e=>{e.preventDefault();try{await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value)}catch(err){message(authError(err),true)}});
-$("resetForm").addEventListener("submit",async e=>{e.preventDefault();try{await auth.sendPasswordResetEmail($("resetEmail").value.trim());message("Password reset email sent. Check your inbox and spam folder.")}catch(err){message(authError(err),true)}});
-$("signOutButton").addEventListener("click",()=>auth.signOut());
-auth.onAuthStateChanged(user=>{currentUser=user;$("accountButton").hidden=!!user;$("signOutButton").hidden=!user;if(user){if(user.displayName&&!$("customerName").value)$("customerName").value=user.displayName;closeAuth();if(pendingOrder){pendingOrder=false;sendWhatsAppOrder()}}});
-function sendWhatsAppOrder(){
- const name=$("customerName").value.trim(),phone=$("customerPhone").value.trim(),product=$("productSelect").value,pack=$("packageSelect").value||"Please confirm available packages",uid=$("playerUID").value.trim()||"Not provided",ign=$("gameName").value.trim()||"Not provided",region=$("region").value.trim()||"Not provided",extra=$("extraDetails").value.trim()||"None",reference=$("reference").value.trim()||"Not provided",receipt=$("receipt").files[0],email=currentUser?currentUser.email:"";
- const op=$("packageSelect").options[$("packageSelect").selectedIndex],price=op&&op.dataset.price?money(op.dataset.price):"To be confirmed";
- const text=`NEW ORDER / PRICE ENQUIRY — YUNG TOP 1 MEDITATOR\n\nCustomer: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nProduct: ${product}\nPackage: ${pack}\nPrice shown: ${price}\nPlayer UID: ${uid}\nIn-game name: ${ign}\nRegion: ${region}\nOther details: ${extra}\nPayment reference: ${reference}\nReceipt selected: ${receipt?receipt.name:"No"}\n\nPlease confirm availability and final price. I will make payment only after confirmation. If already paid after confirmation, I will attach my receipt here.`;
- const url="https://wa.me/"+ADMIN_WHATSAPP+"?text="+encodeURIComponent(text);const win=window.open(url,"_blank");if(!win)window.location.href=url;
+const officialProfiles={
+"Call of Duty: Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIyNTdiMjMzYi0wOTBlLTQ3ZTktOGI3MC0yMzllZDQ4N2Q3YmMucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
+"Free Fire":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIxOThlNzQ1Mi1iZWRlLTQ5ZTEtYTYzZC02NWQ4OTIzYjRkZDQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
+"PUBG Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJmNzhlMTMyNC1hOTg2LTQ3MWItYWUwMS1jNjBkOGFlOTk3YjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
+"Blood Strike":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJiNzVkYzMxZi1iN2E5LTQ2ZWEtOTY1Ni0wNDY2ZTlhOGRiYjQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
+"Mobile Legends":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIyYzY5MzBkMi01ZDJlLTQzMjYtOTY3Yy1kYzYzMjc3ZWQwMDgucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOjEyMDB9LCJ3ZWJwIjp7InF1YWxpdHkiOjc1fX0=",
+"EA SPORTS FC Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJhYTRkNDdlMC0xOWU5LTQyMWQtYTRmMC0xZWVmMmQxNTA4MjEucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19"
+};
+
+function draw(list,target,isVoucher=false){
+let q=$("search").value.toLowerCase().trim();
+$(target).innerHTML="";
+list.forEach((p,i)=>{
+if(q&&!(p[0]+" "+p[1]).toLowerCase().includes(q))return;
+if(!isVoucher&&filter!=="all"&&!(filter==="popular"?p[3]==="popular":p[2]===filter))return;
+let card=document.createElement("article");
+card.className="product";
+let art=document.createElement("div");
+art.className="art";
+let profile=officialProfiles[p[0]];
+if(profile){
+let img=document.createElement("img");
+img.src=profile;
+img.alt=p[0]+" official game profile";
+img.loading="lazy";
+img.onerror=()=>{
+art.innerHTML="";
+let f=document.createElement("div");
+f.className="fallback";
+f.textContent=p[4];
+art.append(f);
+};
+art.append(img);
+}else{
+let f=document.createElement("div");
+f.className="fallback";
+f.textContent=p[4];
+art.append(f);
 }
-$("submitOrder").addEventListener("click",()=>{if(!$("productSelect").value){alert("Please select a game or product.");return}if(!$("packageSelect").value){alert("Please select a package or request current package prices.");return}if(!$("customerName").value.trim()||!$("customerPhone").value.trim()){alert("Please enter your full name and WhatsApp number.");return}if(!currentUser){pendingOrder=true;openAuth();message("Please sign in or create an account to continue your order.");return}sendWhatsAppOrder()});
+let info=document.createElement("div");
+info.className="info";
+let h=document.createElement("h3");
+h.textContent=p[0];
+let small=document.createElement("small");
+small.textContent=p[1];
+let b=document.createElement("button");
+b.textContent="VIEW TOP-UP";
+b.onclick=()=>choose(p[0]);
+info.append(h,small,b);
+card.append(art,info);
+card.onclick=e=>{if(e.target!==b)choose(p[0]);};
+$(target).append(card);
+});
+}
+
+function render(){
+draw(games,"gameGrid");
+draw(vouchers,"voucherGrid",true);
+}
+
+function choose(name){
+const item=[...games,...vouchers].find(x=>x[0]===name);
+if(!item)return;
+$("product").value=name;
+updateProduct();
+const page=$("gameDetailPage");
+const profile=officialProfiles[name];
+const cover=profile
+? `<img src="${profile}" alt="${name} official game artwork">`
+: `<div class="fallback">${item[4]||"🎮"}</div>`;
+
+page.innerHTML=`
+<div class="detail-top">
+<button class="back-games" id="backToGames">← Back to games</button>
+<span class="detail-crumb">Home / All Games / ${name}</span>
+</div>
+<div class="detail-hero">
+<div class="detail-cover">${cover}</div>
+<div class="detail-copy">
+<h1>${name}</h1>
+<p>${item[1]}. Select the top-up package you need below. Package availability and final prices are confirmed by our team before payment.</p>
+<button class="btn" id="detailOrderNow">Choose package</button>
+</div>
+</div>
+<div id="detailOrderSlot"></div>
+`;
+
+const order=$("order");
+$("detailOrderSlot").appendChild(order);
+order.hidden=false;
+page.classList.add("active");
+$("home").hidden=true;
+window.history.pushState({game:name},"","#game-"+encodeURIComponent(name.replace(/\s+/g,"-")));
+$("backToGames").onclick=backToHome;
+$("detailOrderNow").onclick=()=>order.scrollIntoView({behavior:"smooth",block:"start"});
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function backToHome(){
+const order=$("order");
+const home=$("home");
+const how=$("how");
+const detail=$("gameDetailPage");
+if(order&&home)home.appendChild(order);
+if(how&&home)home.appendChild(how);
+order.hidden=false;
+home.hidden=false;
+detail.classList.remove("active");
+detail.innerHTML="";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+window.addEventListener("popstate",backToHome);
+
+[...new Set([...games,...vouchers].map(p=>p[0]))].forEach(n=>{
+let o=document.createElement("option");
+o.value=n;
+o.textContent=n;
+$("product").append(o);
+});
+
+function updateProduct(){
+let n=$("product").value,d=fixed[n],s=$("pack");
+s.innerHTML='<option value="">Select a package</option>';
+$("packageCards").innerHTML="";
+$("sProduct").textContent=n||"Not selected";
+if(d){
+d.forEach((x,i)=>{
+let o=document.createElement("option");
+o.value=x[0];
+o.textContent=x[0]+" — "+money(x[1]);
+o.dataset.price=x[1];
+s.append(o);
+let el=document.createElement("div");
+el.className="pkg";
+el.innerHTML="<strong>"+x[0]+"</strong><em>"+money(x[1])+"</em>";
+el.onclick=()=>{s.selectedIndex=i+1;summary();};
+$("packageCards").append(el);
+});
+}else if(n){
+let o=document.createElement("option");
+o.value="Request current packages and price";
+o.textContent=o.value;
+s.append(o);
+$("packageCards").innerHTML='<p class="note">Current packages and price will be confirmed on WhatsApp. Do not pay before confirmation.</p>';
+}
+summary();
+}
+
+function summary(){
+let s=$("pack"),o=s.options[s.selectedIndex],price=o&&o.dataset.price?Number(o.dataset.price):0;
+$("sPack").textContent=o&&o.value?o.textContent:"Not selected";
+$("sPrice").textContent=price?money(price):"To be confirmed";
+document.querySelectorAll(".pkg").forEach((e,i)=>e.classList.toggle("selected",i===s.selectedIndex-1&&s.selectedIndex>0));
+}
+
+$("product").onchange=updateProduct;
+$("pack").onchange=summary;
+$("search").oninput=render;
+
+$("tabs").onclick=e=>{
+let b=e.target.closest("[data-filter]");
+if(!b)return;
+filter=b.dataset.filter;
+document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));
+render();
+};
+
+$("copy").onclick=()=>{
+navigator.clipboard?.writeText("9074239739")
+.then(()=>alert("Account number copied"))
+.catch(()=>alert("OPay account: 9074239739"));
+};
+
+render();
+updateProduct();
+
+const authBox=$("auth"),msg=$("msg");
+
+function say(t,err=false){
+msg.textContent=t;
+msg.classList.toggle("error",err);
+}
+
+function panel(n){
+["login","signup","reset","privacy","terms"].forEach(x=>$(x+"Panel").hidden=x!==n);
+say("");
+}
+
+function openAuth(){
+authBox.classList.add("open");
+panel("login");
+}
+
+function closeAuth(){
+authBox.classList.remove("open");
+pending=false;
+}
+
+$("accountBtn").onclick=()=>user?alert("You are already signed in."):openAuth();
+$("close").onclick=closeAuth;
+authBox.onclick=e=>{if(e.target===authBox)closeAuth();};
+$("toSignup").onclick=()=>panel("signup");
+$("toReset").onclick=()=>panel("reset");
+$("back1").onclick=$("back2").onclick=()=>panel("login");
+$("privacyBtn").onclick=()=>panel("privacy");
+$("termsBtn").onclick=()=>panel("terms");
+$("backPrivacy").onclick=$("backTerms").onclick=()=>panel("signup");
+
+function authErr(e){
+return ({
+"auth/email-already-in-use":"This email already has an account. Sign in instead.",
+"auth/invalid-email":"Enter a valid email address.",
+"auth/weak-password":"Password must contain at least 6 characters.",
+"auth/user-not-found":"No account found with this email.",
+"auth/wrong-password":"Incorrect email or password.",
+"auth/invalid-credential":"Incorrect email or password.",
+"auth/too-many-requests":"Too many attempts. Try again later.",
+"auth/network-request-failed":"Check your internet connection.",
+"auth/unauthorized-domain":"This website domain is not authorised in Firebase."
+})[e.code]||e.message;
+}
+
+$("signupForm").onsubmit=async e=>{
+e.preventDefault();
+if(!$("agree").checked)return say("Please accept the Privacy Policy and Terms.",true);
+try{
+let r=await auth.createUserWithEmailAndPassword($("signupEmail").value.trim(),$("signupPassword").value);
+await r.user.updateProfile({displayName:$("signupName").value.trim()});
+$("name").value=$("signupName").value.trim();
+say("Account created. Continuing your order...");
+}catch(x){say(authErr(x),true);}
+};
+
+$("loginForm").onsubmit=async e=>{
+e.preventDefault();
+try{
+await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value);
+}catch(x){say(authErr(x),true);}
+};
+
+$("resetForm").onsubmit=async e=>{
+e.preventDefault();
+try{
+await auth.sendPasswordResetEmail($("resetEmail").value.trim());
+say("Password reset email sent. Check inbox and spam folder.");
+}catch(x){say(authErr(x),true);}
+};
+
+$("signOut").onclick=()=>auth.signOut();
+
+auth.onAuthStateChanged(u=>{
+user=u;
+$("accountBtn").hidden=!!u;
+$("signOut").hidden=!u;
+if(u){
+if(u.displayName&&!$("name").value)$("name").value=u.displayName;
+closeAuth();
+if(pending){
+pending=false;
+sendOrder();
+}
+}
+});
+
+function sendOrder(){
+let n=$("name").value.trim();
+let ph=$("phone").value.trim();
+let p=$("product").value;
+let pack=$("pack").value||"Confirm available packages";
+let uid=$("uid").value.trim()||"Not provided";
+let ign=$("ign").value.trim()||"Not provided";
+let reg=$("region").value.trim()||"Not provided";
+let extra=$("extra").value.trim()||"None";
+let ref=$("reference").value.trim()||"Not provided";
+let file=$("receipt").files[0];
+let email=user?.email||"";
+let op=$("pack").options[$("pack").selectedIndex];
+let price=op?.dataset.price?money(op.dataset.price):"To be confirmed";
+
+let text=`NEW ORDER / PRICE ENQUIRY — YUNG TOP 1 MEDITATOR
+
+Customer: ${n}
+Email: ${email}
+WhatsApp: ${ph}
+Product: ${p}
+Package: ${pack}
+Price shown: ${price}
+Player UID: ${uid}
+In-game name: ${ign}
+Region: ${reg}
+Other details: ${extra}
+Payment reference: ${ref}
+Receipt selected: ${file?file.name:"No"}
+
+Please confirm availability and final price. I will make payment only after confirmation. If already paid after confirmation, I will attach my receipt here.`;
+
+let url="https://wa.me/"+WA+"?text="+encodeURIComponent(text);
+let w=window.open(url,"_blank");
+if(!w)location.href=url;
+}
+
+$("submit").onclick=()=>{
+if(!$("product").value||!$("pack").value)return alert("Select a product and package, or request current prices.");
+if(!$("name").value.trim()||!$("phone").value.trim())return alert("Enter your full name and WhatsApp number.");
+if(!user){
+pending=true;
+openAuth();
+say("Please sign in or create an account to continue your order.");
+return;
+}
+sendOrder();
+};
 </script>
 </body>
-</html>'''
-
-path = Path("/mnt/data/yung_top_1_meditator_full_game_shop.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created the complete replacement website: {path.name}")
-print(f"File size: {path.stat().st_size:,} bytes")
+</html>
