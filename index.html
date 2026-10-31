@@ -5,14 +5,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080b14">
-<title>YunG Top 1 | Gaming Top-Up Store</title>
+<title>YunG Top 1 Medidator | Gaming Top-Up Store</title>
 
 <style>
 :root {
   --bg:#080b14;
   --panel:#111827;
   --panel2:#182235;
-  --accent:#7c5cff;
+  --purple:#875cff;
   --cyan:#20e6d2;
   --white:#f7f8ff;
   --muted:#a3aec4;
@@ -31,17 +31,17 @@ header{
   background:rgba(8,11,20,.96);
   backdrop-filter:blur(15px);
   border-bottom:1px solid var(--border);
-  padding:17px 6%;
+  padding:16px 6%;
   display:flex;align-items:center;
   justify-content:space-between;gap:15px;
 }
-.logo{font-size:22px;font-weight:900;letter-spacing:-1px}
+.logo{font-size:21px;font-weight:900;letter-spacing:-1px}
 .logo span{color:var(--cyan)}
-nav{display:flex;gap:22px;align-items:center}
+nav{display:flex;gap:20px;align-items:center}
 nav a{color:var(--white);text-decoration:none;font-size:14px}
 nav a:hover{color:var(--cyan)}
 .hero{
-  padding:90px 6% 80px;text-align:center;
+  padding:65px 6% 55px;text-align:center;
   background:
     radial-gradient(ellipse at 15% 20%,#34216c 0%,transparent 38%),
     radial-gradient(ellipse at 85% 30%,#064b55 0%,transparent 35%),
@@ -54,31 +54,81 @@ nav a:hover{color:var(--cyan)}
 }
 h1{
   font-size:clamp(38px,7vw,76px);
-  line-height:1.05;margin:25px auto 18px;
+  line-height:1.05;margin:22px auto 18px;
   max-width:900px;
 }
 h1 span{color:var(--cyan)}
 .hero p{
-  color:var(--muted);max-width:620px;
+  color:var(--muted);max-width:650px;
   line-height:1.8;margin:auto;font-size:16px;
 }
 .btn{
   border:0;border-radius:9px;padding:14px 20px;
-  font-weight:bold;background:var(--accent);
+  font-weight:bold;background:var(--purple);
   color:white;transition:.2s;
 }
 .btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
 .btn-cyan{background:var(--cyan);color:#07141a}
-.hero .btn{margin-top:28px}
+.hero .btn{margin-top:25px}
 section{padding:55px 6%}
 .section-head{margin-bottom:25px}
 h2{font-size:29px;margin:0 0 9px}
 .muted{color:var(--muted);font-size:14px;line-height:1.7}
+
+/* GAMING SLIDESHOW */
+.showcase{
+  padding:45px 6%;
+  background:#0b1020;
+}
+.slider{
+  max-width:1100px;margin:auto;
+  position:relative;overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#10182a;
+}
+.slide{display:none}
+.slide.active{display:block}
+.slide-top{
+  padding:28px 30px 18px;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;flex-wrap:wrap;
+}
+.slide-top h2{margin:0;font-size:25px}
+.slide-top p{margin:7px 0 0;color:var(--muted);font-size:13px}
+.video-wrap{
+  position:relative;width:100%;
+  aspect-ratio:16/9;background:#05070d;
+}
+.video-wrap iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.slider-controls{
+  display:flex;align-items:center;
+  justify-content:center;gap:15px;
+  padding:18px;
+}
+.slider-controls button{
+  background:var(--purple);color:white;
+  border:0;border-radius:50%;
+  width:42px;height:42px;font-size:20px;
+}
+.dots{display:flex;gap:8px}
+.dot{
+  width:9px;height:9px;border-radius:50%;
+  background:#59647b;border:0;padding:0;
+}
+.dot.active{background:var(--cyan);width:24px;border-radius:8px}
+.video-note{
+  color:var(--muted);font-size:12px;
+  text-align:center;padding:0 15px 18px;
+}
+
+/* GAME CARDS */
 .game-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:17px;
 }
 .game-card{
-  position:relative;overflow:hidden;
   border:1px solid var(--border);border-radius:15px;
   background:var(--panel);padding:23px 15px;
   text-align:center;cursor:pointer;transition:.2s;
@@ -87,15 +137,15 @@ h2{font-size:29px;margin:0 0 9px}
   border-color:var(--cyan);transform:translateY(-4px);
   background:linear-gradient(145deg,#1c2941,#111827);
 }
-.game-icon{font-size:49px;margin-bottom:13px}
+.game-icon{font-size:45px;margin-bottom:13px}
 .game-card h3{font-size:16px;margin:0 0 8px}
 .game-card p{font-size:12px;color:var(--muted);margin:0}
-.filters{
-  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;
-}
+
+/* PACKAGES */
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
 input,select{
-  width:100%;padding:14px;
-  color:white;background:var(--panel);
+  width:100%;padding:14px;color:white;
+  background:var(--panel);
   border:1px solid var(--border);border-radius:9px;
   outline:none;
 }
@@ -106,10 +156,9 @@ input:focus,select:focus{border-color:var(--cyan)}
 }
 .package{
   background:var(--panel);border:1px solid var(--border);
-  border-radius:14px;padding:22px;
-  transition:.2s;
+  border-radius:14px;padding:22px;transition:.2s;
 }
-.package:hover{border-color:var(--accent);transform:translateY(-3px)}
+.package:hover{border-color:var(--purple);transform:translateY(-3px)}
 .package .game-name{
   color:var(--cyan);font-size:11px;
   font-weight:bold;text-transform:uppercase;letter-spacing:1px;
@@ -125,6 +174,8 @@ input:focus,select:focus{border-color:var(--cyan)}
   border-radius:12px;color:var(--muted);
   font-size:13px;line-height:1.8;
 }
+
+/* HOW IT WORKS */
 .how-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:15px;
 }
@@ -134,13 +185,18 @@ input:focus,select:focus{border-color:var(--cyan)}
 }
 .how-card b{font-size:25px;color:var(--cyan)}
 .how-card h3{margin-bottom:8px}
+
+/* CHECKOUT */
 .checkout{
   background:linear-gradient(135deg,#171c38,#10252c);
   border:1px solid var(--border);
   border-radius:16px;padding:28px;
   max-width:650px;margin:auto;
 }
-.checkout label{display:block;margin:15px 0 7px;font-size:13px;font-weight:bold}
+.checkout label{
+  display:block;margin:15px 0 7px;
+  font-size:13px;font-weight:bold;
+}
 .checkout .btn{width:100%;margin-top:20px}
 .payment-info{
   padding:16px;margin-top:17px;
@@ -162,21 +218,24 @@ footer{
   box-shadow:0 5px 20px #0008;z-index:30;
 }
 .empty{display:none;padding:25px;text-align:center;color:var(--muted)}
+
 @media(max-width:800px){
- .game-grid{grid-template-columns:repeat(2,1fr)}
- .package-grid{grid-template-columns:repeat(2,1fr)}
- .how-grid{grid-template-columns:repeat(2,1fr)}
+  .game-grid{grid-template-columns:repeat(2,1fr)}
+  .package-grid{grid-template-columns:repeat(2,1fr)}
+  .how-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:520px){
- header{padding:14px 5%;flex-wrap:wrap}
- .logo{font-size:18px}
- nav{gap:13px}
- nav a{font-size:12px}
- .hero{padding:65px 5%}
- section{padding:40px 5%}
- .package-grid{grid-template-columns:1fr}
- .how-grid{grid-template-columns:1fr 1fr}
- .checkout{padding:20px}
+  header{padding:14px 5%;flex-wrap:wrap}
+  .logo{font-size:18px}
+  nav{gap:12px}
+  nav a{font-size:12px}
+  .hero{padding:55px 5%}
+  section{padding:40px 5%}
+  .showcase{padding:35px 5%}
+  .package-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .checkout{padding:20px}
+  .slide-top{padding:20px}
 }
 </style>
 </head>
@@ -184,7 +243,7 @@ footer{
 <body>
 
 <header>
-  <div class="logo">YunG <span>TOP 1</span></div>
+  <div class="logo">YunG <span>TOP 1 MEDIDATOR</span></div>
   <nav>
     <a href="#home">Home</a>
     <a href="#games">Games</a>
@@ -196,12 +255,12 @@ footer{
 <main>
 
 <section class="hero" id="home">
-  <span class="tag">WELCOME TO YUNG TOP 1</span>
+  <span class="tag">WELCOME TO YUNG TOP 1 MEDIDATOR</span>
   <h1>POWER UP YOUR <span>GAMING.</span></h1>
   <p>
-    Your trusted destination for game top-ups.
-    Get Free Fire Diamonds, COD Mobile CP, Blood Strike Gold
-    and PUBG Mobile UC. Select your package and place your order.
+    Your gaming top-up destination! Get your Free Fire Diamonds,
+    COD Mobile CP, Blood Strike Gold and PUBG Mobile UC.
+    Enjoy competitive prices and easy WhatsApp ordering.
   </p>
   <button class="btn btn-cyan"
     onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})">
@@ -209,9 +268,101 @@ footer{
   </button>
 </section>
 
+<!-- AUTOMATIC GAMING VIDEO SLIDESHOW -->
+<section class="showcase">
+  <div class="section-head" style="text-align:center">
+    <h2>ENTER THE GAMING WORLD</h2>
+    <p class="muted">Watch the action. Choose your game. Power up!</p>
+  </div>
+
+  <div class="slider">
+
+    <div class="slide active">
+      <div class="slide-top">
+        <div>
+          <h2>🔥 FREE FIRE — HAYATO</h2>
+          <p>Watch the Hayato character showcase.</p>
+        </div>
+        <span class="tag">FREE FIRE</span>
+      </div>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/6289R4nCzWY?rel=0"
+          title="Free Fire Hayato showcase"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-top">
+        <div>
+          <h2>🎯 CALL OF DUTY MOBILE</h2>
+          <p>Explore the Call of Duty Mobile action.</p>
+        </div>
+        <span class="tag">COD MOBILE</span>
+      </div>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/0IC2uYEr6jo?rel=0"
+          title="Call of Duty Mobile official trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-top">
+        <div>
+          <h2>⚡ BLOOD STRIKE</h2>
+          <p>Experience the Blood Strike battlefield.</p>
+        </div>
+        <span class="tag">BLOOD STRIKE</span>
+      </div>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/dPa6bPwwevw?rel=0"
+          title="Blood Strike official gameplay trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-top">
+        <div>
+          <h2>🎮 PUBG MOBILE</h2>
+          <p>Enter the PUBG Mobile battlefield.</p>
+        </div>
+        <span class="tag">PUBG MOBILE</span>
+      </div>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/bP8g7ZN70SY?rel=0"
+          title="PUBG Mobile official trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button type="button" onclick="changeSlide(-1)" aria-label="Previous video">‹</button>
+      <div class="dots" id="slideDots"></div>
+      <button type="button" onclick="changeSlide(1)" aria-label="Next video">›</button>
+    </div>
+    <div class="video-note">
+      Videos are hosted on YouTube. Use the video controls to play or pause.
+    </div>
+  </div>
+</section>
+
 <section id="games">
   <div class="section-head">
-    <h2>Choose Your Game</h2>
+    <h2>CHOOSE YOUR GAME</h2>
     <p class="muted">Select your favourite game to see available top-up packages.</p>
   </div>
 
@@ -257,16 +408,17 @@ footer{
   <div class="empty" id="empty">No packages found.</div>
 
   <div class="notice">
-    <strong>Important:</strong> Prices below are editable sample prices.
-    Replace them with your actual selling prices before publishing.
-    Always confirm the player's game and UID before delivery.
-    Never ask customers for their game password.
+    <strong>PLEASE NOTE:</strong> The prices below are sample selling prices,
+    not verified live market prices. Confirm your supplier's prices,
+    package quantities and supported region before publishing.
+    You can edit every price in the packages section of this code.
+    Never ask customers for their game passwords.
   </div>
 </section>
 
 <section id="order">
   <div class="section-head" style="text-align:center">
-    <h2>Complete Your Order</h2>
+    <h2>COMPLETE YOUR ORDER</h2>
     <p class="muted">Enter your details carefully to avoid delivery errors.</p>
   </div>
 
@@ -295,7 +447,7 @@ footer{
       <select id="paymentMethod" required>
         <option value="">Select payment method</option>
         <option value="Bank transfer">Bank transfer</option>
-        <option value="Contact seller">Contact seller for payment</option>
+        <option value="Contact seller for payment details">Contact seller for payment details</option>
       </select>
 
       <label for="paymentReference">Payment reference (if paid)</label>
@@ -303,14 +455,12 @@ footer{
         placeholder="Enter transfer reference if available">
 
       <div class="payment-info">
-        <strong style="color:white">BANK TRANSFER DETAILS</strong><br>
-        Bank: YOUR BANK NAME<br>
-        Account Name: YOUR ACCOUNT NAME<br>
-        Account Number: YOUR ACCOUNT NUMBER<br>
-        <br>
-        Replace these details with your real business account.
-        Confirm the payment in your bank account before delivering
-        any game currency. Never rely only on a transfer screenshot.
+        <strong style="color:white">PAYMENT INFORMATION</strong><br>
+        Contact YunG Top 1 Medidator on WhatsApp to receive
+        the correct payment details before making a transfer.
+        <br><br>
+        Always confirm payment in your bank account before
+        delivering any game currency. Do not rely only on a transfer screenshot.
       </div>
 
       <button type="submit" class="btn btn-cyan">
@@ -324,7 +474,7 @@ footer{
 
 <section id="how">
   <div class="section-head">
-    <h2>How It Works</h2>
+    <h2>HOW IT WORKS</h2>
     <p class="muted">Four simple steps to receive your game top-up.</p>
   </div>
 
@@ -342,12 +492,12 @@ footer{
     <div class="how-card">
       <b>03</b>
       <h3>Make payment</h3>
-      <p class="muted">Follow the payment instructions and send your order.</p>
+      <p class="muted">Contact the seller for payment instructions.</p>
     </div>
     <div class="how-card">
       <b>04</b>
       <h3>Receive top-up</h3>
-      <p class="muted">We verify payment and deliver to your game UID.</p>
+      <p class="muted">Payment is verified and your game UID is topped up.</p>
     </div>
   </div>
 </section>
@@ -355,10 +505,11 @@ footer{
 </main>
 
 <footer>
-  <strong style="color:white;font-size:17px">YunG TOP 1 MEDIDATOR</strong><br>
-  Your Gaming Top-Up Destination.<br>
+  <strong style="color:white;font-size:19px">YunG Top 1 Medidator</strong><br>
+  YOUR GAMING TOP-UP DESTINATION.<br>
   Free Fire | COD Mobile | Blood Strike | PUBG Mobile<br>
-  © <span id="year"></span> YunG Top 1. All rights reserved.<br>
+  WhatsApp: +234 907 423 9739<br>
+  © <span id="year"></span> YunG Top 1 Medidator. All rights reserved.<br>
   All game names and trademarks belong to their respective owners.
 </footer>
 
@@ -369,49 +520,95 @@ footer{
 
 /* ==========================================
    BUSINESS SETTINGS
-   EDIT THESE BEFORE PUBLISHING YOUR WEBSITE
 ========================================== */
 
-// Your WhatsApp number with country code.
-// Example Nigerian format: 2348012345678
-const ADMIN_WHATSAPP = "2348012345678";
+// Your WhatsApp number: +234 907 423 9739
+// Use country code 234 without the plus sign.
+const ADMIN_WHATSAPP = "2349074239739";
 
-// Change the sample prices below to your actual prices.
-// Amounts are in Nigerian Naira.
+// EDIT YOUR SELLING PRICES BELOW.
+// These are sample prices, not verified supplier prices.
+// Check your actual cost and profit before publishing.
 
 const packages = [
-  // FREE FIRE
-  {game:"Free Fire",name:"Starter Diamonds",quantity:"100 Diamonds",price:1500},
-  {game:"Free Fire",name:"Basic Diamonds",quantity:"210 Diamonds",price:3000},
-  {game:"Free Fire",name:"Standard Diamonds",quantity:"530 Diamonds",price:7000},
-  {game:"Free Fire",name:"Premium Diamonds",quantity:"1080 Diamonds",price:14000},
-  {game:"Free Fire",name:"Mega Diamonds",quantity:"2200 Diamonds",price:28000},
-  {game:"Free Fire",name:"Ultimate Diamonds",quantity:"5600 Diamonds",price:70000},
 
-  // CALL OF DUTY MOBILE
-  {game:"COD Mobile",name:"Starter CP",quantity:"80 CP",price:1500},
-  {game:"COD Mobile",name:"Basic CP",quantity:"160 CP",price:3000},
-  {game:"COD Mobile",name:"Standard CP",quantity:"420 CP",price:7000},
-  {game:"COD Mobile",name:"Premium CP",quantity:"880 CP",price:14000},
-  {game:"COD Mobile",name:"Mega CP",quantity:"2400 CP",price:35000},
-  {game:"COD Mobile",name:"Ultimate CP",quantity:"5000 CP",price:70000},
+  // FREE FIRE DIAMONDS
+  {game:"Free Fire",name:"Starter Diamonds",quantity:"100 Diamonds",price:300},
+  {game:"Free Fire",name:"Basic Diamonds",quantity:"210 Diamonds",price:600},
+  {game:"Free Fire",name:"Standard Diamonds",quantity:"530 Diamonds",price:1500},
+  {game:"Free Fire",name:"Premium Diamonds",quantity:"1080 Diamonds",price:3000},
+  {game:"Free Fire",name:"Mega Diamonds",quantity:"2200 Diamonds",price:6000},
+  {game:"Free Fire",name:"Ultimate Diamonds",quantity:"5600 Diamonds",price:15000},
 
-  // BLOOD STRIKE
-  {game:"Blood Strike",name:"Starter Gold",quantity:"100 Gold",price:1500},
-  {game:"Blood Strike",name:"Basic Gold",quantity:"300 Gold",price:3000},
-  {game:"Blood Strike",name:"Standard Gold",quantity:"600 Gold",price:6000},
-  {game:"Blood Strike",name:"Premium Gold",quantity:"1200 Gold",price:12000},
-  {game:"Blood Strike",name:"Mega Gold",quantity:"3000 Gold",price:28000},
-  {game:"Blood Strike",name:"Ultimate Gold",quantity:"6000 Gold",price:55000},
+  // CALL OF DUTY MOBILE CP
+  {game:"COD Mobile",name:"Starter CP",quantity:"80 CP",price:300},
+  {game:"COD Mobile",name:"Basic CP",quantity:"160 CP",price:600},
+  {game:"COD Mobile",name:"Standard CP",quantity:"420 CP",price:1500},
+  {game:"COD Mobile",name:"Premium CP",quantity:"880 CP",price:3000},
+  {game:"COD Mobile",name:"Mega CP",quantity:"2400 CP",price:8000},
+  {game:"COD Mobile",name:"Ultimate CP",quantity:"5000 CP",price:15000},
 
-  // PUBG MOBILE
-  {game:"PUBG Mobile",name:"Starter UC",quantity:"60 UC",price:1500},
-  {game:"PUBG Mobile",name:"Basic UC",quantity:"325 UC",price:6000},
-  {game:"PUBG Mobile",name:"Standard UC",quantity:"660 UC",price:12000},
-  {game:"PUBG Mobile",name:"Premium UC",quantity:"1800 UC",price:30000},
-  {game:"PUBG Mobile",name:"Mega UC",quantity:"3850 UC",price:60000},
-  {game:"PUBG Mobile",name:"Ultimate UC",quantity:"8100 UC",price:120000}
+  // BLOOD STRIKE GOLD
+  {game:"Blood Strike",name:"Starter Gold",quantity:"100 Gold",price:300},
+  {game:"Blood Strike",name:"Basic Gold",quantity:"300 Gold",price:700},
+  {game:"Blood Strike",name:"Standard Gold",quantity:"600 Gold",price:1400},
+  {game:"Blood Strike",name:"Premium Gold",quantity:"1200 Gold",price:2800},
+  {game:"Blood Strike",name:"Mega Gold",quantity:"3000 Gold",price:6500},
+  {game:"Blood Strike",name:"Ultimate Gold",quantity:"6000 Gold",price:13000},
+
+  // PUBG MOBILE UC
+  {game:"PUBG Mobile",name:"Starter UC",quantity:"60 UC",price:300},
+  {game:"PUBG Mobile",name:"Basic UC",quantity:"325 UC",price:1500},
+  {game:"PUBG Mobile",name:"Standard UC",quantity:"660 UC",price:3000},
+  {game:"PUBG Mobile",name:"Premium UC",quantity:"1800 UC",price:8000},
+  {game:"PUBG Mobile",name:"Mega UC",quantity:"3850 UC",price:15000},
+  {game:"PUBG Mobile",name:"Ultimate UC",quantity:"8100 UC",price:30000}
 ];
+
+
+/* ==========================================
+   GAMING SLIDESHOW
+========================================== */
+
+let currentSlide = 0;
+let slideTimer;
+
+const slides = document.querySelectorAll(".slide");
+const dotsContainer = document.getElementById("slideDots");
+
+slides.forEach((slide,index)=>{
+  const dot = document.createElement("button");
+  dot.className = "dot" + (index===0 ? " active" : "");
+  dot.setAttribute("aria-label","Show video " + (index+1));
+  dot.onclick = ()=>showSlide(index);
+  dotsContainer.appendChild(dot);
+});
+
+function showSlide(index){
+  slides[currentSlide].classList.remove("active");
+  dotsContainer.children[currentSlide].classList.remove("active");
+
+  currentSlide = (index + slides.length) % slides.length;
+
+  slides[currentSlide].classList.add("active");
+  dotsContainer.children[currentSlide].classList.add("active");
+
+  restartSlideTimer();
+}
+
+function changeSlide(direction){
+  showSlide(currentSlide + direction);
+}
+
+function restartSlideTimer(){
+  clearInterval(slideTimer);
+  slideTimer = setInterval(()=>{
+    showSlide(currentSlide + 1);
+  },10000);
+}
+
+restartSlideTimer();
+
 
 /* ==========================================
    WEBSITE FUNCTIONS
@@ -426,6 +623,7 @@ function naira(amount){
 
 function chooseGame(game){
   selectedGame = game;
+  selectedPackage = null;
 
   document.querySelectorAll(".game-card").forEach(card=>{
     card.classList.toggle("active",card.dataset.game===game);
@@ -433,6 +631,9 @@ function chooseGame(game){
 
   document.getElementById("packageHeading").textContent =
     game + " Packages";
+
+  document.getElementById("selectedPackage").textContent =
+    "Please select a package above.";
 
   document.getElementById("search").value = "";
   renderPackages();
@@ -456,7 +657,7 @@ function renderPackages(){
   document.getElementById("empty").style.display =
     filtered.length ? "none" : "block";
 
-  grid.innerHTML = filtered.map((item,index)=>`
+  grid.innerHTML = filtered.map(item=>`
     <article class="package">
       <div class="game-name">${item.game}</div>
       <h3>${item.name}</h3>
@@ -482,6 +683,11 @@ function selectPackage(index){
     behavior:"smooth"
   });
 }
+
+
+/* ==========================================
+   WHATSAPP ORDER CHECKOUT
+========================================== */
 
 document.getElementById("orderForm").addEventListener("submit",function(event){
   event.preventDefault();
@@ -526,16 +732,7 @@ ORDER STATUS: AWAITING PAYMENT VERIFICATION
 
 Please confirm this order before delivery.
 ------------------------------
-Thank you for choosing YunG Top 1!`;
-
-  const status = document.getElementById("orderStatus");
-
-  if(!/^234\d{10}$/.test(ADMIN_WHATSAPP)){
-    status.textContent =
-      "Your order details are ready, but the store owner's WhatsApp number has not been configured. Update ADMIN_WHATSAPP in the code.";
-    alert("Please configure your business WhatsApp number in the code before accepting orders.");
-    return;
-  }
+Thank you for choosing YunG Top 1 Medidator!`;
 
   const whatsappURL =
     "https://wa.me/" + ADMIN_WHATSAPP +
@@ -543,9 +740,14 @@ Thank you for choosing YunG Top 1!`;
 
   window.open(whatsappURL,"_blank","noopener");
 
-  status.textContent =
-    "Your WhatsApp order message has been prepared. Send it to the store to complete your order.";
+  document.getElementById("orderStatus").textContent =
+    "Your order message is ready. Send it on WhatsApp to complete your order.";
 });
+
+
+/* ==========================================
+   WHATSAPP BUTTON AND FOOTER
+========================================== */
 
 document.getElementById("whatsappLink").href =
   "https://wa.me/" + ADMIN_WHATSAPP;
