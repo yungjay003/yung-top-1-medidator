@@ -41,6 +41,7 @@ input,select{
   color:white;
   font-size:16px;
 }
+input[type="file"]{font-size:14px}
 button{
   width:100%;
   padding:14px;
@@ -53,15 +54,6 @@ button{
   font-size:16px;
   cursor:pointer;
 }
-button:disabled{opacity:.45;cursor:not-allowed}
-.uid-wrap{position:relative}
-.uid-status{
-  margin-top:8px;
-  font-size:14px;
-  min-height:20px;
-}
-.valid{color:#20e879}
-.invalid{color:#ff5353}
 .packages{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -74,10 +66,28 @@ button:disabled{opacity:.45;cursor:not-allowed}
   padding:14px;
   text-align:center;
 }
-.package strong{display:block;color:#00e5ff;margin-bottom:7px}
+.package strong{
+  display:block;
+  color:#00e5ff;
+  margin-bottom:7px
+}
 .price{color:#20e879;font-weight:bold}
+.uid-note{
+  color:#20e879;
+  font-size:13px;
+  margin-top:7px;
+}
+.bank-details{
+  background:#080f20;
+  border:1px solid #00c9e8;
+  padding:15px;
+  border-radius:9px;
+  line-height:1.8;
+  margin-top:12px;
+}
+.bank-details strong{color:#00e5ff}
 footer{text-align:center;padding:25px;color:#aab6ca}
-a{color:#00e5ff}
+.small-note{font-size:13px;color:#aab6ca;line-height:1.6}
 </style>
 </head>
 
@@ -108,60 +118,75 @@ a{color:#00e5ff}
   <h2>Place Your Order</h2>
 
   <form id="orderForm">
+
     <label>Full Name</label>
-    <input id="customerName" type="text" placeholder="Enter your full name" required>
+    <input id="customerName" type="text"
+      placeholder="Enter your full name" required>
 
     <label>Your WhatsApp Number</label>
-    <input id="customerPhone" type="tel" placeholder="e.g. 08012345678" required>
+    <input id="customerPhone" type="tel"
+      placeholder="e.g. 08012345678" required>
 
     <label>Selected Game</label>
     <input id="selectedGame" readonly>
 
     <label>Player UID</label>
-    <div class="uid-wrap">
-      <input
-        id="playerUID"
-        type="text"
-        placeholder="Enter your game UID"
-        autocomplete="off"
-        required
-      >
-    </div>
-    <div id="uidStatus" class="uid-status">
-      Enter your UID to check it.
-    </div>
+    <input id="playerUID" type="text"
+      placeholder="Enter your game UID" required>
+
+    <p class="uid-note">Make sure you provide a valid UID.</p>
 
     <label>In-game Name (Optional)</label>
-    <input id="gameName" type="text" placeholder="Enter your game name">
+    <input id="gameName" type="text"
+      placeholder="Enter your game name">
 
     <label>Select Package</label>
-    <select id="packageSelect" required onchange="checkOrderReady()">
+    <select id="packageSelect" required>
       <option value="">Select a package</option>
     </select>
 
     <label>Payment Method</label>
     <select id="payment" required>
       <option value="">Choose payment method</option>
-      <option value="Bank Transfer">Bank Transfer</option>
-      <option value="Contact via WhatsApp">Contact via WhatsApp</option>
+      <option value="OPay Bank Transfer">OPay Bank Transfer</option>
     </select>
 
-    <label>Payment Reference (Optional)</label>
-    <input id="reference" type="text" placeholder="Enter payment reference">
+    <div class="bank-details">
+      <h3 style="color:#00e5ff;margin-top:0">Bank Transfer Details</h3>
+      <strong>Bank:</strong> OPay<br>
+      <strong>Account Name:</strong> Betty Onyiyechi Paul<br>
+      <strong>Account Number:</strong> 9074239739
+      <button type="button" onclick="copyAccount()">
+        Copy Account Number
+      </button>
+    </div>
 
-    <button id="submitBtn" type="submit" disabled>
-      Complete UID Check First
-    </button>
+    <label>Payment Reference (Optional)</label>
+    <input id="reference" type="text"
+      placeholder="Enter payment reference">
+
+    <label>Choose Payment Receipt</label>
+    <input id="receipt" type="file"
+      accept="image/*,.pdf">
+
+    <p class="small-note">
+      After WhatsApp opens, attach your payment receipt to the message before sending.
+    </p>
+
+    <button type="submit">Submit Order via WhatsApp</button>
+
   </form>
 </section>
 
 <section class="card">
   <h2>How to Order</h2>
   <p>1. Select your game and package.</p>
-  <p>2. Enter your player UID and check the green tick.</p>
-  <p>3. Fill in your details.</p>
-  <p>4. Submit your order through WhatsApp.</p>
-  <p>5. Contact us on WhatsApp for payment details.</p>
+  <p>2. Enter your player UID and in-game name.</p>
+  <p>3. Fill in your personal details.</p>
+  <p>4. Transfer the payment to the OPay account displayed above.</p>
+  <p>5. Select your payment receipt.</p>
+  <p>6. Submit your order through WhatsApp and attach your receipt.</p>
+  <p>7. Your payment will be confirmed before your game top-up is delivered.</p>
 </section>
 
 </div>
@@ -198,138 +223,109 @@ const packageData = {
   ]
 };
 
-let uidIsValid = false;
-
 function updatePackages(){
   const game = document.getElementById("game").value;
+
   document.getElementById("selectedGame").value = game;
 
   const packageSelect = document.getElementById("packageSelect");
   const packagesBox = document.getElementById("packages");
 
-  packageSelect.innerHTML = '<option value="">Select a package</option>';
+  packageSelect.innerHTML =
+    '<option value="">Select a package</option>';
+
   packagesBox.innerHTML = "";
 
   packageData[game].forEach(item => {
     const option = document.createElement("option");
+
     option.value = item[0] + " - " + item[1];
     option.textContent = item[0] + " - " + item[1];
+
     packageSelect.appendChild(option);
 
     const div = document.createElement("div");
     div.className = "package";
-    div.innerHTML =
-      "<strong>" + item[0] + "</strong><span class='price'>" +
-      item[1] + "</span>";
+
+    const title = document.createElement("strong");
+    title.textContent = item[0];
+
+    const price = document.createElement("span");
+    price.className = "price";
+    price.textContent = item[1];
+
+    div.appendChild(title);
+    div.appendChild(price);
+
     packagesBox.appendChild(div);
   });
-
-  // A UID entered for one game must be checked again for another.
-  validateUID();
-  checkOrderReady();
 }
 
-function validateUID(){
-  const game = document.getElementById("game").value;
-  const uidInput = document.getElementById("playerUID");
-  const status = document.getElementById("uidStatus");
-  const uid = uidInput.value.trim();
-
-  uidIsValid = false;
-
-  if(uid === ""){
-    status.textContent = "Enter your UID to check it.";
-    status.className = "uid-status";
-    checkOrderReady();
-    return;
-  }
-
-  /*
-    Basic format check only.
-    It does not verify that the UID exists on the game's servers.
-    Different games and regions may use different UID formats.
-  */
-  let validFormat = false;
-
-  if(game === "Free Fire"){
-    validFormat = /^[0-9]{6,15}$/.test(uid);
-  } else if(game === "COD Mobile"){
-    validFormat = /^[A-Za-z0-9]{5,20}$/.test(uid);
-  } else if(game === "Blood Strike"){
-    validFormat = /^[A-Za-z0-9]{5,20}$/.test(uid);
-  } else if(game === "PUBG Mobile"){
-    validFormat = /^[0-9]{6,15}$/.test(uid);
-  }
-
-  if(validFormat){
-    uidIsValid = true;
-    status.textContent = "✓ UID format looks correct";
-    status.className = "uid-status valid";
-  } else {
-    status.textContent = "✗ Invalid UID format. Check the UID and try again.";
-    status.className = "uid-status invalid";
-  }
-
-  checkOrderReady();
+function copyAccount(){
+  navigator.clipboard.writeText("9074239739")
+    .then(() => alert("OPay account number copied!"))
+    .catch(() => alert("Account number: 9074239739"));
 }
-
-function checkOrderReady(){
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
-  const packageValue = document.getElementById("packageSelect").value;
-  const payment = document.getElementById("payment").value;
-  const button = document.getElementById("submitBtn");
-
-  const ready = uidIsValid && name && phone && packageValue && payment;
-
-  button.disabled = !ready;
-  button.textContent = ready ? "Submit Order via WhatsApp" : "Complete UID Check First";
-}
-
-document.getElementById("playerUID").addEventListener("input", validateUID);
-
-["customerName","customerPhone","payment"].forEach(id => {
-  document.getElementById(id).addEventListener("input", checkOrderReady);
-  document.getElementById(id).addEventListener("change", checkOrderReady);
-});
 
 document.getElementById("orderForm").addEventListener("submit", function(event){
+
   event.preventDefault();
-
-  validateUID();
-
-  if(!uidIsValid){
-    alert("Please enter a UID with the correct format.");
-    return;
-  }
 
   const name = document.getElementById("customerName").value.trim();
   const phone = document.getElementById("customerPhone").value.trim();
   const game = document.getElementById("game").value;
   const uid = document.getElementById("playerUID").value.trim();
-  const gameName = document.getElementById("gameName").value.trim() || "Not provided";
-  const packageValue = document.getElementById("packageSelect").value;
-  const payment = document.getElementById("payment").value;
-  const reference = document.getElementById("reference").value.trim() || "Not provided";
+
+  const gameName =
+    document.getElementById("gameName").value.trim() || "Not provided";
+
+  const packageValue =
+    document.getElementById("packageSelect").value;
+
+  const payment =
+    document.getElementById("payment").value;
+
+  const reference =
+    document.getElementById("reference").value.trim() || "Not provided";
+
+  const receipt =
+    document.getElementById("receipt").files[0];
+
+  const receiptName = receipt ? receipt.name : "Not selected";
 
   const message =
 `NEW ORDER - YunG Top 1 Medidator
 
 Customer Name: ${name}
 Customer WhatsApp: ${phone}
+
 Game: ${game}
 Player UID: ${uid}
 In-game Name: ${gameName}
-Package: ${packageValue}
-Payment Method: ${payment}
-Payment Reference: ${reference}
 
-Please confirm my order.`;
+Package: ${packageValue}
+
+Payment Method: ${payment}
+
+Bank: OPay
+Account Name: Betty Onyiyechi Paul
+Account Number: 9074239739
+
+Payment Reference: ${reference}
+Receipt Selected: ${receiptName}
+
+PAYMENT STATUS: AWAITING MANUAL CONFIRMATION
+
+Please confirm my order.
+
+I will attach my payment receipt to this WhatsApp message.`;
 
   const whatsappURL =
-    "https://wa.me/" + ADMIN_WHATSAPP + "?text=" + encodeURIComponent(message);
+    "https://wa.me/" + ADMIN_WHATSAPP +
+    "?text=" + encodeURIComponent(message);
 
   window.open(whatsappURL, "_blank");
+
 });
 
 updatePackages();
