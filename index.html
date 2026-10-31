@@ -28,6 +28,7 @@ body{
 }
 button,input,select{font:inherit}
 button{cursor:pointer}
+
 header{
   padding:20px 16px;
   text-align:center;
@@ -40,8 +41,14 @@ header{
   color:var(--cyan);
   letter-spacing:1px;
   text-shadow:0 0 18px #00e5ff70;
+  animation:logoGlow 2.5s infinite alternate;
+}
+@keyframes logoGlow{
+  from{text-shadow:0 0 8px #00e5ff55}
+  to{text-shadow:0 0 25px #00e5ff,0 0 40px #9b5cff}
 }
 header p{color:#bdc9da;margin:8px 0 0}
+
 nav{
   display:flex;
   justify-content:center;
@@ -58,12 +65,9 @@ nav a{
   font-weight:bold;
 }
 nav a:hover{color:var(--cyan)}
+
 .container{max-width:1100px;margin:auto;padding:18px}
-.section-title{
-  color:var(--cyan);
-  font-size:23px;
-  margin:0 0 15px;
-}
+.section-title{color:var(--cyan);font-size:23px;margin:0 0 15px}
 .muted{color:var(--muted);line-height:1.6}
 
 /* Animated promotional banner */
@@ -82,7 +86,8 @@ nav a:hover{color:var(--cyan)}
 .hero:before,.hero:after{
   content:"";
   position:absolute;
-  width:240px;height:240px;
+  width:240px;
+  height:240px;
   border-radius:50%;
   filter:blur(70px);
   opacity:.35;
@@ -113,62 +118,87 @@ nav a:hover{color:var(--cyan)}
 .hero h2 span{color:var(--cyan)}
 .hero p{color:#d1d9e8;line-height:1.6}
 .hero-dots{display:flex;gap:7px;margin-top:20px}
-.dot{
-  width:9px;height:9px;border-radius:20px;
-  background:#62718a;
-}
+.dot{width:9px;height:9px;border-radius:20px;background:#62718a}
 .dot.active{width:25px;background:var(--cyan)}
-.hero-slides{transition:opacity .4s}
 
-/* Game cards */
+/* Game cards with game profile images */
 .games-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:17px;
 }
 .game-card{
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:15px;
   overflow:hidden;
-  transition:.25s;
+  transition:.3s;
 }
 .game-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
   border-color:var(--cyan);
-  box-shadow:0 8px 28px #00e5ff18;
+  box-shadow:0 8px 30px #00e5ff25;
 }
 .game-art{
-  height:135px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:15px;
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-shadow:0 3px 15px #000;
+  height:190px;
+  position:relative;
+  overflow:hidden;
+  background:#101827;
 }
-.freefire{background:linear-gradient(135deg,#6b1c13,#e76b20,#30121a)}
-.cod{background:linear-gradient(135deg,#182d46,#2875a0,#111827)}
-.blood{background:linear-gradient(135deg,#4c1020,#b52e4c,#170c1a)}
-.pubg{background:linear-gradient(135deg,#65501b,#b98a2b,#17130c)}
+.game-art img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .6s;
+}
+.game-card:hover .game-art img{transform:scale(1.08)}
+.game-art:after{
+  content:"";
+  position:absolute;
+  inset:45% 0 0;
+  background:linear-gradient(transparent,#080b16dd);
+  pointer-events:none;
+}
+.game-label{
+  position:absolute;
+  z-index:2;
+  left:12px;
+  bottom:12px;
+  padding:7px 11px;
+  border-radius:6px;
+  background:#07111dd9;
+  border:1px solid #00e5ff70;
+  color:white;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:1px;
+}
 .game-info{padding:15px}
 .game-info h3{margin:0 0 7px}
-.game-info p{font-size:13px;color:var(--muted);min-height:34px}
+.game-info p{
+  font-size:13px;
+  color:var(--muted);
+  min-height:34px;
+  line-height:1.5;
+}
 .game-button{
   width:100%;
-  padding:11px;
+  padding:12px;
   border:0;
   border-radius:8px;
   background:var(--cyan);
   color:#001018;
   font-weight:bold;
+  transition:.2s;
 }
-.game-button:hover{filter:brightness(1.15)}
+.game-button:hover{
+  filter:brightness(1.15);
+  box-shadow:0 0 18px #00e5ff65;
+}
 
-/* Main cards and packages */
+/* Packages and order form */
 .card{
   background:var(--panel);
   border:1px solid var(--border);
@@ -211,6 +241,7 @@ input:focus,select:focus{border-color:var(--cyan)}
 .price{color:var(--green);font-size:19px;font-weight:900}
 .package small{display:block;color:#8ea0b8;margin-top:7px}
 .uid-note{color:var(--green);font-size:13px;margin-top:7px}
+
 .primary-button{
   width:100%;
   padding:15px;
@@ -224,6 +255,7 @@ input:focus,select:focus{border-color:var(--cyan)}
   box-shadow:0 0 18px #00e5ff25;
 }
 .primary-button:hover{filter:brightness(1.12)}
+
 .bank-details{
   background:#080f20;
   border:1px solid var(--cyan);
@@ -257,12 +289,9 @@ input:focus,select:focus{border-color:var(--cyan)}
   padding:7px 0;
   color:#cbd5e1;
 }
-.summary-total{
-  color:var(--green);
-  font-size:21px;
-  font-weight:900;
-}
+.summary-total{color:var(--green);font-size:21px;font-weight:900}
 .small-note{font-size:12px;color:var(--muted);line-height:1.6}
+
 .steps{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -277,6 +306,7 @@ input:focus,select:focus{border-color:var(--cyan)}
   line-height:1.5;
 }
 .step b{color:var(--cyan);display:block;margin-bottom:7px}
+
 footer{
   text-align:center;
   padding:30px 15px;
@@ -286,10 +316,12 @@ footer{
   margin-top:30px;
 }
 footer strong{color:var(--cyan)}
+
 @media(max-width:550px){
   .hero{padding:23px;min-height:240px}
   .container{padding:13px}
   .card{padding:15px}
+  .game-art{height:170px}
 }
 </style>
 </head>
@@ -310,12 +342,16 @@ footer strong{color:var(--cyan)}
 
 <main class="container" id="home">
 
+  <!-- PROMOTIONAL SLIDESHOW -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-slides">
+      <div>
         <span class="hero-tag" id="heroTag">GAMING TOP-UP STORE</span>
         <h2 id="heroTitle">LEVEL UP YOUR <span>GAME!</span></h2>
-        <p id="heroText">Get your favourite game credits at competitive prices. Fast ordering and friendly support.</p>
+        <p id="heroText">
+          Get your favourite game credits at competitive prices.
+          Fast ordering and friendly support.
+        </p>
       </div>
       <div class="hero-dots">
         <span class="dot active"></span>
@@ -326,52 +362,105 @@ footer strong{color:var(--cyan)}
     </div>
   </section>
 
+  <!-- GAME PROFILE CARDS -->
   <section id="games">
     <h2 class="section-title">Choose Your Game</h2>
-    <p class="muted">Select your favourite game and explore available top-up packages.</p>
+    <p class="muted">
+      Select your favourite game and explore available top-up packages.
+    </p>
 
     <div class="games-grid">
+
+      <!-- FREE FIRE PROFILE -->
       <article class="game-card">
-        <div class="game-art freefire">FREE FIRE</div>
+        <div class="game-art">
+          <img
+            src="https://cdn.esports.id/media/article/793020260503051552.jpg"
+            alt="Free Fire 2026 character profile"
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#6b1c13,#e76b20,#30121a)'"
+          >
+          <span class="game-label">FREE FIRE</span>
+        </div>
         <div class="game-info">
           <h3>Free Fire</h3>
           <p>Diamonds for your favourite Free Fire items and upgrades.</p>
-          <button class="game-button" onclick="chooseGame('Free Fire')">View Packages</button>
+          <button class="game-button" onclick="chooseGame('Free Fire')">
+            View Packages
+          </button>
         </div>
       </article>
 
+      <!-- CALL OF DUTY MOBILE PROFILE -->
       <article class="game-card">
-        <div class="game-art cod">CALL OF DUTY</div>
+        <div class="game-art">
+          <img
+            src="https://lblog.fp.guinfra.com/file/698e9ddb6f332c4ed401325fsa84ivAw03"
+            alt="Call of Duty Mobile 2026 promotional profile"
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#182d46,#2875a0,#111827)'"
+          >
+          <span class="game-label">CALL OF DUTY MOBILE</span>
+        </div>
         <div class="game-info">
           <h3>Call of Duty Mobile</h3>
           <p>Get CP for your COD Mobile gaming experience.</p>
-          <button class="game-button" onclick="chooseGame('COD Mobile')">View Packages</button>
+          <button class="game-button" onclick="chooseGame('COD Mobile')">
+            View Packages
+          </button>
         </div>
       </article>
 
+      <!-- BLOOD STRIKE PROFILE -->
       <article class="game-card">
-        <div class="game-art blood">BLOOD STRIKE</div>
+        <div class="game-art">
+          <img
+            src="https://media.pocketgamer.com/artwork/na-36044-1723131768/blood-strike-keyvisual.jpg"
+            alt="Blood Strike game profile artwork"
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#4c1020,#b52e4c,#170c1a)'"
+          >
+          <span class="game-label">BLOOD STRIKE</span>
+        </div>
         <div class="game-info">
           <h3>Blood Strike</h3>
           <p>Top up Gold and enjoy more in-game content.</p>
-          <button class="game-button" onclick="chooseGame('Blood Strike')">View Packages</button>
+          <button class="game-button" onclick="chooseGame('Blood Strike')">
+            View Packages
+          </button>
         </div>
       </article>
 
+      <!-- PUBG MOBILE PROFILE -->
       <article class="game-card">
-        <div class="game-art pubg">PUBG MOBILE</div>
+        <div class="game-art">
+          <img
+            src="https://cdn.aptoide.com/imgs/a/9/a/a9a7147e6d537dfbf596667fbb505a41_screen.jpg"
+            alt="PUBG Mobile 2026 Golden Moon event profile"
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#65501b,#b98a2b,#17130c)'"
+          >
+          <span class="game-label">PUBG MOBILE</span>
+        </div>
         <div class="game-info">
           <h3>PUBG Mobile</h3>
           <p>Get UC for your PUBG Mobile account.</p>
-          <button class="game-button" onclick="chooseGame('PUBG Mobile')">View Packages</button>
+          <button class="game-button" onclick="chooseGame('PUBG Mobile')">
+            View Packages
+          </button>
         </div>
       </article>
+
     </div>
   </section>
 
+  <!-- TOP-UP PACKAGES -->
   <section class="card" id="packagesSection">
     <h2 class="section-title">Top-Up Packages</h2>
-    <p class="muted">Choose a package below. Our displayed prices are introductory sample prices and can be adjusted.</p>
+    <p class="muted">
+      Choose a package below. Our displayed prices are introductory sample
+      prices and can be adjusted.
+    </p>
 
     <label for="game">Select Game</label>
     <select id="game" onchange="updatePackages()">
@@ -384,26 +473,35 @@ footer strong{color:var(--cyan)}
     <div class="packages" id="packages"></div>
   </section>
 
+  <!-- ORDER FORM -->
   <section class="card" id="order">
     <h2 class="section-title">Complete Your Order</h2>
-    <p class="muted">Enter your details carefully and follow the payment instructions.</p>
+    <p class="muted">
+      Enter your details carefully and follow the payment instructions.
+    </p>
 
     <form id="orderForm">
+
       <label for="customerName">Full Name</label>
-      <input id="customerName" type="text" placeholder="Enter your full name" required>
+      <input id="customerName" type="text"
+        placeholder="Enter your full name" required>
 
       <label for="customerPhone">Your WhatsApp Number</label>
-      <input id="customerPhone" type="tel" placeholder="e.g. 08012345678" required>
+      <input id="customerPhone" type="tel"
+        placeholder="e.g. 08012345678" required>
 
       <label for="selectedGame">Selected Game</label>
       <input id="selectedGame" readonly>
 
       <label for="playerUID">Player UID</label>
-      <input id="playerUID" type="text" placeholder="Enter your game UID" required>
+      <input id="playerUID" type="text"
+        placeholder="Enter your game UID" required>
+
       <p class="uid-note">Make sure you provide a valid UID.</p>
 
       <label for="gameName">In-game Name (Optional)</label>
-      <input id="gameName" type="text" placeholder="Enter your game name">
+      <input id="gameName" type="text"
+        placeholder="Enter your game name">
 
       <label for="packageSelect">Selected Package</label>
       <select id="packageSelect" required>
@@ -413,13 +511,16 @@ footer strong{color:var(--cyan)}
       <div class="order-summary">
         <h3 style="color:#00e5ff;margin-top:0">Your Order Summary</h3>
         <div class="summary-line">
-          <span>Game</span><strong id="summaryGame">Free Fire</strong>
+          <span>Game</span>
+          <strong id="summaryGame">Free Fire</strong>
         </div>
         <div class="summary-line">
-          <span>Package</span><strong id="summaryPackage">Not selected</strong>
+          <span>Package</span>
+          <strong id="summaryPackage">Not selected</strong>
         </div>
         <div class="summary-line">
-          <span>Total</span><strong class="summary-total" id="summaryPrice">₦0</strong>
+          <span>Total</span>
+          <strong class="summary-total" id="summaryPrice">₦0</strong>
         </div>
       </div>
 
@@ -434,13 +535,15 @@ footer strong{color:var(--cyan)}
         <strong>Bank:</strong> OPay<br>
         <strong>Account Name:</strong> Betty Onyiyechi Paul<br>
         <strong>Account Number:</strong> 9074239739
+
         <button class="copy-button" type="button" onclick="copyAccount()">
           Copy Account Number
         </button>
       </div>
 
       <label for="reference">Payment Reference (Optional)</label>
-      <input id="reference" type="text" placeholder="Enter payment reference">
+      <input id="reference" type="text"
+        placeholder="Enter payment reference">
 
       <label for="receipt">Choose Payment Receipt</label>
       <input id="receipt" type="file" accept="image/*,.pdf">
@@ -453,18 +556,38 @@ footer strong{color:var(--cyan)}
       <button class="primary-button" type="submit">
         SUBMIT ORDER VIA WHATSAPP
       </button>
+
     </form>
   </section>
 
+  <!-- HOW TO ORDER -->
   <section class="card" id="how">
     <h2 class="section-title">How to Order</h2>
     <div class="steps">
-      <div class="step"><b>01 — Choose a Game</b>Select your preferred game from the available options.</div>
-      <div class="step"><b>02 — Select a Package</b>Choose the top-up amount you want to purchase.</div>
-      <div class="step"><b>03 — Enter Your UID</b>Provide your player UID and contact information.</div>
-      <div class="step"><b>04 — Make Payment</b>Transfer the exact amount to the OPay account displayed.</div>
-      <div class="step"><b>05 — Send Your Receipt</b>Submit your order on WhatsApp and attach your payment receipt.</div>
-      <div class="step"><b>06 — Order Confirmation</b>Your payment will be checked manually before your top-up is delivered.</div>
+      <div class="step">
+        <b>01 — Choose a Game</b>
+        Select your preferred game from the available options.
+      </div>
+      <div class="step">
+        <b>02 — Select a Package</b>
+        Choose the top-up amount you want to purchase.
+      </div>
+      <div class="step">
+        <b>03 — Enter Your UID</b>
+        Provide your player UID and contact information.
+      </div>
+      <div class="step">
+        <b>04 — Make Payment</b>
+        Transfer the exact amount to the OPay account displayed.
+      </div>
+      <div class="step">
+        <b>05 — Send Your Receipt</b>
+        Submit your order on WhatsApp and attach your payment receipt.
+      </div>
+      <div class="step">
+        <b>06 — Order Confirmation</b>
+        Your payment will be checked manually before your top-up is delivered.
+      </div>
     </div>
   </section>
 
@@ -516,6 +639,7 @@ function money(amount){
 function chooseGame(game){
   document.getElementById("game").value = game;
   updatePackages();
+
   document.getElementById("packagesSection").scrollIntoView({
     behavior:"smooth"
   });
@@ -529,7 +653,9 @@ function updatePackages(){
   document.getElementById("selectedGame").value = game;
   document.getElementById("summaryGame").textContent = game;
 
-  packageSelect.innerHTML = '<option value="">Select a package</option>';
+  packageSelect.innerHTML =
+    '<option value="">Select a package</option>';
+
   packagesBox.innerHTML = "";
 
   packageData[game].forEach((item,index)=>{
@@ -544,11 +670,20 @@ function updatePackages(){
 
     const div = document.createElement("div");
     div.className = "package";
-    div.innerHTML = `
-      <strong>${title}</strong>
-      <span class="price">${money(amount)}</span>
-      <small>Introductory price</small>
-    `;
+
+    const strong = document.createElement("strong");
+    strong.textContent = title;
+
+    const price = document.createElement("span");
+    price.className = "price";
+    price.textContent = money(amount);
+
+    const small = document.createElement("small");
+    small.textContent = "Introductory price";
+
+    div.appendChild(strong);
+    div.appendChild(price);
+    div.appendChild(small);
 
     div.addEventListener("click",()=>{
       packageSelect.selectedIndex = index + 1;
@@ -582,7 +717,8 @@ function updateSummary(){
   });
 }
 
-document.getElementById("packageSelect").addEventListener("change",updateSummary);
+document.getElementById("packageSelect")
+  .addEventListener("change",updateSummary);
 
 function copyAccount(){
   const account = "9074239739";
@@ -596,7 +732,7 @@ function copyAccount(){
   }
 }
 
-/* Automatic promotional banner slideshow */
+/* AUTOMATIC PROMOTIONAL SLIDESHOW */
 const slides = [
   {
     tag:"GAMING TOP-UP STORE",
@@ -616,7 +752,7 @@ const slides = [
   {
     tag:"PUBG & BLOOD STRIKE",
     title:'MORE GAMEPLAY. <span>MORE FUN!</span>',
-    text:"Explore PUBG UC and Blood Strike Gold packages at competitive sample prices."
+    text:"Explore PUBG UC and Blood Strike Gold packages at competitive prices."
   }
 ];
 
@@ -637,19 +773,32 @@ function changeSlide(){
 
 setInterval(changeSlide,4000);
 
-/* Send order to WhatsApp */
-document.getElementById("orderForm").addEventListener("submit",function(event){
+/* WHATSAPP ORDER SUBMISSION */
+document.getElementById("orderForm")
+  .addEventListener("submit",function(event){
+
   event.preventDefault();
 
   const name = document.getElementById("customerName").value.trim();
   const phone = document.getElementById("customerPhone").value.trim();
   const game = document.getElementById("game").value;
   const uid = document.getElementById("playerUID").value.trim();
-  const gameName = document.getElementById("gameName").value.trim() || "Not provided";
-  const packageValue = document.getElementById("packageSelect").value;
-  const payment = document.getElementById("payment").value;
-  const reference = document.getElementById("reference").value.trim() || "Not provided";
-  const receipt = document.getElementById("receipt").files[0];
+
+  const gameName =
+    document.getElementById("gameName").value.trim() || "Not provided";
+
+  const packageValue =
+    document.getElementById("packageSelect").value;
+
+  const payment =
+    document.getElementById("payment").value;
+
+  const reference =
+    document.getElementById("reference").value.trim() || "Not provided";
+
+  const receipt =
+    document.getElementById("receipt").files[0];
+
   const receiptName = receipt ? receipt.name : "Not selected";
 
   if(!packageValue){
