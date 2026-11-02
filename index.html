@@ -1,513 +1,405 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffffff">
-<title>YunG Top 1 Meditator | Game Top-Ups</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YunG Top 1 Meditator | Gaming Top-Up</title>
 <style>
-:root{--blue:#1769ff;--ink:#172033;--muted:#667085;--line:#e7ebf2;--bg:#f5f6f8;--green:#07844f;--navy:#071426}
+:root{--bg:#070a13;--panel:#111827;--panel2:#0c1424;--cyan:#00e5ff;--green:#20e879;--purple:#9b5cff;--white:#f5f7ff}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:125px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}[hidden]{display:none!important}
-header{background:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line)}
-.top{max-width:1400px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:22px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--blue);font-size:21px;font-weight:900;white-space:nowrap}
-.brandmark{width:38px;height:38px;border-radius:9px;background:var(--blue);color:white;display:grid;place-items:center;font-size:24px}
-.search{flex:1}.search-trigger{width:100%;padding:14px 18px;background:#f7f9fc;border:1px solid var(--line);border-radius:8px;text-align:left;color:#667085;font-size:15px}
-.search-trigger:hover{border-color:var(--blue)}.search-trigger span{font-size:22px;margin-right:10px}
-.account{display:flex;gap:8px;align-items:center}.account button{border:1px solid var(--line);background:white;border-radius:7px;padding:10px;font-weight:bold}
-.nav{max-width:1400px;margin:auto;display:flex;gap:0;padding:0 22px;overflow-x:auto}
-.nav a{padding:16px 18px;color:#344054;text-decoration:none;font-size:13px;font-weight:800;white-space:nowrap;border-bottom:2px solid transparent}
-.nav a:hover,.nav a.active{color:var(--blue);border-color:var(--blue)}
-.trust{background:var(--navy);color:white;display:flex;justify-content:center;gap:35px;flex-wrap:wrap;padding:12px;font-size:12px}
-.search-overlay{position:fixed;inset:0;z-index:200;background:rgba(18,25,43,.48);display:none;justify-content:center;align-items:flex-start;padding:0 15px;overflow-y:auto;backdrop-filter:blur(3px)}
-.search-overlay.open{display:flex}.search-window{width:100%;max-width:1000px;min-height:420px;max-height:88vh;margin-top:0;background:white;border-radius:0 0 12px 12px;box-shadow:0 18px 55px #0003;padding:20px;overflow-y:auto;animation:searchDrop .25s ease}
-@keyframes searchDrop{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}
-.search-window-top{display:flex;align-items:center;gap:18px;margin-bottom:35px}
-.search-input-wrap{flex:1;display:flex;align-items:center;gap:12px;border:1px solid #d4dbe7;border-radius:9px;padding:0 17px;height:60px}
-.search-input-wrap:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px #1769ff18}
-.search-input-wrap span{font-size:26px;color:#98a2b3}.search-input-wrap input{flex:1;width:100%;border:0;outline:0;font-size:16px;color:var(--ink)}
-.search-close{border:0;background:white;color:#344054;font-size:31px;width:38px;height:38px}
-.search-content{display:grid;grid-template-columns:190px minmax(0,1fr);gap:25px}
-.search-content h3{font-size:14px;margin:5px 0 20px;color:#172033}
-.popular-search-item{display:flex;align-items:center;gap:12px;padding:11px 3px;width:100%;border:0;background:white;color:#667085;font-size:14px;text-align:left;border-radius:6px}
-.popular-search-item:hover{color:var(--blue);background:#f6f9ff}
-.search-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.search-product{min-width:0;cursor:pointer}.search-product-image{height:145px;width:100%;overflow:hidden;border-radius:9px;background:#edf1f7}
-.search-product-image .art{height:100%;border-radius:9px}.search-product-type{color:var(--blue);font-size:11px;text-transform:uppercase;margin-top:11px;line-height:1.5}
-.search-product-name{font-size:13px;font-weight:bold;color:#172033;margin-top:5px;line-height:1.5}
-.search-product:hover .search-product-name{color:var(--blue)}.search-no-results{padding:25px;text-align:center;color:#667085;font-size:14px}
-.wrap{max-width:1400px;margin:auto;padding:24px}
-.hero{min-height:300px;padding:48px;border-radius:12px;color:white;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 15%,#25a9ec,transparent 32%),radial-gradient(circle at 70% 100%,#073a9e,transparent 45%),linear-gradient(110deg,#071a3b,#0754c9 65%,#087fbb)}
-.hero:after{content:"";position:absolute;width:280px;height:280px;border:35px solid #ffffff12;border-radius:50%;right:7%;top:10%;pointer-events:none}
-.hero small{font-weight:900;letter-spacing:2px;color:#b9f1ff}.hero h1{font-size:clamp(36px,5vw,60px);line-height:1.02;margin:16px 0;max-width:650px}
-.hero p{max-width:580px;color:#e5f3ff;line-height:1.7;font-size:14px}.cta{display:inline-block;background:white;color:#0759ce;text-decoration:none;font-weight:900;padding:14px 20px;border-radius:7px;margin-top:10px;transition:.2s}
-.cta:hover{transform:translateY(-3px);box-shadow:0 8px 20px #001b5544}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
-.quick div{background:white;padding:17px;border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:bold}
-.section{margin-top:38px;scroll-margin-top:125px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}
-.head h2{margin:0;font-size:23px}.head p{margin:6px 0 0;color:var(--muted);font-size:13px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}.tab{background:#fff;border:1px solid var(--line);padding:10px 15px;border-radius:30px;font-size:12px;font-weight:bold}
-.tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}
-.product{background:white;border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .28s ease,box-shadow .28s ease;box-shadow:0 2px 8px #172b4d08;border:1px solid #edf0f5}
-.product:hover{transform:translateY(-6px);box-shadow:0 14px 30px #172b4d20}
-.art{height:195px;position:relative;overflow:hidden;background:#10254a}
-.art img,.detail-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease,filter .4s ease}.detail-cover img{object-position:center}
-.product:hover .art img{transform:scale(1.09);filter:saturate(1.12)}
-.art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#07142638,transparent 55%);pointer-events:none}
-.art-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px;color:white;background:radial-gradient(circle at 80% 15%,#ffffff33,transparent 30%),linear-gradient(135deg,var(--art1,#10254a),var(--art2,#1769ff));transition:transform .5s ease}
-.product:hover .art-fallback{transform:scale(1.07)}.art-fallback strong{font-size:34px;text-shadow:0 3px 12px #0008}
-.art-fallback span{font-size:12px;font-weight:bold;margin-top:8px}
-.info{padding:13px 13px 15px}.info h3{font-size:13px;margin:0 0 7px;color:#1769ff;font-weight:700;text-transform:uppercase;min-height:30px;line-height:1.4}
-.info small{font-size:12px;color:#172033;font-weight:bold}.info button{display:block;width:100%;border:0;background:#edf4ff;color:#075bd6;padding:11px;border-radius:6px;font-size:12px;font-weight:900;margin-top:13px;transition:.2s}
-.info button:hover{background:var(--blue);color:white}.empty{grid-column:1/-1;padding:35px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:10px;color:var(--muted)}
-.panel{background:white;border:1px solid var(--line);border-radius:11px;padding:22px;margin-top:25px}.panel h2{margin:0 0 8px}
-.muted{color:var(--muted);font-size:14px;line-height:1.7}.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.field{margin-top:14px}.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
-.field input,.field select{width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px;background:white}
-.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin-top:12px}
-.pkg{border:1px solid #dce3ed;padding:13px;border-radius:8px;text-align:center;cursor:pointer;background:white}
-.pkg.selected,.pkg:hover{border-color:var(--blue);background:#f1f6ff}.pkg strong,.pkg em{display:block}
-.pkg em{font-style:normal;color:var(--green);font-weight:900;margin-top:6px}
-.summary,.bank{background:#f5f8ff;border:1px solid #d5e3ff;border-radius:8px;padding:14px;margin-top:14px}
-.line{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;gap:10px}.total{font-size:18px;color:var(--green);font-weight:900}
-.btn{background:var(--blue);color:white;border:0;border-radius:7px;padding:14px;font-weight:900}.full{width:100%;margin-top:16px}
-.secondary{background:#edf4ff;color:#075bd6;border:1px solid #c9dcff;margin-top:8px}
-.note{font-size:12px;color:var(--muted);line-height:1.7}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.step{background:#f7f9fc;border:1px solid var(--line);padding:15px;border-radius:8px;font-size:13px;line-height:1.6}
-.step b{display:block;color:#075bd6;margin-bottom:5px}
-.detail-page{display:none;max-width:1400px;margin:auto;padding:25px 24px 50px;min-height:65vh}
-.detail-page.active{display:block}.detail-top{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.back-games{border:0;background:#edf4ff;color:#075bd6;padding:11px 15px;border-radius:7px;font-weight:800}
-.detail-crumb{font-size:12px;color:var(--muted)}.detail-order{background:white;border:1px solid var(--line);border-radius:11px;padding:22px;margin-top:22px}.detail-order h2{margin-top:0}.detail-order .btn{margin-top:12px}
-footer{background:var(--navy);color:#c5d0df;padding:38px 20px;margin-top:35px;line-height:1.9}
-.footer-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;text-align:left}
-footer h3,footer strong{color:white}footer a{color:#fff;text-decoration:none}footer a:hover{text-decoration:underline}
-.footer-bottom{text-align:center;border-top:1px solid #ffffff22;margin-top:25px;padding-top:18px;font-size:12px}
-.auth{display:none;position:fixed;inset:0;z-index:100;background:#061225cc;align-items:center;justify-content:center;padding:15px}
-.auth.open{display:flex}.authbox{background:white;border-radius:13px;padding:25px;width:100%;max-width:430px;max-height:92vh;overflow:auto;position:relative}
-.close{position:absolute;right:12px;top:10px;border:0;border-radius:50%;width:32px;height:32px;font-size:20px}
-.logo{text-align:center;color:var(--blue);font-size:22px;font-weight:900}.authbox h2{text-align:center}
-.authbox label{display:block;font-size:13px;font-weight:bold;margin:13px 0 6px}
-.authbox input:not([type=checkbox]){width:100%;padding:12px;border:1px solid #d0d7e2;border-radius:7px}
-.links{display:flex;justify-content:space-between;margin-top:14px;gap:10px}
-.links button,.policyLink{border:0;background:none;color:var(--blue);text-decoration:underline;font-size:12px;font-weight:bold}
-.msg{text-align:center;font-size:13px;color:var(--green);line-height:1.5}.error{color:#d92d20}
-.agree{display:flex!important;gap:8px;align-items:flex-start;font-weight:normal!important;line-height:1.5}.agree input{margin-top:3px}
-@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
-@media(max-width:650px){
- .top{flex-wrap:wrap;padding:12px}.brand{font-size:17px}.search{order:3;flex-basis:100%}
- .nav{padding:0 8px}.nav a{padding:14px 12px;font-size:11px}
- .trust{gap:12px;font-size:10px}.wrap{padding:14px}.hero{padding:27px;min-height:270px}
- .hero h1{font-size:38px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .art{height:145px}.quick{grid-template-columns:repeat(2,1fr);gap:8px}
- .quick div{padding:12px;font-size:11px}.cols,.steps{grid-template-columns:1fr}
- .panel{padding:15px}.detail-page{padding:15px}.detail-hero{grid-template-columns:1fr;padding:14px}
- .detail-cover{height:210px}.detail-copy h1{font-size:25px}.footer-inner{grid-template-columns:1fr}
- .search-window{padding:13px;max-height:90vh}.search-window-top{gap:8px;margin-bottom:25px}
- .search-input-wrap{height:50px;padding:0 10px}.search-content{grid-template-columns:1fr;gap:18px}
- .popular-searches{border-bottom:1px solid var(--line);padding-bottom:12px}
- .popular-searches h3{margin-bottom:8px}#popularSearchList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
- .popular-search-item{padding:8px 2px;font-size:12px}.search-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .search-product-image{height:115px}
-}
-@media(max-width:360px){.grid{grid-template-columns:1fr}.art{height:190px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+header{background:#0b1220;border-bottom:1px solid #26344b;position:sticky;top:0;z-index:10}
+.nav{max-width:1200px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.logo{font-size:22px;font-weight:900;color:var(--cyan);text-shadow:0 0 15px #00e5ff77}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:13px;font-weight:bold}
+nav a:hover{color:var(--cyan)}
+button,.btn{border:0;border-radius:7px;padding:12px 17px;font-weight:bold;background:var(--cyan);color:#07111d}
+.wrap{max-width:1200px;margin:auto;padding:22px}
+.hero{padding:65px 35px;border-radius:15px;min-height:340px;background:radial-gradient(circle at 80% 20%,#9b5cff77,transparent 30%),linear-gradient(120deg,#101d42,#075a9e,#071426);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border:35px solid #ffffff12;border-radius:50%;right:7%;top:15%}
+.hero small{color:var(--cyan);font-weight:bold;letter-spacing:3px}
+.hero h1{font-size:clamp(35px,6vw,65px);line-height:1.05;margin:20px 0;max-width:650px}
+.hero p{color:#d6e7ff;max-width:550px;line-height:1.7}
+.hero button{margin-top:15px}
+.section{margin-top:40px;scroll-margin-top:100px}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.heading h2{color:var(--cyan)}
+.muted{color:#9caac1;font-size:13px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card{background:var(--panel);border:1px solid #26344b;border-radius:12px;overflow:hidden;transition:.25s;cursor:pointer}
+.card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 10px 30px #00e5ff22}
+.cover{height:160px;display:grid;place-items:center;text-align:center;padding:15px;background:radial-gradient(circle at 80% 20%,#ffffff33,transparent 35%),linear-gradient(135deg,var(--c1),var(--c2))}
+.cover strong{font-size:25px;text-shadow:0 3px 12px #000}
+.cardbody{padding:15px}
+.card h3{margin:0 0 8px;font-size:15px}
+.card p{font-size:12px;color:#aab6c9;min-height:30px}
+.card button{width:100%;margin-top:8px}
+.panel{background:var(--panel);border:1px solid #26344b;border-radius:12px;padding:22px}
+.field{margin:13px 0}
+label{display:block;font-size:13px;margin-bottom:7px;font-weight:bold}
+input,select{width:100%;padding:13px;border-radius:7px;border:1px solid #35445e;background:#091321;color:white}
+input::placeholder{color:#77869c}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.package{border:1px solid #35445e;border-radius:8px;padding:13px;text-align:center;cursor:pointer;background:#0a1423}
+.package:hover,.package.selected{border-color:var(--cyan);background:#10283a}
+.package strong,.package span{display:block}
+.package span{color:var(--green);margin-top:7px;font-weight:bold}
+.summary{background:#091321;padding:15px;border-radius:8px;margin-top:15px}
+.line{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13px}
+.green{color:var(--green);font-weight:bold}
+.full{width:100%;margin-top:12px}
+.secondary{background:#253a58;color:white}
+footer{margin-top:50px;padding:35px 20px;background:#050914;text-align:center;color:#aab6c9}
+footer strong{color:var(--cyan)}
+.auth{display:none;position:fixed;inset:0;background:#000c;z-index:30;align-items:center;justify-content:center;padding:15px}
+.auth.show{display:flex}
+.authbox{background:var(--panel);border:1px solid #35445e;border-radius:13px;padding:25px;width:100%;max-width:420px;position:relative}
+.close{position:absolute;right:12px;top:12px;background:#26344b;color:white;padding:7px 12px}
+.authbox h2{text-align:center;color:var(--cyan)}
+.authlinks{display:flex;justify-content:space-between;gap:8px;margin-top:15px}
+.authlinks button{background:none;color:var(--cyan);padding:5px}
+#message{text-align:center;font-size:13px;color:var(--green);line-height:1.5}
+.detail{display:none}
+.detail.show{display:block}
+.back{background:#253a58;color:white;margin-bottom:15px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}.cover{height:125px}.wrap{padding:13px}.hero{padding:35px 22px}.hero h1{font-size:40px}.cols{grid-template-columns:1fr}.nav{justify-content:center}.logo{width:100%;text-align:center}nav{justify-content:center;gap:12px}.cardbody{padding:10px}}
+@media(max-width:350px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <header>
- <div class="top">
-  <a class="brand" href="#home" id="brandHome"><span class="brandmark">Y</span><span>YunG Top 1 Meditator</span></a>
-  <div class="search"><button class="search-trigger" id="openSearch"><span>⌕</span> Search games & more</button></div>
-  <div class="account"><button id="accountBtn">Sign In / Sign Up</button><button id="signOut" hidden>Sign Out</button></div>
- </div>
- <nav class="nav">
-  <a href="#home" id="homeNav" class="active">HOME</a>
-  <a href="#popular" id="popularNav">MOST POPULAR TODAY</a>
-  <a href="#new" id="newNav">NEW ON YUNG TOP</a>
-  <a href="#games" id="gamesNav">DIRECT GAME TOP-UP</a>
-  <a href="#vouchers" id="voucherNav">GAME GIFT CARD VOUCHERS</a>
-  <a href="#footer" id="footerNav">CONTACT US</a>
- </nav>
-</header>
-<div class="search-overlay" id="searchOverlay">
- <div class="search-window">
-  <div class="search-window-top">
-   <div class="search-input-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games & more" autocomplete="off"></div>
-   <button class="search-close" id="closeSearch">×</button>
-  </div>
-  <div class="search-content">
-   <div class="popular-searches"><h3>Popular searches</h3><div id="popularSearchList"></div></div>
-   <div class="top-selling"><h3 id="searchResultsHeading">Top selling products</h3><div class="search-product-grid" id="searchProductGrid"></div></div>
-  </div>
-  <div class="search-no-results" id="searchNoResults" hidden>No products found. Try another search.</div>
- </div>
+<div class="nav">
+<div class="logo">⚡ YunG Top 1 Meditator</div>
+<nav>
+<a href="#home">HOME</a>
+<a href="#games">GAMES</a>
+<a href="#order">PLACE ORDER</a>
+<a href="#how">HOW TO ORDER</a>
+</nav>
+<button id="accountButton">SIGN IN</button>
+<button id="logoutButton" hidden>SIGN OUT</button>
 </div>
-<div class="trust"><span>⚡ Easy ordering</span><span>🎮 Gaming top-ups</span><span>💬 WhatsApp support</span><span>✓ Manual payment confirmation</span></div>
+</header>
+
 <main class="wrap" id="home">
- <section class="hero">
-  <small>WELCOME TO YUNG TOP 1 MEDITATOR</small>
-  <h1>YOUR GAME.<br>YOUR TOP-UP.<br>YOUR VICTORY.</h1>
-  <p>Discover game currencies, passes, subscriptions and digital vouchers. Choose what you need and contact us to confirm availability and the latest price.</p>
-  <a class="cta" href="#games">EXPLORE ALL GAMES →</a>
- </section>
- <div class="quick">
-  <div>🎮 &nbsp; Games and top-ups</div><div>💳 &nbsp; Easy OPay transfer</div><div>📲 &nbsp; WhatsApp ordering</div><div>🛡️ &nbsp; Manual payment check</div>
- </div>
- <section class="section" id="popular">
-  <div class="head"><div><h2>Most Popular Today</h2><p>Popular games customers can explore.</p></div></div>
-  <div class="grid" id="popularGrid"></div>
- </section>
- <section class="section" id="games">
-  <div class="head"><div><h2>Direct Game Top-Up</h2><p>Choose a game to view its products and packages.</p></div></div>
-  <div class="tabs" id="tabs">
-   <button class="tab active" data-filter="all">All Games</button><button class="tab" data-filter="popular">Popular</button><button class="tab" data-filter="mobile">Mobile Games</button><button class="tab" data-filter="pc">PC & Console</button>
-  </div>
-  <div class="grid" id="gameGrid"></div>
- </section>
- <section class="section" id="new">
-  <div class="head"><div><h2>New on YunG Top</h2><p>More games and digital products in the catalogue.</p></div></div>
-  <div class="grid" id="newGrid"></div>
- </section>
- <section class="section" id="vouchers">
-  <div class="head"><div><h2>Game Gift Card Vouchers</h2><p>Choose a voucher to request its available region and value.</p></div></div>
-  <div class="grid" id="voucherGrid"></div>
- </section>
- <section class="panel" id="order">
-  <h2>Place Your Order</h2>
-  <p class="muted">Select a product and package. If a price is not listed, request the current price on WhatsApp. Do not transfer money until we confirm the final amount.</p>
-  <div class="cols">
-   <div>
-    <div class="field"><label>Game / Product</label><select id="product"><option value="">Choose a product</option></select></div>
-    <div class="field"><label>Package / Voucher Value</label><select id="pack"><option value="">Select a package</option></select></div>
-    <div class="packages" id="packageCards"></div>
-    <div class="summary">
-     <div class="line"><span>Product</span><b id="sProduct">Not selected</b></div>
-     <div class="line"><span>Package</span><b id="sPack">Not selected</b></div>
-     <div class="line total"><span>Price</span><b id="sPrice">To be confirmed</b></div>
-    </div>
-   </div>
-   <div>
-    <div class="field"><label>Full Name</label><input id="name" placeholder="Enter your full name"></div>
-    <div class="field"><label>WhatsApp Number</label><input id="phone" type="tel" placeholder="e.g. 08012345678"></div>
-    <div class="field"><label>Player ID / UID (if required)</label><input id="uid" placeholder="Enter game UID"></div>
-    <div class="field"><label>In-game Name (optional)</label><input id="ign" placeholder="Enter game name"></div>
-    <div class="field"><label>Game / Voucher Region</label><input id="region" placeholder="e.g. Global, US, EU"></div>
-    <div class="field"><label>Other Details</label><input id="extra" placeholder="Additional information (optional)"></div>
-   </div>
-  </div>
-  <div class="bank">
-   <b>Payment instructions — pay only after price confirmation</b><br>Bank: <b>OPay</b><br>Account Name: <b>Betty Onyiyechi Paul</b><br>Account Number: <b>9074239739</b><br>
-   <button class="btn secondary" id="copy">Copy Account Number</button>
-  </div>
-  <div class="field"><label>Payment Reference (if already paid)</label><input id="reference" placeholder="Enter payment reference if applicable"></div>
-  <div class="field"><label>Payment Receipt (if already paid)</label><input id="receipt" type="file" accept="image/*,.pdf"></div>
-  <p class="note">Receipt files are not uploaded automatically. Attach your receipt manually in WhatsApp.</p>
-  <button class="btn full" id="submit">CONTINUE TO WHATSAPP ORDER</button>
- </section>
- <section class="panel" id="how">
-  <h2>How to Order</h2>
-  <div class="steps">
-   <div class="step"><b>01 — Choose a game</b>Browse the catalogue and select your game or voucher.</div>
-   <div class="step"><b>02 — Select a package</b>Choose a listed package or request the current price.</div>
-   <div class="step"><b>03 — Enter your details</b>Provide your name, WhatsApp number and correct player ID.</div>
-   <div class="step"><b>04 — Confirm the price</b>Send your request and wait for price and availability confirmation.</div>
-   <div class="step"><b>05 — Make payment</b>Transfer only after the final amount is confirmed.</div>
-   <div class="step"><b>06 — Verification and delivery</b>Send your receipt. Payment is checked manually before processing.</div>
-  </div>
- </section>
-</main>
-<section id="gameDetailPage" class="detail-page" aria-live="polite"></section>
-<footer id="footer">
- <div class="footer-inner">
-  <div><h3>YunG Top 1 Meditator</h3>Your gaming top-up and digital voucher store.<br>Browse games, select packages and contact us to confirm availability and prices.</div>
-  <div><h3>Quick Links</h3><a href="#home">Home</a><br><a href="#games">Direct Game Top-Up</a><br><a href="#vouchers">Gift Card Vouchers</a><br><a href="#how">How to Order</a></div>
-  <div><h3>Contact & Payment</h3>WhatsApp: +234 907 423 9739<br><a href="https://wa.me/2349074239739" target="_blank" rel="noopener">Chat with us on WhatsApp</a><br>Payment: OPay<br>Account Name: Betty Onyiyechi Paul<br>Account Number: 9074239739</div>
- </div>
- <div class="footer-bottom">© 2026 YunG Top 1 Meditator. All rights reserved.</div>
-</footer>
-<section class="auth" id="auth">
- <div class="authbox">
-  <button class="close" id="close">×</button><div class="logo">YunG Top 1 Meditator</div>
-  <p class="muted" style="text-align:center">Sign in or create an account to continue your order.</p>
-  <div id="loginPanel">
-   <h2>Customer Sign In</h2>
-   <form id="loginForm"><label>Email Address</label><input id="loginEmail" type="email" required><label>Password</label><input id="loginPassword" type="password" required><button class="btn full">SIGN IN</button></form>
-   <div class="links"><button id="toSignup" type="button">Create Account</button><button id="toReset" type="button">Forgot Password?</button></div>
-  </div>
-  <div id="signupPanel" hidden><h2>Create Your Account</h2>
-   <form id="signupForm"><label>Full Name</label><input id="signupName" required><label>Email Address</label><input id="signupEmail" type="email" required><label>Password</label><input id="signupPassword" type="password" minlength="6" required><label class="agree"><input id="agree" type="checkbox" required><span>I agree to the Privacy Policy and Terms & Conditions.</span></label><button class="btn full">CREATE ACCOUNT</button></form>
-   <div class="links"><button id="back1" type="button">Back to Sign In</button></div>
-  </div>
-  <div id="resetPanel" hidden><h2>Reset Password</h2>
-   <form id="resetForm"><label>Email Address</label><input id="resetEmail" type="email" required><button class="btn full">SEND RESET LINK</button></form>
-   <div class="links"><button id="back2" type="button">Back to Sign In</button></div>
-  </div>
-  <p id="msg" class="msg"></p>
- </div>
+<section class="hero">
+<small>WELCOME TO YUNG TOP 1 MEDITATOR</small>
+<h1>LEVEL UP<br>YOUR GAME!</h1>
+<p>Your trusted gaming top-up store. Get game diamonds, UC, CP, Gold and other digital gaming products. Choose your game and place your order.</p>
+<button onclick="document.getElementById('games').scrollIntoView()">EXPLORE GAMES →</button>
 </section>
+
+<section class="section" id="games">
+<div class="heading"><h2>🎮 OUR GAMES</h2><p class="muted">Choose a game to view available packages.</p></div>
+<div class="grid" id="gameGrid"></div>
+</section>
+
+<section class="section" id="order">
+<div class="heading"><h2>PLACE YOUR ORDER</h2></div>
+<div class="panel">
+<p class="muted">Select your game and package. Make sure you provide a valid UID.</p>
+<div class="cols">
+<div>
+<div class="field"><label>Select Game</label><select id="gameSelect"></select></div>
+<div class="field"><label>Select Package</label><select id="packageSelect"></select></div>
+<div class="packages" id="packageCards"></div>
+<div class="summary">
+<div class="line"><span>Game</span><strong id="summaryGame">Not selected</strong></div>
+<div class="line"><span>Package</span><strong id="summaryPackage">Not selected</strong></div>
+<div class="line green"><span>Price</span><strong id="summaryPrice">₦0</strong></div>
+</div>
+</div>
+<div>
+<div class="field"><label>Full Name</label><input id="customerName" placeholder="Enter your full name"></div>
+<div class="field"><label>WhatsApp Number</label><input id="customerPhone" placeholder="Enter phone number"></div>
+<div class="field"><label>Player UID</label><input id="customerUID" placeholder="Enter your game UID"></div>
+<div class="field"><label>In-game Name</label><input id="customerIGN" placeholder="Enter your game name"></div>
+<div class="field"><label>Additional Information</label><input id="customerNote" placeholder="Optional"></div>
+</div>
+</div>
+<div class="panel" style="margin-top:18px">
+<strong>PAYMENT INFORMATION</strong>
+<p class="muted">OPay Account Name: Betty Onyiyechi Paul<br>Account Number: 9074239739</p>
+<p class="muted">Please wait for price and order confirmation before making payment.</p>
+</div>
+<button class="full" id="orderButton">CONTINUE TO WHATSAPP</button>
+</div>
+</section>
+
+<section class="section" id="how">
+<div class="panel">
+<h2>HOW TO ORDER</h2>
+<p>1. Choose your preferred game.</p>
+<p>2. Select your package.</p>
+<p>3. Enter your correct player UID.</p>
+<p>4. Sign in or create an account.</p>
+<p>5. Send your order through WhatsApp.</p>
+<p>6. Confirm the price before making payment.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="panel">
+<h2>CONTACT US</h2>
+<p>WhatsApp: +234 907 423 9739</p>
+<a href="https://wa.me/2349074239739"><button>CHAT WITH US</button></a>
+</div>
+</section>
+</main>
+
+<section class="wrap detail" id="detail">
+<button class="back" onclick="closeDetail()">← BACK TO GAMES</button>
+<div class="panel" id="detailContent"></div>
+</section>
+
+<footer>
+<strong>YunG Top 1 Meditator</strong>
+<p>Your trusted gaming top-up store.</p>
+<p>© 2026 YunG Top 1 Meditator. All rights reserved.</p>
+</footer>
+
+<div class="auth" id="auth">
+<div class="authbox">
+<button class="close" onclick="closeAuth()">×</button>
+<h2>YunG Customer Account</h2>
+<div id="loginPanel">
+<h3>Sign In</h3>
+<form id="loginForm">
+<div class="field"><label>Email</label><input id="loginEmail" type="email" required></div>
+<div class="field"><label>Password</label><input id="loginPassword" type="password" required></div>
+<button class="full">SIGN IN</button>
+</form>
+<div class="authlinks">
+<button onclick="showPanel('registerPanel')">Create Account</button>
+<button onclick="showPanel('resetPanel')">Forgot Password?</button>
+</div>
+</div>
+<div id="registerPanel" hidden>
+<h3>Create Account</h3>
+<form id="registerForm">
+<div class="field"><label>Full Name</label><input id="registerName" required></div>
+<div class="field"><label>Email</label><input id="registerEmail" type="email" required></div>
+<div class="field"><label>Password (minimum 6 characters)</label><input id="registerPassword" type="password" minlength="6" required></div>
+<button class="full">CREATE ACCOUNT</button>
+</form>
+<div class="authlinks"><button onclick="showPanel('loginPanel')">Back to Sign In</button></div>
+</div>
+<div id="resetPanel" hidden>
+<h3>Reset Password</h3>
+<form id="resetForm">
+<div class="field"><label>Email</label><input id="resetEmail" type="email" required></div>
+<button class="full">SEND RESET LINK</button>
+</form>
+<div class="authlinks"><button onclick="showPanel('loginPanel')">Back to Sign In</button></div>
+</div>
+<p id="message"></p>
+</div>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script>
-.detail-hero{display:grid;grid-template-columns:minmax(220px,390px) 1fr;gap:28px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;align-items:center}
-.detail-cover{height:270px;border-radius:10px;overflow:hidden;background:#102d55}.detail-cover img{width:100%;height:100%;object-fit:cover}
-.detail-copy h1{font-size:32px;margin:0 0 10px}.detail-copy p{color:var(--muted);line-height:1.7}const firebaseConfig={
- apiKey:"AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",
- authDomain:"yung-top-1-meditator.firebaseapp.com",
- projectId:"yung-top-1-meditator",
- storageBucket:"yung-top-1-meditator.firebasestorage.app",
- messagingSenderId:"1084880443507",
- appId:"1:1084880443507:web:65c9c51733b955b2543206"
+const firebaseConfig={
+apiKey:"AIzaSyA1qlxukoXV1baLB6yPVIh3Uz-3kyHNw1c",
+authDomain:"yung-top-1-meditator.firebaseapp.com",
+projectId:"yung-top-1-meditator",
+storageBucket:"yung-top-1-meditator.firebasestorage.app",
+messagingSenderId:"1084880443507",
+appId:"1:1084880443507:web:65c9c51733b955b2543206"
 };
+
 firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth(),WA="2349074239739",$=id=>document.getElementById(id);
-const money=n=>"₦"+Number(n).toLocaleString("en-NG");
-let user=null,pendingOrder=false,currentFilter="all";
-function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+const auth=firebase.auth();
+const WA="2349074239739";
+const $=id=>document.getElementById(id);
+
 const games=[
-["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","COD"],
-["Free Fire","Diamonds & Membership","mobile","popular","FF"],
-["PUBG Mobile","UC & Royale Pass","mobile","popular","PUBG"],
-["Blood Strike","Gold & Pass","mobile","popular","BS"],
-["Mobile Legends","Diamonds & Passes","mobile","popular","ML"],
-["EA SPORTS FC Mobile","FC Points & Silver","mobile","popular","FC"],
-["Delta Force","Global Coins","mobile","mobile","DF"],
-["Genshin Impact","Genesis Crystals","mobile","mobile","GI"],
-["Arena Breakout","Bonds","mobile","mobile","AB"],
-["Honor of Kings","Tokens","mobile","mobile","HOK"],
-["Lords Mobile","Diamonds & Packages","mobile","mobile","LM"],
-["Marvel Rivals","Lattices","pc","popular","MR"],
-["Farlight 84","Diamonds & Passes","mobile","mobile","F84"],
-["Asphalt Legends Unite","Tokens","mobile","mobile","AL"],
-["Zenless Zone Zero","Monochrome","mobile","mobile","ZZZ"],
-["ZEPETO","ZEMs & Coins","mobile","mobile","Z"],
-["Whiteout Survival","Frost Star","mobile","mobile","WS"],
-["Football Dream","Points","mobile","mobile","FD"],
-["Age of Empires Mobile","Coins","mobile","mobile","AOE"],
-["Ragnarok Origin","Nyan Berry","mobile","mobile","RO"],
-["Wuthering Waves","Lunites","mobile","mobile","WW"],
-["Love and Deepspace","Crystals","mobile","mobile","LD"],
-["Undawn","RC","mobile","mobile","U"],
-["Once Human","Crystgin","pc","pc","OH"],
-["Where Winds Meet","Top-Up","pc","pc","WWM"],
-["BIGO Live","Diamonds","mobile","mobile","BIGO"],
-["Yalla Ludo","Gold & Diamonds","mobile","mobile","YL"],
-["Chamet","Diamonds","mobile","mobile","CH"],
-["Hago","Diamonds","mobile","mobile","H"],
-["Poppo Live","Coins","mobile","mobile","P"],
-["Sawa Play","Coins","mobile","mobile","SP"],
-["StarMaker","Coins","mobile","mobile","SM"],
-["Tarbi3ah Baloot","Gold","mobile","mobile","TB"],
-["YoHo","Coins","mobile","mobile","Y"],
-["Tango","Coins","mobile","mobile","T"],
-["Honkai: Star Rail","Oneiric Shards","mobile","mobile","HSR"],
-["CapCut","Subscription","mobile","mobile","CC"],
-["Roblox","Robux","pc","popular","R"],
-["Minecraft","Game Product","pc","pc","MC"],
-["Fortnite","V-Bucks","pc","popular","FN"],
-["GTA Online","Shark Cards","pc","pc","GTA"],
-["eFootball","Coins","mobile","popular","EF"]
+{name:"Free Fire",description:"Diamonds and membership",code:"FF",color:"#9d321e",packages:[["100 Diamonds",900],["210 Diamonds",1850],["530 Diamonds",4600],["1080 Diamonds",9000]]},
+{name:"COD Mobile",description:"CP and Battle Pass",code:"COD",color:"#263b60",packages:[["80 CP",900],["420 CP",4600],["880 CP",9000]]},
+{name:"Blood Strike",description:"Gold and game packages",code:"BS",color:"#8b2c29",packages:[["100 Gold",900],["500 Gold",4600],["1000 Gold",9000]]},
+{name:"PUBG Mobile",description:"UC and Royale Pass",code:"PUBG",color:"#806022",packages:[["60 UC",900],["325 UC",4600],["660 UC",9000]]},
+{name:"Mobile Legends",description:"Diamonds and passes",code:"ML",color:"#254d83",packages:[]},
+{name:"EA SPORTS FC Mobile",description:"FC Points",code:"FC",color:"#17664e",packages:[]},
+{name:"Genshin Impact",description:"Genesis Crystals",code:"GI",color:"#347b9b",packages:[]},
+{name:"Roblox",description:"Robux",code:"RB",color:"#8c3434",packages:[]},
+{name:"Fortnite",description:"V-Bucks",code:"FN",color:"#5340a4",packages:[]},
+{name:"Delta Force",description:"Game top-up",code:"DF",color:"#6b5c34",packages:[]},
+{name:"Arena Breakout",description:"Bonds",code:"AB",color:"#51604a",packages:[]},
+{name:"Marvel Rivals",description:"Lattices",code:"MR",color:"#75432e",packages:[]},
+{name:"Minecraft",description:"Game products",code:"MC",color:"#367342",packages:[]},
+{name:"eFootball",description:"Coins",code:"EF",color:"#245b9b",packages:[]},
+{name:"Whiteout Survival",description:"Frost Star",code:"WS",color:"#467c9b",packages:[]},
+{name:"BIGO Live",description:"Diamonds",code:"BG",color:"#246a9d",packages:[]}
 ];
-const vouchers=[
-["Roblox Gift Card","Gift Card","pc","popular","R"],["Steam Gift Card","Wallet Code","pc","popular","S"],
-["PlayStation Card","PSN Wallet","pc","popular","PS"],["Xbox Gift Card","Xbox Wallet","pc","popular","X"],
-["Nintendo eShop Card","eShop Code","pc","popular","N"],["Razer Gold","Gift Card","pc","popular","RG"],
-["Apple Gift Card","Gift Card","pc","popular","A"],["Amazon Gift Card","Gift Card","pc","popular","AM"],
-["Google Play Gift Card","Gift Card","pc","popular","GP"],["Epic Games Gift Card","Gift Card","pc","popular","EG"],
-["GameStop Gift Card","Gift Card","pc","pc","GS"],["ExitLag Subscription","Subscription","pc","pc","EL"]
-];
-const packages={
-"Free Fire":[["100 Diamonds",900],["210 Diamonds",1850],["530 Diamonds",4600],["1080 Diamonds",9000]],
-"Call of Duty: Mobile":[["80 CP",900],["420 CP",4600],["880 CP",9000]],
-"Blood Strike":[["100 Gold",900],["500 Gold",4600],["1000 Gold",9000]],
-"PUBG Mobile":[["60 UC",900],["325 UC",4600],["660 UC",9000]]
-};
-const productImages={
-"Free Fire":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIxOThlNzQ1Mi1iZWRlLTQ5ZTEtYTYzZC02NWQ4OTIzYjRkZDQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"Blood Strike":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiI3NTM2Nzg2ZC03NjBiLTRlODgtOGU1MS1iNDA0OTBkOTNkMjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
-"PUBG Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJmNzhlMTMyNC1hOTg2LTQ3MWItYWUwMS1jNjBkOGFlOTk3YjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19"
-};
-const colours=[["#10254a","#1769ff"],["#3b123d","#a62ca8"],["#123b36","#078b76"],["#3d2111","#d76b20"],["#19254c","#6248d8"],["#292044","#b3447d"],["#132d46","#1598bc"],["#3a2a13","#bd8b28"]];
-function fallback(product){
- const i=(product[0].length+product[0].charCodeAt(0))%colours.length,d=document.createElement("div");
- d.className="art-fallback";d.style.setProperty("--art1",colours[i][0]);d.style.setProperty("--art2",colours[i][1]);
- d.innerHTML="<strong>"+escapeHTML(product[4])+"</strong><span>"+escapeHTML(product[0].toUpperCase())+"</span>";return d;
-}
-function artwork(product,detail=false){
- const art=document.createElement("div");
- art.className=detail?"detail-cover":"art";
- const name=product[0];
- const prompt=name+" video game key art, distinctive game cover artwork, cinematic landscape composition, no added lettering";
- const src=productImages[name] || ("https://image.pollinations.ai/prompt/"+encodeURIComponent(prompt)+"?width=1200&height=675&nologo=true&seed="+encodeURIComponent(name));
- const img=document.createElement("img");
- img.src=src;img.alt=name+" game artwork";img.loading="lazy";img.referrerPolicy="no-referrer";
- img.onerror=()=>{art.innerHTML="";art.appendChild(fallback(product));};
- art.appendChild(img);
- return art;
-}
-function createCard(product){
- const card=document.createElement("article");card.className="product";card.appendChild(artwork(product));
- const info=document.createElement("div");info.className="info";const title=document.createElement("h3");title.textContent=product[0];
- const desc=document.createElement("small");desc.textContent=product[1];const button=document.createElement("button");button.textContent="VIEW TOP-UP";
- button.onclick=e=>{e.stopPropagation();openProduct(product[0]);};info.append(title,desc,button);card.appendChild(info);card.onclick=()=>openProduct(product[0]);return card;
-}
-function draw(list,target,filterable=false){
- const container=$(target);container.innerHTML="";
- const result=list.filter(p=>{
-  if(filterable&&currentFilter==="popular"&&p[3]!=="popular")return false;
-  if(filterable&&currentFilter==="mobile"&&p[2]!=="mobile")return false;
-  if(filterable&&currentFilter==="pc"&&p[2]!=="pc")return false;return true;
- });
- if(!result.length){const empty=document.createElement("div");empty.className="empty";empty.textContent="No products found.";container.appendChild(empty);return;}
- result.forEach(p=>container.appendChild(createCard(p)));
-}
-function render(){draw(games,"gameGrid",true);draw(vouchers,"voucherGrid");draw(games.filter(p=>p[3]==="popular"),"popularGrid");draw(games.slice(12,20),"newGrid");}
-$("tabs").addEventListener("click",e=>{
- const btn=e.target.closest(".tab");if(!btn)return;currentFilter=btn.dataset.filter;
- document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===btn));draw(games,"gameGrid",true);
+
+let currentUser=null,pendingOrder=false;
+
+function money(n){return "₦"+Number(n).toLocaleString("en-NG");}
+
+function renderGames(){
+const grid=$("gameGrid");grid.innerHTML="";
+games.forEach((game,index)=>{
+const card=document.createElement("div");card.className="card";
+card.innerHTML=`<div class="cover" style="--c1:${game.color};--c2:#10182b"><strong>${game.code}<br>${game.name}</strong></div><div class="cardbody"><h3>${game.name}</h3><p>${game.description}</p><button onclick="chooseGame(${index})">VIEW PACKAGES</button></div>`;
+grid.appendChild(card);
 });
-function goToSection(id){
- if($("gameDetailPage").classList.contains("active"))backToShop(false);
- $(id).scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll(".nav a").forEach(a=>a.classList.remove("active"));
- const map={home:"homeNav",popular:"popularNav",new:"newNav",games:"gamesNav",vouchers:"voucherNav",footer:"footerNav"};if(map[id])$(map[id]).classList.add("active");
 }
-$("popularNav").addEventListener("click",e=>{e.preventDefault();goToSection("popular");});
-$("gamesNav").addEventListener("click",e=>{e.preventDefault();currentFilter="all";document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.filter==="all"));render();goToSection("games");});
-$("homeNav").addEventListener("click",e=>{e.preventDefault();goToSection("home");});
-$("newNav").addEventListener("click",e=>{e.preventDefault();goToSection("new");});
-$("voucherNav").addEventListener("click",e=>{e.preventDefault();goToSection("vouchers");});
-$("footerNav").addEventListener("click",e=>{e.preventDefault();goToSection("footer");});
-const searchOverlay=$("searchOverlay"),searchInput=$("searchInput");
-const popularSearches=["Free Fire","PUBG Mobile","Blood Strike","PlayStation","Roblox","Steam","Fortnite","Mobile Legends","Call of Duty: Mobile","Apple Gift Card"];function openSearchWindow(){searchOverlay.classList.add("open");searchInput.value="";renderSearchProducts("");document.body.style.overflow="hidden";setTimeout(()=>searchInput.focus(),100);}
-function closeSearchWindow(){searchOverlay.classList.remove("open");document.body.style.overflow="";}
-$("openSearch").onclick=openSearchWindow;$("closeSearch").onclick=closeSearchWindow;
-searchOverlay.addEventListener("click",e=>{if(e.target===searchOverlay)closeSearchWindow();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSearchWindow();closeAuth();}});
-function drawPopularSearches(){
- const container=$("popularSearchList");container.innerHTML="";
- popularSearches.forEach(name=>{const button=document.createElement("button");button.className="popular-search-item";button.innerHTML="<span>⌕</span>"+escapeHTML(name);button.onclick=()=>{searchInput.value=name;renderSearchProducts(name);};container.appendChild(button);});
+
+function chooseGame(index){
+const game=games[index];
+$("gameSelect").value=game.name;
+updatePackages();
+$("detailContent").innerHTML=`<h1>${game.name}</h1><p>${game.description}</p><p>Select a package below to place your order.</p>`;
+if(!game.packages.length)$("detailContent").innerHTML+=`<p class="muted">Contact us on WhatsApp to confirm current packages and prices.</p>`;
+$("detail").classList.add("show");
+$("home").style.display="none";
+window.scrollTo(0,0);
 }
-function renderSearchProducts(query){
- const container=$("searchProductGrid"),heading=$("searchResultsHeading"),empty=$("searchNoResults");container.innerHTML="";
- const allProducts=[...games,...vouchers],term=query.trim().toLowerCase();let results;
- if(!term){results=[vouchers.find(p=>p[0]==="Apple Gift Card"),games.find(p=>p[0]==="Free Fire"),games.find(p=>p[0]==="Blood Strike")].filter(Boolean);heading.textContent="Top selling products";}
- else{results=allProducts.filter(p=>(p[0]+" "+p[1]).toLowerCase().includes(term));heading.textContent="Search results";}
- empty.hidden=results.length!==0;
- results.forEach(product=>{
-  const card=document.createElement("div");card.className="search-product";const image=document.createElement("div");image.className="search-product-image";image.appendChild(artwork(product));
-  const type=document.createElement("div");type.className="search-product-type";type.textContent=product[3]==="popular"?"POPULAR PRODUCT":"GAME TOP-UP";
-  const name=document.createElement("div");name.className="search-product-name";name.textContent=product[0];card.append(image,type,name);
-  card.onclick=()=>{closeSearchWindow();openProduct(product[0]);};container.appendChild(card);
- });
+function closeDetail(){
+$("detail").classList.remove("show");
+$("home").style.display="block";
+window.scrollTo(0,0);
 }
-searchInput.addEventListener("input",()=>renderSearchProducts(searchInput.value));drawPopularSearches();renderSearchProducts("");
-function fillProductSelector(){
- $("product").innerHTML='<option value="">Choose a product</option>';
- [...games,...vouchers].forEach(p=>{const o=document.createElement("option");o.value=p[0];o.textContent=p[0];$("product").appendChild(o);});
-}
-function updateProduct(){
- const name=$("product").value,select=$("pack");select.innerHTML='<option value="">Select a package</option>';$("packageCards").innerHTML="";$("sProduct").textContent=name||"Not selected";
- if(!name){summary();return;}const list=packages[name];
- if(list){list.forEach(item=>{
-  const o=document.createElement("option");o.value=item[0];o.textContent=item[0]+" — "+money(item[1]);o.dataset.price=item[1];select.appendChild(o);
-  const card=document.createElement("div");card.className="pkg";card.innerHTML="<strong>"+escapeHTML(item[0])+"</strong><em>"+money(item[1])+"</em>";
-  card.onclick=()=>{select.value=item[0];summary();};$("packageCards").appendChild(card);
- });}
- else{const o=document.createElement("option");o.value="Request current packages and price";o.textContent=o.value;select.appendChild(o);
- const p=document.createElement("p");p.className="note";p.textContent="Contact us to confirm available packages and the latest price.";$("packageCards").appendChild(p);}
- summary();
-}
-function summary(){
- const o=$("pack").options[$("pack").selectedIndex],price=o&&o.dataset.price?Number(o.dataset.price):0;
- $("sPack").textContent=o&&o.value?o.textContent:"Not selected";$("sPrice").textContent=price?money(price):"To be confirmed";
- document.querySelectorAll("#packageCards .pkg").forEach(c=>c.classList.toggle("selected",c.querySelector("strong").textContent===($("pack").value||"")));
-}
-$("product").onchange=updateProduct;$("pack").onchange=summary;
-function openProduct(name){
- const product=[...games,...vouchers].find(p=>p[0]===name);if(!product)return;
- $("product").value=name;updateProduct();const page=$("gameDetailPage");page.innerHTML="";
- const top=document.createElement("div");top.className="detail-top";const back=document.createElement("button");back.className="back-games";back.textContent="← Back to shop";back.onclick=backToShop;
- const crumb=document.createElement("span");crumb.className="detail-crumb";crumb.textContent="Home / Direct Game Top-Up / "+name;top.append(back,crumb);page.appendChild(top);
- const hero=document.createElement("div");hero.className="detail-hero";hero.appendChild(artwork(product,true));
- const copy=document.createElement("div");copy.className="detail-copy";
- copy.innerHTML="<h1>"+escapeHTML(name)+"</h1><p>"+escapeHTML(product[1])+"</p><p>Select your package below. If your required package is not listed, contact us to confirm availability and the current price.</p>";
- const choose=document.createElement("button");choose.className="btn";choose.textContent="SELECT PACKAGE";choose.onclick=()=>$("detailOrder").scrollIntoView({behavior:"smooth"});copy.appendChild(choose);hero.appendChild(copy);page.appendChild(hero);
- const order=document.createElement("div");order.className="detail-order";order.id="detailOrder";order.innerHTML="<h2>Choose your package</h2><p class='muted'>Select your product package and continue with your order.</p>";
- const list=packages[name];
- if(list){const cards=document.createElement("div");cards.className="packages";
- list.forEach((item,index)=>{const c=document.createElement("div");c.className="pkg"+(index===0?" selected":"");c.innerHTML="<strong>"+escapeHTML(item[0])+"</strong><em>"+money(item[1])+"</em>";
- c.onclick=()=>{$("pack").value=item[0];summary();cards.querySelectorAll(".pkg").forEach((x,i)=>x.classList.toggle("selected",i===index));};cards.appendChild(c);});
- order.appendChild(cards);$("pack").value=list[0][0];summary();}
- else{const p=document.createElement("p");p.className="note";p.textContent="Packages and prices for this product will be confirmed on WhatsApp.";order.appendChild(p);}
- const go=document.createElement("button");go.className="btn full";go.textContent="CONTINUE TO ORDER";
- go.onclick=()=>{backToShop(false);$("order").scrollIntoView({behavior:"smooth"});};order.appendChild(go);page.appendChild(order);
- $("home").hidden=true;page.classList.add("active");history.pushState({product:name},"","#product-"+encodeURIComponent(name.replace(/\s+/g,"-")));window.scrollTo({top:0,behavior:"smooth"});
-}
-function backToShop(updateHistory=true){
- $("gameDetailPage").classList.remove("active");$("gameDetailPage").innerHTML="";$("home").hidden=false;
- if(updateHistory&&location.hash.startsWith("#product-"))history.replaceState({},"",location.pathname+location.search);
- window.scrollTo({top:0,behavior:"smooth"});
-}
-window.addEventListener("popstate",()=>{if($("gameDetailPage").classList.contains("active"))backToShop(false);});
-$("brandHome").onclick=e=>{if($("gameDetailPage").classList.contains("active")){e.preventDefault();backToShop();}};
-$("copy").onclick=async()=>{try{await navigator.clipboard.writeText("9074239739");alert("OPay account number copied.");}catch(e){alert("OPay account number: 9074239739");}};
-const authBox=$("auth"),message=$("msg");
-function say(t,error=false){message.textContent=t;message.classList.toggle("error",error);}
-function showAuthPanel(n){["login","signup","reset"].forEach(p=>$(p+"Panel").hidden=p!==n);say("");}
-function openAuth(){authBox.classList.add("open");showAuthPanel("login");}
-function closeAuth(){authBox.classList.remove("open");}
-$("accountBtn").onclick=()=>{user?alert("You are already signed in."):openAuth();};
-$("close").onclick=closeAuth;authBox.onclick=e=>{if(e.target===authBox)closeAuth();};
-$("toSignup").onclick=()=>showAuthPanel("signup");$("toReset").onclick=()=>showAuthPanel("reset");
-$("back1").onclick=$("back2").onclick=()=>showAuthPanel("login");
-function authError(e){
- const m={"auth/email-already-in-use":"This email already has an account. Sign in instead.","auth/invalid-email":"Enter a valid email address.","auth/weak-password":"Password must contain at least 6 characters.","auth/user-not-found":"No account found with this email.","auth/wrong-password":"Incorrect email or password.","auth/invalid-credential":"Incorrect email or password.","auth/too-many-requests":"Too many attempts. Try again later.","auth/network-request-failed":"Check your internet connection.","auth/unauthorized-domain":"This website domain is not authorised in Firebase."};
- return m[e.code]||e.message;
-}
-$("signupForm").onsubmit=async e=>{
- e.preventDefault();try{const r=await auth.createUserWithEmailAndPassword($("signupEmail").value.trim(),$("signupPassword").value);
- await r.user.updateProfile({displayName:$("signupName").value.trim()});$("name").value=$("signupName").value.trim();say("Account created successfully.");}
- catch(err){say(authError(err),true);}
-};
-$("loginForm").onsubmit=async e=>{e.preventDefault();try{await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value);}catch(err){say(authError(err),true);}};
-$("resetForm").onsubmit=async e=>{e.preventDefault();try{await auth.sendPasswordResetEmail($("resetEmail").value.trim());say("Password reset email sent. Check your inbox and spam folder.");}catch(err){say(authError(err),true);}};
-$("signOut").onclick=()=>auth.signOut();
-auth.onAuthStateChanged(current=>{
- user=current;$("accountBtn").hidden=!!user;$("signOut").hidden=!user;
- if(user){if(user.displayName&&!$("name").value)$("name").value=user.displayName;closeAuth();if(pendingOrder){pendingOrder=false;sendOrder();}}
+
+function setupGames(){
+games.forEach(g=>{
+const option=document.createElement("option");
+option.value=g.name;option.textContent=g.name;
+$("gameSelect").appendChild(option);
 });
+$("gameSelect").addEventListener("change",updatePackages);
+$("packageSelect").addEventListener("change",updateSummary);
+updatePackages();
+}
+
+function updatePackages(){
+const game=games.find(g=>g.name===$("gameSelect").value);
+const select=$("packageSelect");select.innerHTML="";
+$("packageCards").innerHTML="";
+if(!game)return;
+if(game.packages.length){
+game.packages.forEach((p,i)=>{
+const option=document.createElement("option");
+option.value=p[0];option.textContent=p[0]+" — "+money(p[1]);
+option.dataset.price=p[1];select.appendChild(option);
+const card=document.createElement("div");card.className="package";
+card.innerHTML=`<strong>${p[0]}</strong><span>${money(p[1])}</span>`;
+card.onclick=()=>{select.value=p[0];updateSummary();};
+$("packageCards").appendChild(card);
+});
+}else{
+const option=document.createElement("option");
+option.value="Request current package and price";
+option.textContent=option.value;select.appendChild(option);
+$("packageCards").innerHTML="<p class='muted'>Contact us for available packages and current prices.</p>";
+}
+updateSummary();
+}
+function updateSummary(){
+const game=$("gameSelect").value;
+const option=$("packageSelect").options[$("packageSelect").selectedIndex];
+$("summaryGame").textContent=game||"Not selected";
+$("summaryPackage").textContent=option?option.value:"Not selected";
+$("summaryPrice").textContent=option&&option.dataset.price?money(option.dataset.price):"To be confirmed";
+document.querySelectorAll(".package").forEach(card=>card.classList.toggle("selected",card.querySelector("strong").textContent===$("packageSelect").value));
+}
+
+function openAuth(){ $("auth").classList.add("show");showPanel("loginPanel"); }
+function closeAuth(){ $("auth").classList.remove("show"); }
+function showPanel(panel){
+["loginPanel","registerPanel","resetPanel"].forEach(id=>$(id).hidden=id!==panel);
+$("message").textContent="";
+}
+$("accountButton").onclick=()=>currentUser?alert("You are signed in."):openAuth();
+$("logoutButton").onclick=()=>auth.signOut();
+
+function showMessage(text){$("message").textContent=text;}
+function friendlyError(e){
+const errors={
+"auth/email-already-in-use":"This email already has an account.",
+"auth/invalid-email":"Enter a valid email address.",
+"auth/weak-password":"Use at least 6 characters for your password.",
+"auth/user-not-found":"Account not found.",
+"auth/invalid-credential":"Incorrect email or password.",
+"auth/too-many-requests":"Too many attempts. Try again later.",
+"auth/network-request-failed":"Check your internet connection.",
+"auth/unauthorized-domain":"Add this website domain to Firebase authorised domains."
+};
+return errors[e.code]||e.message;
+}
+
+$("registerForm").onsubmit=async e=>{
+e.preventDefault();
+try{
+const result=await auth.createUserWithEmailAndPassword($("registerEmail").value.trim(),$("registerPassword").value);
+await result.user.updateProfile({displayName:$("registerName").value.trim()});
+showMessage("Your account has been created successfully.");
+}catch(error){showMessage(friendlyError(error));}
+};
+
+$("loginForm").onsubmit=async e=>{
+e.preventDefault();
+try{await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value);}
+catch(error){showMessage(friendlyError(error));}
+};
+
+$("resetForm").onsubmit=async e=>{
+e.preventDefault();
+try{
+await auth.sendPasswordResetEmail($("resetEmail").value.trim());
+showMessage("Password reset email sent. Check your inbox.");
+}catch(error){showMessage(friendlyError(error));}
+};
+
+auth.onAuthStateChanged(user=>{
+currentUser=user;
+$("accountButton").hidden=!!user;
+$("logoutButton").hidden=!user;
+if(user){
+if(user.displayName&&!$("customerName").value)$("customerName").value=user.displayName;
+closeAuth();
+if(pendingOrder){pendingOrder=false;sendOrder();}
+}
+});
+
 function sendOrder(){
- const receipt=$("receipt").files[0],selected=$("pack").options[$("pack").selectedIndex];
- const price=selected&&selected.dataset.price?money(selected.dataset.price):"To be confirmed";
- const text=`NEW ORDER / PRICE ENQUIRY
-YUNG TOP 1 MEDITATOR
+const game=$("gameSelect").value;
+const pack=$("packageSelect").value;
+const option=$("packageSelect").options[$("packageSelect").selectedIndex];
+const price=option&&option.dataset.price?money(option.dataset.price):"To be confirmed";
+const text=`NEW ORDER - YUNG TOP 1 MEDITATOR
 
-Customer: ${$("name").value.trim()}
-Email: ${user?user.email:""}
-WhatsApp: ${$("phone").value.trim()}
-Product: ${$("product").value}
-Package: ${$("pack").value}
-Price shown: ${price}
-Player UID: ${$("uid").value.trim()||"Not provided"}
-In-game name: ${$("ign").value.trim()||"Not provided"}
-Region: ${$("region").value.trim()||"Not provided"}
-Other details: ${$("extra").value.trim()||"None"}
-Payment reference: ${$("reference").value.trim()||"Not provided"}
-Receipt selected: ${receipt?receipt.name:"No"}
+Customer: ${$("customerName").value}
+Email: ${currentUser?currentUser.email:""}
+WhatsApp: ${$("customerPhone").value}
+Game: ${game}
+Package: ${pack}
+Price: ${price}
+Player UID: ${$("customerUID").value}
+In-game Name: ${$("customerIGN").value}
+Additional Information: ${$("customerNote").value}
 
-Please confirm availability and final price. I will make payment only after confirmation. If I have already paid after confirmation, I will attach my receipt here.`;
- const url="https://wa.me/"+WA+"?text="+encodeURIComponent(text);const win=window.open(url,"_blank");if(!win)window.location.href=url;
+Please confirm availability and final price before payment.`;
+window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(text),"_blank");
 }
-$("submit").onclick=()=>{
- if(!$("product").value||!$("pack").value){alert("Select a product and package, or request current prices.");return;}
- if(!$("name").value.trim()||!$("phone").value.trim()){alert("Enter your full name and WhatsApp number.");return;}
- if(!user){pendingOrder=true;openAuth();say("Please sign in or create an account to continue your order.");return;}sendOrder();
+
+$("orderButton").onclick=()=>{
+if(!$("gameSelect").value||!$("packageSelect").value){alert("Please select a game and package.");return;}
+if(!$("customerName").value.trim()||!$("customerPhone").value.trim()||!$("customerUID").value.trim()){alert("Enter your name, WhatsApp number and valid game UID.");return;}
+if(!currentUser){pendingOrder=true;openAuth();showMessage("Please sign in or create an account to continue.");return;}
+sendOrder();
 };
-fillProductSelector();render();updateProduct();
+
+renderGames();
+setupGames();
 </script>
 </body>
 </html>
