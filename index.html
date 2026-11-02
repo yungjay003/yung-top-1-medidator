@@ -1,4 +1,129 @@
-<!DOCTYPE html>
+```html
+  <div class="search-no-results" id="searchEmpty" hidden>No matching products found.</div>
+ </div>
+</div>
+<div class="auth" id="auth">
+ <div class="authbox">
+  <button class="close" id="close">×</button>
+  <div class="logo">YunG Top 1 Meditator</div>
+  <div id="loginPanel">
+   <h2>Welcome back</h2>
+   <form id="loginForm">
+    <label>Email address</label><input id="loginEmail" type="email" required autocomplete="email">
+    <label>Password</label><input id="loginPassword" type="password" required autocomplete="current-password">
+    <button class="btn full" type="submit">SIGN IN</button>
+   </form>
+   <div class="links"><button id="toSignup">Create account</button><button id="toReset">Forgot password?</button></div>
+  </div>
+  <div id="signupPanel" hidden>
+   <h2>Create your account</h2>
+   <form id="signupForm">
+    <label>Full name</label><input id="signupName" required autocomplete="name">
+    <label>Email address</label><input id="signupEmail" type="email" required autocomplete="email">
+    <label>Password (at least 6 characters)</label><input id="signupPassword" type="password" minlength="6" required autocomplete="new-password">
+    <button class="btn full" type="submit">CREATE ACCOUNT</button>
+   </form>
+   <div class="links"><button id="back1">Back to sign in</button></div>
+  </div>
+  <div id="resetPanel" hidden>
+   <h2>Reset password</h2>
+   <form id="resetForm">
+    <label>Email address</label><input id="resetEmail" type="email" required>
+    <button class="btn full" type="submit">SEND RESET EMAIL</button>
+   </form>
+   <div class="links"><button id="back2">Back to sign in</button></div>
+  </div>
+  <p class="msg" id="msg"></p>
+ </div>
+</div>
+<main id="home">
+ <div class="wrap">
+  <section class="hero">
+   <small>YUNG TOP 1 MEDITATOR</small>
+   <h1>LEVEL UP YOUR GAME!</h1>
+   <p>Your trusted gaming top-up store. Get your favourite game credits and vouchers with a simple and secure ordering process.</p>
+   <a class="cta" href="#games">EXPLORE GAMES</a>
+  </section>
+  <div class="quick">
+   <div>✓ Fast order processing</div><div>✓ Secure ordering</div><div>✓ Customer support</div><div>✓ Wide game selection</div>
+  </div>
+  <section class="section" id="popular">
+   <div class="head"><div><h2>Most Popular Today</h2><p>Popular games and top-up products</p></div></div>
+   <div class="grid" id="popularGrid"></div>
+  </section>
+  <section class="section" id="new">
+   <div class="head"><div><h2>New on YunG Top</h2><p>Explore more games available in our catalogue</p></div></div>
+   <div class="grid" id="newGrid"></div>
+  </section>
+  <section class="section" id="games">
+   <div class="head"><div><h2>Direct Game Top-Up</h2><p>Choose your game to view available packages</p></div></div>
+   <div class="tabs" id="gameTabs">
+    <button class="tab active" data-filter="all">All games</button>
+    <button class="tab" data-filter="popular">Popular</button>
+   </div>
+   <div class="grid" id="gameGrid"></div>
+  </section>
+  <section class="section" id="vouchers">
+   <div class="head"><div><h2>Game Gift Card Vouchers</h2><p>Choose a voucher to request current prices</p></div></div>
+   <div class="grid" id="voucherGrid"></div>
+  </section>
+  <section class="section panel" id="order">
+   <h2>Place Your Order</h2>
+   <p class="muted">Choose your game and package, enter your player details, then continue through WhatsApp.</p>
+   <div class="cols">
+    <div>
+     <div class="field"><label for="product">Select game or voucher</label><select id="product" required><option value="">Choose a product</option></select></div>
+     <div class="field"><label for="pack">Select package</label><select id="pack" required><option value="">Select a package</option></select></div>
+     <div id="packageCards" class="packages"></div>
+     <div class="summary">
+      <div class="line"><span>Product</span><strong id="sProduct">Not selected</strong></div>
+      <div class="line"><span>Package</span><strong id="sPack">Not selected</strong></div>
+      <div class="line"><span>Price</span><strong class="total" id="sPrice">To be confirmed</strong></div>
+     </div>
+    </div>
+    <div>
+     <div class="field"><label for="name">Full name</label><input id="name" placeholder="Enter your full name" required></div>
+     <div class="field"><label for="phone">WhatsApp number</label><input id="phone" type="tel" placeholder="Enter your WhatsApp number" required></div>
+     <div class="field"><label for="uid">Player UID / User ID</label><input id="uid" placeholder="Make sure you provide a valid UID"></div>
+     <div class="field"><label for="ign">In-game name</label><input id="ign" placeholder="Your in-game name"></div>
+     <div class="field"><label for="region">Region / Server</label><input id="region" placeholder="Enter your region or server"></div>
+     <div class="field"><label for="extra">Other details</label><input id="extra" placeholder="Any extra information"></div>
+    </div>
+   </div>
+   <div class="panel">
+    <h2>Payment information</h2>
+    <p class="muted">Please confirm the final price and availability on WhatsApp before making payment.</p>
+    <div class="bank">
+     <div class="line"><span>Bank / Wallet</span><strong>OPay</strong></div>
+     <div class="line"><span>Account name</span><strong>Betty Onyiyechi Paul</strong></div>
+     <div class="line"><span>Account number</span><strong>9074239739</strong></div>
+     <button class="btn secondary full" id="copy" type="button">COPY ACCOUNT NUMBER</button>
+    </div>
+    <div class="field"><label for="reference">Payment reference (if already paid)</label><input id="reference" placeholder="Enter payment reference"></div>
+    <div class="field"><label for="receipt">Payment receipt (optional)</label><input id="receipt" type="file" accept="image/*,.pdf"></div>
+    <p class="note">Do not make payment until the price and package have been confirmed. If you have already paid, attach your receipt when contacting us.</p>
+    <button class="btn full" id="submit" type="button">CONTINUE TO WHATSAPP ORDER</button>
+   </div>
+  </section>
+  <section class="section panel" id="how">
+   <h2>How to order</h2>
+   <div class="steps">
+    <div class="step"><b>1. Choose your game</b>Select the game or voucher you want to purchase.</div>
+    <div class="step"><b>2. Enter your details</b>Provide your valid player UID and contact information.</div>
+    <div class="step"><b>3. Confirm and order</b>Confirm the price with us and continue through WhatsApp.</div>
+   </div>
+  </section>
+ </div>
+</main>
+<div class="detail-page" id="gameDetailPage"></div>
+<footer id="footer">
+ <div class="footer-inner">
+  <div><h3>YunG Top 1 Meditator</h3><p>Your trusted gaming top-up store. Thank you for choosing us.</p></div>
+  <div><strong>Quick links</strong><br><a href="#home">Home</a><br><a href="#games">Games</a><br><a href="#order">Place order</a></div>
+  <div><strong>Contact us</strong><br><a href="https://wa.me/2349074239739" target="_blank" rel="noopener">WhatsApp: +234 907 423 9739</a></div>
+ </div>
+ <div class="footer-bottom">© <span id="year"></span> YunG Top 1 Meditator. All rights reserved.</div>
+</footer><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -55,7 +180,7 @@ header{background:#fff;position:sticky;top:0;z-index:30;border-bottom:1px solid 
 .product{background:white;border-radius:11px;overflow:hidden;cursor:pointer;transition:transform .28s ease,box-shadow .28s ease;box-shadow:0 2px 8px #172b4d08;border:1px solid #edf0f5}
 .product:hover{transform:translateY(-6px);box-shadow:0 14px 30px #172b4d20}
 .art{height:195px;position:relative;overflow:hidden;background:#10254a}
-.art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease,filter .4s ease}
+.art img,.detail-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease,filter .4s ease}.detail-cover img{object-position:center}
 .product:hover .art img{transform:scale(1.09);filter:saturate(1.12)}
 .art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#07142638,transparent 55%);pointer-events:none}
 .art-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:12px;color:white;background:radial-gradient(circle at 80% 15%,#ffffff33,transparent 30%),linear-gradient(135deg,var(--art1,#10254a),var(--art2,#1769ff));transition:transform .5s ease}
@@ -144,11 +269,7 @@ footer h3,footer strong{color:white}footer a{color:#fff;text-decoration:none}foo
    <div class="search-input-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games & more" autocomplete="off"></div>
    <button class="search-close" id="closeSearch">×</button>
   </div>
-  <div class="search-content">
-   <div class="popular-searches"><h3>Popular searches</h3><div id="popularSearchList"></div></div>
-   <div class="top-selling"><h3 id="searchResultsHeading">Top selling products</h3><div class="search-product-grid" id="searchProductGrid"></div></div>
-  </div>
-  <div class="search-no-results" id="searchNoResults" hidden>No products found. Try another search.</div>
+  <div class="search-content">  <div class="search-no-results" id="searchNoResults" hidden>No products found. Try another search.</div>
  </div>
 </div>
 <div class="trust"><span>⚡ Easy ordering</span><span>🎮 Gaming top-ups</span><span>💬 WhatsApp support</span><span>✓ Manual payment confirmation</span></div>
@@ -270,8 +391,7 @@ const auth=firebase.auth(),WA="2349074239739",$=id=>document.getElementById(id);
 const money=n=>"₦"+Number(n).toLocaleString("en-NG");
 let user=null,pendingOrder=false,currentFilter="all";
 function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
-const games=[
-["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","COD"],
+const games=[["Call of Duty: Mobile","COD Points & Battle Pass","mobile","popular","COD"],
 ["Free Fire","Diamonds & Membership","mobile","popular","FF"],
 ["PUBG Mobile","UC & Royale Pass","mobile","popular","PUBG"],
 ["Blood Strike","Gold & Pass","mobile","popular","BS"],
@@ -327,8 +447,7 @@ const packages={
 "Call of Duty: Mobile":[["80 CP",900],["420 CP",4600],["880 CP",9000]],
 "Blood Strike":[["100 Gold",900],["500 Gold",4600],["1000 Gold",9000]],
 "PUBG Mobile":[["60 UC",900],["325 UC",4600],["660 UC",9000]]
-};
-const productImages={
+};const productImages={
 "Free Fire":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiIxOThlNzQ1Mi1iZWRlLTQ5ZTEtYTYzZC02NWQ4OTIzYjRkZDQucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
 "Blood Strike":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiI3NTM2Nzg2ZC03NjBiLTRlODgtOGU1MS1iNDA0OTBkOTNkMjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19",
 "PUBG Mobile":"https://img.carry1st.com/eyJidWNrZXQiOiJpbWFnZXMtY2Fycnkxc3QtcHJvZHVjdHMiLCJrZXkiOiJmNzhlMTMyNC1hOTg2LTQ3MWItYWUwMS1jNjBkOGFlOTk3YjIucG5nLndlYnAiLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEyMDB9fSwid2VicCI6eyJxdWFsaXR5Ijo3NX19"
@@ -340,9 +459,18 @@ function fallback(product){
  d.innerHTML="<strong>"+escapeHTML(product[4])+"</strong><span>"+escapeHTML(product[0].toUpperCase())+"</span>";return d;
 }
 function artwork(product,detail=false){
- const art=document.createElement("div");art.className=detail?"detail-cover":"art";const src=productImages[product[0]];
- if(src){const img=document.createElement("img");img.src=src;img.alt=product[0];img.loading="lazy";img.onerror=()=>{art.innerHTML="";art.appendChild(fallback(product));};art.appendChild(img);}
- else art.appendChild(fallback(product));return art;
+ const art=document.createElement("div");
+ art.className=detail?"detail-cover":"art";
+ const name=product[0];
+ // Keep the verified Carry1st images already in the site.
+ // Every other product receives a separate, name-specific game cover request.
+ const prompt=name+" video game key art, distinctive game cover artwork, cinematic landscape composition, no added lettering";
+ const src=productImages[name] || ("https://image.pollinations.ai/prompt/"+encodeURIComponent(prompt)+"?width=1200&height=675&nologo=true&seed="+encodeURIComponent(name));
+ const img=document.createElement("img");
+ img.src=src;img.alt=name+" game artwork";img.loading="lazy";img.referrerPolicy="no-referrer";
+ img.onerror=()=>{art.innerHTML="";art.appendChild(fallback(product));};
+ art.appendChild(img);
+ return art;
 }
 function createCard(product){
  const card=document.createElement("article");card.className="product";card.appendChild(artwork(product));
