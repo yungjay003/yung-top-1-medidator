@@ -22,7 +22,6 @@
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -135,8 +134,7 @@ display:flex;
 align-items:center;
 position:relative;
 overflow:hidden;
-background:
-linear-gradient(100deg,#101b36 0%,#123d68 55%,#101a32 100%);
+background:linear-gradient(100deg,#101b36 0%,#123d68 55%,#101a32 100%);
 border:1px solid #2d5277;
 }
 
@@ -337,19 +335,13 @@ display:block;
 transition:.5s;
 }
 
-.game-card:hover .game-cover img{
-transform:scale(1.08);
-}
+.game-card:hover .game-cover img{transform:scale(1.08)}
 
 .game-cover:after{
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(
-to top,
-rgba(0,0,0,.88),
-transparent 75%
-);
+background:linear-gradient(to top,rgba(0,0,0,.88),transparent 75%);
 pointer-events:none;
 }
 
@@ -436,7 +428,6 @@ box-shadow:0 0 0 2px #00e5ff18;
 }
 
 input::placeholder,textarea::placeholder{color:#73839a}
-
 select option{background:#101a2b}
 
 .packages{
@@ -491,13 +482,8 @@ font-size:13px;
 }
 
 .summary-line strong{text-align:right}
-
 .green{color:var(--green)}
-
-.full{
-width:100%;
-margin-top:12px;
-}
+.full{width:100%;margin-top:12px}
 
 .payment-box{
 background:#0a1423;
@@ -578,6 +564,78 @@ color:#c3d3e5;
 font-size:13px;
 margin:0;
 }
+
+/* WHATSAPP QR CODE */
+
+.whatsapp-qr-section{
+margin-top:25px;
+background:linear-gradient(135deg,#102239,#102e37);
+border:1px solid #28516a;
+border-radius:15px;
+padding:30px;
+display:grid;
+grid-template-columns:1fr 280px;
+align-items:center;
+gap:30px;
+}
+
+.whatsapp-qr-text h2{
+font-size:25px;
+margin:0 0 12px;
+}
+
+.whatsapp-qr-text p{
+color:#c3d3e5;
+font-size:13px;
+line-height:1.8;
+}
+
+.whatsapp-number{
+color:var(--green);
+font-size:19px;
+font-weight:900;
+margin:18px 0;
+}
+
+.qr-card{
+background:white;
+border-radius:13px;
+padding:18px;
+text-align:center;
+color:#101a2b;
+}
+
+#whatsappQR{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:210px;
+}
+
+#whatsappQR img,
+#whatsappQR canvas{
+max-width:100%;
+height:auto;
+}
+
+.qr-card p{
+font-size:12px;
+font-weight:bold;
+margin:12px 0 0;
+}
+
+.qr-download{
+width:100%;
+margin-top:15px;
+padding:13px;
+border:0;
+border-radius:7px;
+background:#20e879;
+color:#06150c;
+font-weight:900;
+}
+
+.qr-download:hover{filter:brightness(1.08)}
 
 footer{
 margin-top:45px;
@@ -721,7 +779,6 @@ margin:9px 0;
 @media(max-width:650px){
 
 .nav{flex-wrap:wrap}
-
 .menu-toggle{display:block}
 
 nav{
@@ -733,9 +790,7 @@ padding:10px 0;
 }
 
 nav.open{display:flex}
-
 .nav-actions{margin-left:auto}
-
 .logo{font-size:17px}
 
 .hero{padding:25px 0}
@@ -763,24 +818,28 @@ gap:10px;
 }
 
 .game-cover{height:145px}
-
 .game-info{padding:11px}
-
 .game-info h3{font-size:12px}
-
 .game-info p{font-size:10px}
 
 .order-layout{grid-template-columns:1fr}
-
 .steps{grid-template-columns:1fr}
-
 .section{padding:30px 0}
-
 .section-heading h2{font-size:23px}
-
 .detail-packages{grid-template-columns:1fr 1fr}
-
 .detail-banner{height:200px}
+
+.whatsapp-qr-section{
+grid-template-columns:1fr;
+padding:22px;
+}
+
+.qr-card{
+width:100%;
+max-width:300px;
+margin:auto;
+}
+
 }
 
 @media(max-width:350px){
@@ -1075,6 +1134,52 @@ You will be asked to sign in or create an account before sending your order.
 </a>
 
 </div>
+
+<!-- WHATSAPP QR CODE SECTION -->
+
+<div class="whatsapp-qr-section">
+
+<div class="whatsapp-qr-text">
+
+<div class="section-label">SCAN AND CONNECT</div>
+
+<h2>Reach Us On WhatsApp</h2>
+
+<p>
+Want to contact YunG Top 1 Meditator?
+Simply scan the QR code with your phone camera.
+It will take you directly to our WhatsApp chat.
+</p>
+
+<div class="whatsapp-number">
++234 907 423 9739
+</div>
+
+<p>
+Save this QR code and share it with friends and customers
+so they can contact us easily.
+</p>
+
+<a href="https://wa.me/2349074239739" target="_blank" rel="noopener">
+<button class="btn btn-green">OPEN WHATSAPP CHAT ↗</button>
+</a>
+
+</div>
+
+<div class="qr-card">
+
+<div id="whatsappQR"></div>
+
+<p>SCAN TO CHAT WITH YUNG</p>
+
+<button class="qr-download" id="downloadQR">
+DOWNLOAD QR CODE ↓
+</button>
+
+</div>
+
+</div>
+
 </section>
 
 </div>
@@ -1191,6 +1296,10 @@ You will be asked to sign in or create an account before sending your order.
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
+<!-- QR CODE LIBRARY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
 
 const firebaseConfig={
@@ -1208,6 +1317,8 @@ const auth=firebase.auth();
 
 const WA="2349074239739";
 
+const WHATSAPP_LINK="https://wa.me/"+WA;
+
 const $=id=>document.getElementById(id);
 
 let currentUser=null;
@@ -1217,6 +1328,65 @@ let activeCategory="all";
 function money(n){
 return "₦"+Number(n).toLocaleString("en-NG");
 }
+
+/* WHATSAPP QR CODE GENERATOR */
+
+function generateWhatsAppQR(){
+
+const qrContainer=$("whatsappQR");
+
+if(!qrContainer)return;
+
+if(typeof QRCode==="undefined"){
+qrContainer.innerHTML="<p style='color:#333'>QR code library could not load. Check your internet connection.</p>";
+return;
+}
+
+qrContainer.innerHTML="";
+
+new QRCode(qrContainer,{
+text:WHATSAPP_LINK,
+width:200,
+height:200,
+colorDark:"#071421",
+colorLight:"#ffffff",
+correctLevel:QRCode.CorrectLevel.H
+});
+
+}
+
+/* DOWNLOAD WHATSAPP QR CODE */
+
+function downloadWhatsAppQR(){
+
+const qrContainer=$("whatsappQR");
+
+const canvas=qrContainer.querySelector("canvas");
+const image=qrContainer.querySelector("img");
+
+let imageURL="";
+
+if(canvas){
+imageURL=canvas.toDataURL("image/png");
+}else if(image){
+imageURL=image.src;
+}else{
+alert("The QR code is not ready yet. Please wait and try again.");
+return;
+}
+
+const downloadLink=document.createElement("a");
+
+downloadLink.href=imageURL;
+downloadLink.download="YunG-Top-1-Meditator-WhatsApp-QR.png";
+
+document.body.appendChild(downloadLink);
+downloadLink.click();
+downloadLink.remove();
+
+}
+
+$("downloadQR").addEventListener("click",downloadWhatsAppQR);
 
 /* GAME DATABASE */
 
@@ -1409,8 +1579,7 @@ return categoryMatch&&searchMatch;
 
 if(!filtered.length){
 
-grid.innerHTML=
-'<div class="empty">No games found. Try another search.</div>';
+grid.innerHTML='<div class="empty">No games found. Try another search.</div>';
 
 return;
 }
@@ -1993,6 +2162,8 @@ $("mainNav").classList.remove("open");
 renderGames();
 
 setupGames();
+
+generateWhatsAppQR();
 
 </script>
 
